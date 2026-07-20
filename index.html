@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Darren Huai — Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%235b3df0'/%3E%3Cstop offset='1' stop-color='%23f0a63c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-size='52' font-family='sans-serif' font-weight='700' fill='white' text-anchor='middle'%3EDH%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
   <meta name="color-scheme" content="light">
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -23,6 +24,21 @@
           }
         });
       });
+      // Reveal sections as they scroll into view
+      const revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && revealEls.length) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach((el) => io.observe(el));
+      } else {
+        revealEls.forEach((el) => el.classList.add('is-visible'));
+      }
     });
   </script>
 </head>
@@ -46,6 +62,7 @@
     <section id="home" class="hero container">
       <div class="hero-grid">
         <div class="hero-copy">
+          <span class="eyebrow-badge"><span class="dot"></span> AI Engineer @ Mercor</span>
           <h1>Hi, I’m <span class="accent">Darren Huai</span></h1>
           <p class="subtitle">Software Engineer · AI/ML Builder · Robotics Enthusiast · Data‑Driven Problem Solver</p>
           <div class="cta">
@@ -67,124 +84,139 @@
       </div>
     </section>
 
-    <section id="about" class="section container">
-      <h2>About Me</h2>
-      <p>
-        US Citizen · (916) 385‑4929 ·
-        <a href="mailto:Darrenhuai@gmail.com">Darrenhuai@gmail.com</a> ·
-        <a href="https://www.linkedin.com/in/darrenhuai" target="_blank" rel="noopener">LinkedIn</a> ·
-        <a href="https://github.com/darrenhuai" target="_blank" rel="noopener">GitHub</a>
-      </p>
-      <div class="split">
-        <div>
-          <h3>Education</h3>
-          <ul class="list">
-            <li><strong>USC Viterbi</strong> — M.S. Computer Science (Expected 2027)</li>
-            <li><strong>UCLA Samueli</strong> — B.S. Mechanical/Aerospace Eng. + CS (2020–2024)</li>
-          </ul>
+    <section id="about" class="section alt reveal">
+      <div class="container">
+        <span class="section-eyebrow">Background</span>
+        <h2>About Me</h2>
+        <p>
+          US Citizen · (916) 385‑4929 ·
+          <a href="mailto:Darrenhuai@gmail.com">Darrenhuai@gmail.com</a> ·
+          <a href="https://www.linkedin.com/in/darrenhuai" target="_blank" rel="noopener">LinkedIn</a> ·
+          <a href="https://github.com/darrenhuai" target="_blank" rel="noopener">GitHub</a>
+        </p>
+        <div class="split">
+          <div>
+            <h3>Education</h3>
+            <ul class="list">
+              <li><strong>USC Viterbi</strong> — M.S. Computer Science (Expected 2027)</li>
+              <li><strong>UCLA Samueli</strong> — B.S. Mechanical/Aerospace Eng. + CS (2020–2024)</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Relevant Coursework</h3>
+            <ul class="list two-col">
+              <li>Data Structures & Algorithms</li>
+              <li>Artificial Intelligence / ML</li>
+              <li>Neural Networks</li>
+              <li>Operating Systems</li>
+              <li>Data Science</li>
+              <li>Game Development</li>
+            </ul>
+          </div>
         </div>
-        <div>
-          <h3>Relevant Coursework</h3>
-          <ul class="list two-col">
-            <li>Data Structures & Algorithms</li>
-            <li>Artificial Intelligence / ML</li>
-            <li>Neural Networks</li>
-            <li>Operating Systems</li>
-            <li>Data Science</li>
-            <li>Game Development</li>
-          </ul>
+      </div>
+    </section>
+
+    <section id="projects" class="section reveal">
+      <div class="container">
+        <span class="section-eyebrow">Selected Work</span>
+        <h2>Projects</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>Realms — Multiplayer Game</h3>
+            <p class="meta">WebSockets · Deno · PostgreSQL · ProtoBuf · Svelte · Discord API</p>
+            <ul class="bullets">
+              <li>Reduced packet size by <strong>60%</strong> and boosted speed <strong>8×</strong>.</li>
+              <li>Scaled to ~<strong>80 concurrent players</strong> with efficient state sync.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Petrarchan GPT</h3>
+            <p class="meta">PyTorch · NumPy</p>
+            <ul class="bullets">
+              <li>Implemented a GPT from scratch, training loops, and tokenizer.</li>
+              <li>Achieved ≈<strong>1.8 perplexity</strong> in ~15 minutes on an RTX 4070.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>GreetBot Robot</h3>
+            <p class="meta">Python · TensorFlow · Robotics</p>
+            <ul class="bullets">
+              <li>Face/gesture recognition at ~<strong>95% accuracy</strong>.</li>
+              <li>Improved servo repeatability and motion speed with PID tuning.</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section container">
-      <h2>Projects</h2>
-      <div class="cards">
-        <article class="card">
-          <h3>Realms — Multiplayer Game</h3>
-          <p class="meta">WebSockets · Deno · PostgreSQL · ProtoBuf · Svelte · Discord API</p>
-          <ul class="bullets">
-            <li>Reduced packet size by <strong>60%</strong> and boosted speed <strong>8×</strong>.</li>
-            <li>Scaled to ~<strong>80 concurrent players</strong> with efficient state sync.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>Petrarchan GPT</h3>
-          <p class="meta">PyTorch · NumPy</p>
-          <ul class="bullets">
-            <li>Implemented a GPT from scratch, training loops, and tokenizer.</li>
-            <li>Achieved ≈<strong>1.8 perplexity</strong> in ~15 minutes on an RTX 4070.</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>GreetBot Robot</h3>
-          <p class="meta">Python · TensorFlow · Robotics</p>
-          <ul class="bullets">
-            <li>Face/gesture recognition at ~<strong>95% accuracy</strong>.</li>
-            <li>Improved servo repeatability and motion speed with PID tuning.</li>
-          </ul>
-        </article>
+    <section id="experience" class="section alt reveal">
+      <div class="container">
+        <span class="section-eyebrow">Career</span>
+        <h2>Experience</h2>
+        <ul class="timeline">
+          <li>
+            <div class="time-dot"></div>
+            <div class="time-card">
+              <h3>AI Engineer — Mercor</h3>
+              <p class="meta">Feb 2025 — Present</p>
+              <p>Built QA pipeline, Monte Carlo simulations, and RLHF workflows for product evaluation and iteration.</p>
+            </div>
+          </li>
+          <li>
+            <div class="time-dot"></div>
+            <div class="time-card">
+              <h3>Air Quality Specialist — AQMD</h3>
+              <p class="meta">Aug 2024 — Nov 2024</p>
+              <p>Mined 1M+ records to raise compliance to 96% and surface systemic issues with dashboards.</p>
+            </div>
+          </li>
+          <li>
+            <div class="time-dot"></div>
+            <div class="time-card">
+              <h3>Data & Software Engineer Intern — CARB</h3>
+              <p class="meta">Aug 2023 — Aug 2024</p>
+              <p>Streamlined compliance reviews by ~30% with automation and data tooling.</p>
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
 
-    <section id="experience" class="section container">
-      <h2>Experience</h2>
-      <ul class="timeline">
-        <li>
-          <div class="time-dot"></div>
-          <div class="time-card">
-            <h3>AI Engineer — Mercor</h3>
-            <p class="meta">Feb 2025 — Present</p>
-            <p>Built QA pipeline, Monte Carlo simulations, and RLHF workflows for product evaluation and iteration.</p>
-          </div>
-        </li>
-        <li>
-          <div class="time-dot"></div>
-          <div class="time-card">
-            <h3>Air Quality Specialist — AQMD</h3>
-            <p class="meta">Aug 2024 — Nov 2024</p>
-            <p>Mined 1M+ records to raise compliance to 96% and surface systemic issues with dashboards.</p>
-          </div>
-        </li>
-        <li>
-          <div class="time-dot"></div>
-          <div class="time-card">
-            <h3>Data & Software Engineer Intern — CARB</h3>
-            <p class="meta">Aug 2023 — Aug 2024</p>
-            <p>Streamlined compliance reviews by ~30% with automation and data tooling.</p>
-          </div>
-        </li>
-      </ul>
-    </section>
-
-    <section id="skills" class="section container">
-      <h2>Skills</h2>
-      <div class="chips">
-        <span class="chip">Python</span>
-        <span class="chip">C++</span>
-        <span class="chip">SQL</span>
-        <span class="chip">React</span>
-        <span class="chip">Svelte</span>
-        <span class="chip">PyTorch</span>
-        <span class="chip">TensorFlow</span>
-        <span class="chip">Git/GitHub</span>
-        <span class="chip">CI/CD</span>
-        <span class="chip">Figma</span>
-        <span class="chip">AWS</span>
-        <span class="chip">Excel</span>
-        <span class="chip">SolidWorks</span>
-        <span class="chip">COMSOL</span>
+    <section id="skills" class="section reveal">
+      <div class="container">
+        <span class="section-eyebrow">Toolbox</span>
+        <h2>Skills</h2>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">C++</span>
+          <span class="chip">SQL</span>
+          <span class="chip">React</span>
+          <span class="chip">Svelte</span>
+          <span class="chip">PyTorch</span>
+          <span class="chip">TensorFlow</span>
+          <span class="chip">Git/GitHub</span>
+          <span class="chip">CI/CD</span>
+          <span class="chip">Figma</span>
+          <span class="chip">AWS</span>
+          <span class="chip">Excel</span>
+          <span class="chip">SolidWorks</span>
+          <span class="chip">COMSOL</span>
+        </div>
       </div>
     </section>
 
-    <section id="contact" class="section container">
-      <h2>Contact</h2>
-      <p>Prefer a quick ping? Use the buttons below.</p>
-      <div class="cta">
-        <a class="btn" href="mailto:Darrenhuai@gmail.com">Email Me</a>
-        <a class="btn btn-outline" href="https://www.linkedin.com/in/darrenhuai" target="_blank" rel="noopener">Connect on LinkedIn</a>
+    <section id="contact" class="section alt reveal">
+      <div class="container">
+        <span class="section-eyebrow">Get In Touch</span>
+        <h2>Contact</h2>
+        <p>Prefer a quick ping? Use the buttons below.</p>
+        <div class="cta">
+          <a class="btn" href="mailto:Darrenhuai@gmail.com">Email Me</a>
+          <a class="btn btn-outline" href="https://www.linkedin.com/in/darrenhuai" target="_blank" rel="noopener">Connect on LinkedIn</a>
+        </div>
       </div>
     </section>
   </main>
@@ -195,7 +227,7 @@
       <div class="socials">
         <a href="mailto:Darrenhuai@gmail.com">Email</a>
         <a href="https://www.linkedin.com/in/darrenhuai" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/wontonsalad" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/darrenhuai" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </footer>
