@@ -149,12 +149,25 @@ h1, h2, h3 {
   width: 420px; height: 420px;
   background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
   top: -160px; right: -120px;
+  animation: blob-drift-a 14s ease-in-out infinite;
 }
 .hero::after {
   width: 320px; height: 320px;
   background: radial-gradient(circle, var(--amber) 0%, transparent 70%);
   bottom: -140px; left: -100px;
   opacity: .35;
+  animation: blob-drift-b 18s ease-in-out infinite;
+}
+@keyframes blob-drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-40px, 30px) scale(1.12); }
+}
+@keyframes blob-drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(35px, -25px) scale(1.08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero::before, .hero::after { animation: none; }
 }
 
 .hero-grid {
@@ -183,12 +196,48 @@ h1, h2, h3 {
   line-height: 1.1; margin: 0 0 .7rem 0; font-weight: 700;
 }
 .accent {
-  background: linear-gradient(120deg, var(--accent), #9f7bff 60%, var(--amber));
+  background: linear-gradient(120deg, var(--accent), #9f7bff 45%, var(--amber), var(--accent));
+  background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  animation: accent-shift 6s ease-in-out infinite;
 }
-.subtitle { color: var(--ink-600); font-size: 1.1rem; margin-bottom: 1.4rem; max-width: 46ch; }
+@keyframes accent-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .accent { animation: none; }
+}
+
+.subtitle { color: var(--ink-600); font-size: 1.1rem; margin-bottom: 1.4rem; max-width: 46ch; min-height: 1.6em; }
+.caret {
+  display: inline-block; width: 2px; height: 1.05em;
+  background: var(--accent); margin-left: 2px; vertical-align: -0.15em;
+  animation: caret-blink 1s step-end infinite;
+}
+@keyframes caret-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .caret { display: none; }
+}
+
+/* Hero entrance animation */
+.hero-in {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: hero-in .6s var(--ease) forwards;
+  animation-delay: var(--d, 0s);
+}
+@keyframes hero-in {
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-in { animation: none; opacity: 1; transform: none; }
+}
 
 .cta { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1rem; }
 .btn {
@@ -287,8 +336,33 @@ h1, h2, h3 {
 }
 .time-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
 .time-card h3 { margin: 0 0 .2rem 0; font-size: 1.05rem; }
-.time-card .meta { margin-bottom: .5rem; }
+.time-card .meta { margin-bottom: .5rem; display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
 .time-card p:last-child { color: var(--ink-600); margin: 0; }
+
+.time-dot.current {
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, .2);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+.time-dot.upcoming {
+  background: var(--amber);
+  box-shadow: 0 0 0 4px rgba(240, 166, 60, .2);
+}
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(34, 197, 94, .2); }
+  50% { box-shadow: 0 0 0 7px rgba(34, 197, 94, .12); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .time-dot.current { animation: none; }
+}
+
+.status-tag {
+  display: inline-flex; align-items: center;
+  font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+  padding: .15rem .5rem; border-radius: 999px;
+  background: var(--accent-100); color: var(--accent-600);
+}
+.status-tag.current { background: #dcfce7; color: #15803d; }
 
 /* Lists */
 .list { margin: .4rem 0 0 0; padding-left: 1.1rem; color: var(--ink-600); }
@@ -304,6 +378,12 @@ h1, h2, h3 {
 }
 
 /* Skills */
+.skill-group { margin-top: 1.75rem; }
+.skill-group:first-of-type { margin-top: .5rem; }
+.skill-group h3 {
+  font-size: .95rem; font-weight: 700; color: var(--ink-700);
+  margin: 0 0 .7rem 0;
+}
 .chips {
   display: flex; flex-wrap: wrap; gap: .65rem;
   margin-top: .5rem;
@@ -313,6 +393,10 @@ h1, h2, h3 {
   box-shadow: var(--shadow-sm);
 }
 .chips .chip:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.chips .chip.cert {
+  background: var(--accent-050); border-color: var(--accent-100); color: var(--accent-600);
+}
+.chips .chip.cert:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
 
 /* Footer */
 .site-footer {

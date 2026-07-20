@@ -39,6 +39,46 @@
       } else {
         revealEls.forEach((el) => el.classList.add('is-visible'));
       }
+
+      // Typewriter effect cycling through roles in the hero subtitle
+      const twEl = document.getElementById('typewriter');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const phrases = [
+        'Software Engineer',
+        'AI/ML Builder',
+        'Robotics Enthusiast',
+        'Data‑Driven Problem Solver',
+      ];
+      if (twEl && !reduceMotion) {
+        let phraseIdx = 0, charIdx = 0, deleting = false;
+        const TYPE_MS = 55, DELETE_MS = 30, HOLD_MS = 1400, GAP_MS = 400;
+        function tick() {
+          const phrase = phrases[phraseIdx];
+          if (!deleting) {
+            charIdx++;
+            twEl.textContent = phrase.slice(0, charIdx);
+            if (charIdx === phrase.length) {
+              deleting = true;
+              setTimeout(tick, HOLD_MS);
+              return;
+            }
+            setTimeout(tick, TYPE_MS);
+          } else {
+            charIdx--;
+            twEl.textContent = phrase.slice(0, charIdx);
+            if (charIdx === 0) {
+              deleting = false;
+              phraseIdx = (phraseIdx + 1) % phrases.length;
+              setTimeout(tick, GAP_MS);
+              return;
+            }
+            setTimeout(tick, DELETE_MS);
+          }
+        }
+        tick();
+      } else if (twEl) {
+        twEl.textContent = phrases.join(' · ');
+      }
     });
   </script>
 </head>
@@ -62,22 +102,23 @@
     <section id="home" class="hero container">
       <div class="hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow-badge"><span class="dot"></span> AI Engineer @ Mercor</span>
-          <h1>Hi, I’m <span class="accent">Darren Huai</span></h1>
-          <p class="subtitle">Software Engineer · AI/ML Builder · Robotics Enthusiast · Data‑Driven Problem Solver</p>
-          <div class="cta">
+          <span class="eyebrow-badge hero-in" style="--d:0s"><span class="dot"></span> Software Engineer Intern @ iTradeNetwork</span>
+          <h1 class="hero-in" style="--d:.08s">Hi, I’m <span class="accent">Darren Huai</span></h1>
+          <p class="subtitle hero-in" style="--d:.16s">
+            <span id="typewriter" aria-live="polite"></span><span class="caret" aria-hidden="true"></span>
+          </p>
+          <div class="cta hero-in" style="--d:.24s">
             <a href="#projects" class="btn">View Projects</a>
             <a href="#contact" class="btn btn-outline">Contact</a>
           </div>
-          <div class="quick-contacts">
+          <div class="quick-contacts hero-in" style="--d:.32s">
             <a class="chip" href="mailto:Darrenhuai@gmail.com" aria-label="Email Darren">Email</a>
             <a class="chip" href="https://www.linkedin.com/in/darrenhuai" target="_blank" rel="noopener">LinkedIn</a>
             <a class="chip" href="https://github.com/darrenhuai" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
-        <div class="hero-media">
+        <div class="hero-media hero-in" style="--d:.2s">
           <div class="avatar-wrap">
-            <!-- Replace headshot.jpg with the actual path/filename of your photo -->
             <img src="img/pro_pic.jpg" alt="Portrait of Darren Huai" class="avatar" />
           </div>
         </div>
@@ -108,7 +149,10 @@
               <li>Data Structures & Algorithms</li>
               <li>Artificial Intelligence / ML</li>
               <li>Neural Networks</li>
+              <li>Computer Networks</li>
+              <li>Software Architecture / Eng.</li>
               <li>Operating Systems</li>
+              <li>Programming System Design</li>
               <li>Data Science</li>
               <li>Game Development</li>
             </ul>
@@ -135,8 +179,26 @@
             <h3>Petrarchan GPT</h3>
             <p class="meta">PyTorch · NumPy</p>
             <ul class="bullets">
-              <li>Implemented a GPT from scratch, training loops, and tokenizer.</li>
-              <li>Achieved ≈<strong>1.8 perplexity</strong> in ~15 minutes on an RTX 4070.</li>
+              <li>Built a GPT from scratch — tokenizer, self-attention, feed-forward — in <strong>&lt;200 LOC</strong>.</li>
+              <li>Cut GPU memory <strong>30%</strong> and sped training <strong>20%</strong> via gradient checkpointing and mixed precision, reaching ≈<strong>1.8 perplexity</strong> in 15 min on an RTX 4070.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Autonomous Prediction Market Bot</h3>
+            <p class="meta">Python · DuckDB · REST API</p>
+            <ul class="bullets">
+              <li>Scans <strong>300+ live Kalshi markets</strong> every 5 minutes for pricing inefficiencies via RSA-authenticated REST calls.</li>
+              <li>DuckDB-backed pipeline with trade-flow analysis (taker-side imbalance, VWAP) and automated email alerts.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Hospital Management System</h3>
+            <p class="meta">C · SQL · Ubuntu/Linux</p>
+            <ul class="bullets">
+              <li>Hospital database and scheduling system covering patient records, appointments, and doctor scheduling.</li>
+              <li>Low-level file handling and process management to simulate real healthcare workflows.</li>
             </ul>
           </article>
 
@@ -158,27 +220,35 @@
         <h2>Experience</h2>
         <ul class="timeline">
           <li>
-            <div class="time-dot"></div>
+            <div class="time-dot upcoming"></div>
             <div class="time-card">
-              <h3>AI Engineer — Mercor</h3>
-              <p class="meta">Feb 2025 — Present</p>
-              <p>Built QA pipeline, Monte Carlo simulations, and RLHF workflows for product evaluation and iteration.</p>
+              <h3>Software Engineer Intern — NASA</h3>
+              <p class="meta">Aug 2026 — Dec 2026 <span class="status-tag">Upcoming</span></p>
+              <p>Accepted into NASA's Fall Software Engineering Internship program.</p>
+            </div>
+          </li>
+          <li>
+            <div class="time-dot current"></div>
+            <div class="time-card">
+              <h3>Software Engineer Intern — iTradeNetwork</h3>
+              <p class="meta">Jun 2026 — Aug 2026 <span class="status-tag current">Current</span></p>
+              <p>Built a full-stack AI agent integrating internal AI services and Claude to automate license-expiration tracking and renewal workflows, boosting operational speed by 40%.</p>
             </div>
           </li>
           <li>
             <div class="time-dot"></div>
             <div class="time-card">
-              <h3>Air Quality Specialist — AQMD</h3>
-              <p class="meta">Aug 2024 — Nov 2024</p>
-              <p>Mined 1M+ records to raise compliance to 96% and surface systemic issues with dashboards.</p>
+              <h3>Software Engineer — Mercor</h3>
+              <p class="meta">Feb 2025 — Jun 2026</p>
+              <p>Engineered RLHF workflows, cutting turnaround time 40% and lifting benchmark accuracy on engineering/math tasks by 18%.</p>
             </div>
           </li>
           <li>
             <div class="time-dot"></div>
             <div class="time-card">
-              <h3>Data & Software Engineer Intern — CARB</h3>
+              <h3>Data Engineer Intern — CARB</h3>
               <p class="meta">Aug 2023 — Aug 2024</p>
-              <p>Streamlined compliance reviews by ~30% with automation and data tooling.</p>
+              <p>Orchestrated a compliance program across 80+ manufacturers, streamlining reviews 30% and accelerating $120M+ in product market entry.</p>
             </div>
           </li>
         </ul>
@@ -189,21 +259,68 @@
       <div class="container">
         <span class="section-eyebrow">Toolbox</span>
         <h2>Skills</h2>
-        <div class="chips">
-          <span class="chip">Python</span>
-          <span class="chip">C++</span>
-          <span class="chip">SQL</span>
-          <span class="chip">React</span>
-          <span class="chip">Svelte</span>
-          <span class="chip">PyTorch</span>
-          <span class="chip">TensorFlow</span>
-          <span class="chip">Git/GitHub</span>
-          <span class="chip">CI/CD</span>
-          <span class="chip">Figma</span>
-          <span class="chip">AWS</span>
-          <span class="chip">Excel</span>
-          <span class="chip">SolidWorks</span>
-          <span class="chip">COMSOL</span>
+        <div class="skill-group">
+          <h3>Programming Languages</h3>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">C++</span>
+            <span class="chip">SQL</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">MATLAB</span>
+            <span class="chip">Java</span>
+            <span class="chip">React</span>
+            <span class="chip">Svelte</span>
+            <span class="chip">NLP</span>
+            <span class="chip">C#</span>
+            <span class="chip">Node.js</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Dev & Collaboration Tools</h3>
+          <div class="chips">
+            <span class="chip">GitHub</span>
+            <span class="chip">Figma</span>
+            <span class="chip">Git</span>
+            <span class="chip">CI/CD</span>
+            <span class="chip">Linux</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Engineering Software</h3>
+          <div class="chips">
+            <span class="chip">Excel</span>
+            <span class="chip">OpenRocket</span>
+            <span class="chip">SolidWorks</span>
+            <span class="chip">COMSOL</span>
+            <span class="chip">TensorFlow</span>
+            <span class="chip">Unreal Engine</span>
+            <span class="chip">Unity</span>
+            <span class="chip">Matplotlib</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Web Development / Data</h3>
+          <div class="chips">
+            <span class="chip">HTML5</span>
+            <span class="chip">CSS3</span>
+            <span class="chip">GitHub Pages</span>
+            <span class="chip">Tableau</span>
+            <span class="chip">Bootstrap</span>
+            <span class="chip">PyTorch/NumPy</span>
+            <span class="chip">PHP</span>
+            <span class="chip">Rust</span>
+            <span class="chip">Ruby</span>
+            <span class="chip">Go</span>
+            <span class="chip">iOS</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Certifications</h3>
+          <div class="chips">
+            <span class="chip cert">Anthropic: AI Fluency</span>
+            <span class="chip cert">Claude 101</span>
+            <span class="chip cert">Handshake AI: Model Validation Expert</span>
+          </div>
         </div>
       </div>
     </section>
