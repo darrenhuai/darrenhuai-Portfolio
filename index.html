@@ -4,37 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Darren Huai — Portfolio</title>
-  <script>
-    // Set theme before first paint to avoid a flash of the wrong theme.
-    (function () {
-      var saved = localStorage.getItem('theme');
-      var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', theme);
-    })();
-  </script>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%235b3df0'/%3E%3Cstop offset='1' stop-color='%23f0a63c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-size='52' font-family='sans-serif' font-weight='700' fill='white' text-anchor='middle'%3EDH%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-  <meta name="color-scheme" content="light dark">
+  <meta name="color-scheme" content="light">
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const yearEl = document.getElementById('year');
       if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-      // Theme toggle
-      const themeBtn = document.getElementById('theme-toggle');
-      if (themeBtn) {
-        const root = document.documentElement;
-        const syncPressed = () => themeBtn.setAttribute('aria-pressed', String(root.getAttribute('data-theme') === 'dark'));
-        syncPressed();
-        themeBtn.addEventListener('click', () => {
-          const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-          root.setAttribute('data-theme', next);
-          localStorage.setItem('theme', next);
-          syncPressed();
-        });
-      }
       // Smooth scroll for internal links
       document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', (e) => {
@@ -110,19 +89,13 @@
   <header class="site-header">
     <div class="container nav">
       <a href="#home" class="logo" aria-label="Go to top">DH</a>
-      <div class="nav-right">
-        <nav aria-label="Primary">
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#experience">Experience</a>
-          <a href="#skills">Skills</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">
-          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.5v2.4M12 19.1v2.4M21.5 12h-2.4M4.9 12H2.5M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7M18.4 18.4l-1.7-1.7M7.3 7.3 5.6 5.6"/></g></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
-        </button>
-      </div>
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
@@ -192,7 +165,48 @@
       </div>
     </section>
 
-    <section id="projects" class="section reveal">
+    <section id="experience" class="section reveal">
+      <div class="container">
+        <span class="section-eyebrow">Career</span>
+        <h2>Experience</h2>
+        <ul class="timeline">
+          <li>
+            <div class="time-dot upcoming"></div>
+            <div class="time-card">
+              <h3>Software Engineer Intern — NASA</h3>
+              <p class="meta">Aug 2026 — Dec 2026 <span class="status-tag">Upcoming</span></p>
+              <p>Accepted into NASA's Fall Software Engineering Internship program.</p>
+            </div>
+          </li>
+          <li>
+            <div class="time-dot current"></div>
+            <div class="time-card">
+              <h3>Software Engineer Intern — iTradeNetwork</h3>
+              <p class="meta">Jun 2026 — Aug 2026 <span class="status-tag current">Current</span></p>
+              <p>Built a full-stack AI agent integrating internal AI services and Claude to automate license-expiration tracking and renewal workflows, boosting operational speed by 40%.</p>
+            </div>
+          </li>
+          <li>
+            <div class="time-dot"></div>
+            <div class="time-card">
+              <h3>Software Engineer — Mercor</h3>
+              <p class="meta">Feb 2025 — Jun 2026</p>
+              <p>Engineered RLHF workflows, cutting turnaround time 40% and lifting benchmark accuracy on engineering/math tasks by 18%.</p>
+            </div>
+          </li>
+          <li>
+            <div class="time-dot"></div>
+            <div class="time-card">
+              <h3>Data Engineer Intern — CARB</h3>
+              <p class="meta">Aug 2023 — Aug 2024</p>
+              <p>Orchestrated a compliance program across 80+ manufacturers, streamlining reviews 30% and accelerating $120M+ in product market entry.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects" class="section alt reveal">
       <div class="container">
         <span class="section-eyebrow">Selected Work</span>
         <h2>Projects</h2>
@@ -242,47 +256,6 @@
             </ul>
           </article>
         </div>
-      </div>
-    </section>
-
-    <section id="experience" class="section alt reveal">
-      <div class="container">
-        <span class="section-eyebrow">Career</span>
-        <h2>Experience</h2>
-        <ul class="timeline">
-          <li>
-            <div class="time-dot upcoming"></div>
-            <div class="time-card">
-              <h3>Software Engineer Intern — NASA</h3>
-              <p class="meta">Aug 2026 — Dec 2026 <span class="status-tag">Upcoming</span></p>
-              <p>Accepted into NASA's Fall Software Engineering Internship program.</p>
-            </div>
-          </li>
-          <li>
-            <div class="time-dot current"></div>
-            <div class="time-card">
-              <h3>Software Engineer Intern — iTradeNetwork</h3>
-              <p class="meta">Jun 2026 — Aug 2026 <span class="status-tag current">Current</span></p>
-              <p>Built a full-stack AI agent integrating internal AI services and Claude to automate license-expiration tracking and renewal workflows, boosting operational speed by 40%.</p>
-            </div>
-          </li>
-          <li>
-            <div class="time-dot"></div>
-            <div class="time-card">
-              <h3>Software Engineer — Mercor</h3>
-              <p class="meta">Feb 2025 — Jun 2026</p>
-              <p>Engineered RLHF workflows, cutting turnaround time 40% and lifting benchmark accuracy on engineering/math tasks by 18%.</p>
-            </div>
-          </li>
-          <li>
-            <div class="time-dot"></div>
-            <div class="time-card">
-              <h3>Data Engineer Intern — CARB</h3>
-              <p class="meta">Aug 2023 — Aug 2024</p>
-              <p>Orchestrated a compliance program across 80+ manufacturers, streamlining reviews 30% and accelerating $120M+ in product market entry.</p>
-            </div>
-          </li>
-        </ul>
       </div>
     </section>
 
