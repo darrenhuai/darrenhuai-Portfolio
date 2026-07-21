@@ -4,15 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Darren Huai — Portfolio</title>
+  <meta name="description" content="Darren Huai's portfolio: Software Engineer Intern at iTradeNetwork, incoming NASA Software Engineering Intern. AI/ML, robotics, and full-stack engineering projects." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%235b3df0'/%3E%3Cstop offset='1' stop-color='%23f0a63c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23g)'/%3E%3Ctext x='50' y='68' font-size='52' font-family='sans-serif' font-weight='700' fill='white' text-anchor='middle'%3EDH%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
   <meta name="color-scheme" content="light">
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const yearEl = document.getElementById('year');
       if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // Mobile nav toggle
+      const navToggle = document.getElementById('navToggle');
+      const primaryNav = document.getElementById('primaryNav');
+      function closeNav() {
+        primaryNav.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Open menu');
+      }
+      if (navToggle && primaryNav) {
+        navToggle.addEventListener('click', () => {
+          const isOpen = primaryNav.classList.toggle('is-open');
+          navToggle.setAttribute('aria-expanded', String(isOpen));
+          navToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && primaryNav.classList.contains('is-open')) {
+            closeNav();
+            navToggle.focus();
+          }
+        });
+        document.addEventListener('click', (e) => {
+          if (primaryNav.classList.contains('is-open') &&
+              !primaryNav.contains(e.target) && !navToggle.contains(e.target)) {
+            closeNav();
+          }
+        });
+      }
 
       // Smooth scroll for internal links
       document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -23,8 +52,12 @@
             e.preventDefault();
             el.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
+          if (navToggle && primaryNav && primaryNav.classList.contains('is-open')) {
+            closeNav();
+          }
         });
       });
+
       // Reveal sections as they scroll into view
       const revealEls = document.querySelectorAll('.reveal');
       if ('IntersectionObserver' in window && revealEls.length) {
@@ -89,7 +122,12 @@
   <header class="site-header">
     <div class="container nav">
       <a href="#home" class="logo" aria-label="Go to top">DH</a>
-      <nav aria-label="Primary">
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav aria-label="Primary" id="primaryNav">
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
@@ -143,8 +181,8 @@
           <div>
             <h3>Education</h3>
             <ul class="list">
-              <li><strong>USC Viterbi</strong> — M.S. Computer Science (Expected 2027)</li>
-              <li><strong>UCLA Samueli</strong> — B.S. Mechanical/Aerospace Eng. + CS (2020–2024)</li>
+              <li><strong>USC Viterbi</strong>, M.S. Computer Science (Expected 2027)</li>
+              <li><strong>UCLA Samueli</strong>, B.S. Mechanical/Aerospace Eng. + CS (2020–2024)</li>
             </ul>
           </div>
           <div>
@@ -173,32 +211,32 @@
           <li>
             <div class="time-dot upcoming"></div>
             <div class="time-card">
-              <h3>Software Engineer Intern — NASA</h3>
-              <p class="meta">Aug 2026 — Dec 2026 <span class="status-tag">Upcoming</span></p>
+              <h3>Software Engineer Intern at NASA</h3>
+              <p class="meta">Aug 2026 – Dec 2026 <span class="status-tag">Upcoming</span></p>
               <p>Accepted into NASA's Fall Software Engineering Internship program.</p>
             </div>
           </li>
           <li>
             <div class="time-dot current"></div>
             <div class="time-card">
-              <h3>Software Engineer Intern — iTradeNetwork</h3>
-              <p class="meta">Jun 2026 — Aug 2026 <span class="status-tag current">Current</span></p>
+              <h3>Software Engineer Intern at iTradeNetwork</h3>
+              <p class="meta">Jun 2026 – Aug 2026 <span class="status-tag current">Current</span></p>
               <p>Built a full-stack AI agent integrating internal AI services and Claude to automate license-expiration tracking and renewal workflows, boosting operational speed by 40%.</p>
             </div>
           </li>
           <li>
             <div class="time-dot"></div>
             <div class="time-card">
-              <h3>Software Engineer — Mercor</h3>
-              <p class="meta">Feb 2025 — Jun 2026</p>
+              <h3>Software Engineer at Mercor</h3>
+              <p class="meta">Feb 2025 – Jun 2026</p>
               <p>Engineered RLHF workflows, cutting turnaround time 40% and lifting benchmark accuracy on engineering/math tasks by 18%.</p>
             </div>
           </li>
           <li>
             <div class="time-dot"></div>
             <div class="time-card">
-              <h3>Data Engineer Intern — CARB</h3>
-              <p class="meta">Aug 2023 — Aug 2024</p>
+              <h3>Data Engineer Intern at CARB</h3>
+              <p class="meta">Aug 2023 – Aug 2024</p>
               <p>Orchestrated a compliance program across 80+ manufacturers, streamlining reviews 30% and accelerating $120M+ in product market entry.</p>
             </div>
           </li>
@@ -212,7 +250,7 @@
         <h2>Projects</h2>
         <div class="cards">
           <article class="card">
-            <h3>Realms — Multiplayer Game</h3>
+            <h3>Realms: Multiplayer Game</h3>
             <p class="meta">WebSockets · Deno · PostgreSQL · ProtoBuf · Svelte · Discord API</p>
             <ul class="bullets">
               <li>Reduced packet size by <strong>60%</strong> and boosted speed <strong>8×</strong>.</li>
@@ -224,9 +262,10 @@
             <h3>Petrarchan GPT</h3>
             <p class="meta">PyTorch · NumPy</p>
             <ul class="bullets">
-              <li>Built a GPT from scratch — tokenizer, self-attention, feed-forward — in <strong>&lt;200 LOC</strong>.</li>
+              <li>Built a GPT from scratch (tokenizer, self-attention, feed-forward) in <strong>&lt;200 LOC</strong>.</li>
               <li>Cut GPU memory <strong>30%</strong> and sped training <strong>20%</strong> via gradient checkpointing and mixed precision, reaching ≈<strong>1.8 perplexity</strong> in 15 min on an RTX 4070.</li>
             </ul>
+            <a class="card-link" href="https://github.com/darrenhuai/darrenhuai-GPT" target="_blank" rel="noopener">View Code →</a>
           </article>
 
           <article class="card">
@@ -236,6 +275,7 @@
               <li>Scans <strong>300+ live Kalshi markets</strong> every 5 minutes for pricing inefficiencies via RSA-authenticated REST calls.</li>
               <li>DuckDB-backed pipeline with trade-flow analysis (taker-side imbalance, VWAP) and automated email alerts.</li>
             </ul>
+            <a class="card-link" href="https://github.com/darrenhuai/prediction-market-bot" target="_blank" rel="noopener">View Code →</a>
           </article>
 
           <article class="card">
@@ -254,6 +294,13 @@
               <li>Face/gesture recognition at ~<strong>95% accuracy</strong>.</li>
               <li>Improved servo repeatability and motion speed with PID tuning.</li>
             </ul>
+            <a class="card-link" href="https://github.com/darrenhuai/darrenhuai-GreetBot" target="_blank" rel="noopener">View Code →</a>
+          </article>
+
+          <article class="card card-more">
+            <h3>More on GitHub</h3>
+            <p>Browse the rest of my repos and in-progress work.</p>
+            <a class="card-link" href="https://github.com/darrenhuai?tab=repositories" target="_blank" rel="noopener">View Profile →</a>
           </article>
         </div>
       </div>
