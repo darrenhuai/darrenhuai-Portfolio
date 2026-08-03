@@ -1,6 +1,6 @@
-# DH
+# Darren Huai Portfolio
 
-Darren Huai's personal portfolio site - a single-page static site (HTML/CSS, no build step) covering background, projects, experience, and skills.
+My personal portfolio site - a single-page static site (HTML/CSS, no build step) covering background, projects, experience, and skills.
 
 **Live:** https://darrenhuai.github.io/darrenhuai-Portfolio/
 
