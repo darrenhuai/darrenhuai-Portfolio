@@ -2,7 +2,7 @@
 
 Darren Huai's personal portfolio site - a single-page static site (HTML/CSS, no build step) covering background, projects, experience, and skills.
 
-**Live:** https://darrenhuai.github.io/DH/
+**Live:** https://darrenhuai.github.io/darrenhuai-Portfolio/
 
 ## Running locally
 
