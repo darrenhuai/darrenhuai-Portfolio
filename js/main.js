@@ -90,23 +90,12 @@ if (hasIO && !reduceMotion) {
     }
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 
-  // A lazy image that is clipped out of view is not fetched, so the wipe would play on an empty
-  // plate. Start the download a screen or so before the plate arrives.
-  const nearObserver = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
-      const img = entry.target.querySelector('img[loading="lazy"]');
-      if (img) img.loading = 'eager';
-      nearObserver.unobserve(entry.target);
-    }
-  }, { rootMargin: '1200px 0px' });
 
   const fold = window.innerHeight * 0.92;
   for (const el of document.querySelectorAll('[data-reveal]')) {
     if (el.getBoundingClientRect().top > fold) {
       el.classList.add('pre');
       revealObserver.observe(el);
-      if (el.dataset.reveal === 'wipe') nearObserver.observe(el);
     }
   }
   window.addEventListener('beforeprint', showAll);
@@ -114,7 +103,7 @@ if (hasIO && !reduceMotion) {
 
 // ---------- Scroll regions are only tab stops while they actually scroll ----------
 if ('ResizeObserver' in window) {
-  for (const region of document.querySelectorAll('.filmstrip, .phone-row, .axis-scroll')) {
+  for (const region of document.querySelectorAll('.axis-scroll')) {
     const sync = () => {
       if (region.scrollWidth > region.clientWidth + 1) region.tabIndex = 0;
       else region.removeAttribute('tabindex');
@@ -151,7 +140,7 @@ if (video && toggle) {
   }
 }
 
-// ---------- Hero scene ----------
+// ---------- Live ChessTan board on the project card ----------
 // The <picture> still is the loading state, the error state, and the reduced-motion state.
 function sceneColors() {
   const style = getComputedStyle(root);
@@ -164,9 +153,7 @@ function sceneColors() {
   };
 }
 
-async function mountHeroScene() {
-  const box = document.getElementById('hero-canvas-box');
-  if (!box || reduceMotion) return;
+async function mountBoardScene(box) {
   const connection = navigator.connection;
   if (connection && connection.saveData) return;
   if (navigator.deviceMemory && navigator.deviceMemory < 4) return;
@@ -185,7 +172,7 @@ async function mountHeroScene() {
 
   let hero;
   try {
-    hero = mountHero(canvas, { reducedMotion: false, pixelRatioCap: 1.5 });
+    hero = mountHero(canvas, { reducedMotion: false, pixelRatioCap: 1.5, pointerTarget: box.closest('.project-card') || box });
   } catch (error) {
     canvas.remove();
     return;
@@ -211,8 +198,15 @@ async function mountHeroScene() {
   requestAnimationFrame(() => requestAnimationFrame(() => box.classList.add('is-live')));
 }
 
-if ('requestIdleCallback' in window) {
-  window.requestIdleCallback(mountHeroScene, { timeout: 1500 });
-} else {
-  window.setTimeout(mountHeroScene, 400);
+// Load three.js only when the card is about a screen away, and only where motion is welcome.
+const boardBox = document.getElementById('board-canvas-box');
+if (boardBox && !reduceMotion && hasIO) {
+  const nearBoard = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return;
+    nearBoard.disconnect();
+    const start = () => mountBoardScene(boardBox);
+    if ('requestIdleCallback' in window) window.requestIdleCallback(start, { timeout: 1500 });
+    else window.setTimeout(start, 200);
+  }, { rootMargin: '800px 0px' });
+  nearBoard.observe(boardBox);
 }

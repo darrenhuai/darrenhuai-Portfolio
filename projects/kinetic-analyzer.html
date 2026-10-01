@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kinetic Analyzer, a project by Darren Huai</title>
+  <meta name="description" content="Kinetic Analyzer by Darren Huai: a React Native app and Python pose service that break down a striking video into kinetic-chain timing.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="canonical" href="https://darrenhuai.github.io/darrenhuai-Portfolio/projects/kinetic-analyzer.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://darrenhuai.github.io/darrenhuai-Portfolio/projects/kinetic-analyzer.html">
+  <meta property="og:title" content="Kinetic Analyzer, a project by Darren Huai">
+  <meta property="og:description" content="Kinetic Analyzer by Darren Huai: a React Native app and Python pose service that break down a striking video into kinetic-chain timing.">
+  <meta property="og:image" content="https://darrenhuai.github.io/darrenhuai-Portfolio/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="../styles.css">
+  <script type="module" src="../js/main.js"></script>
+</head>
+<body class="page-project">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="sheet nav-inner">
+      <a class="wordmark" href="../index.html">Darren Huai</a>
+      <button type="button" class="menu-button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <nav id="primary-nav" class="nav-links" aria-label="Primary">
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#projects" aria-current="true">Projects</a>
+        <a href="../index.html#open-source">Open source</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="https://github.com/darrenhuai" target="_blank" rel="noopener">GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="project" aria-labelledby="project-title">
+      <div class="sheet">
+        <p class="back"><a href="../index.html#projects">All projects</a></p>
+        <header class="project-head">
+          <div class="project-intro">
+            <h1 id="project-title">Kinetic Analyzer</h1>
+            <p class="project-lead">Film a punch or a kick and see when each joint fires, in milliseconds, from the hip out to the fist or the foot.</p>
+          </div>
+          <dl class="facts"><div><dt>Role</dt><dd>Solo developer. App, pose service, and backend.</dd></div><div><dt>Stack</dt><dd><span class="val">Expo, React Native, TypeScript, Supabase (Postgres), Python pose service (FastAPI, MediaPipe Pose, OpenCV) in Docker</span></dd></div><div><dt>Status</dt><dd>The iOS build is in TestFlight testing.</dd></div><div><dt>Source</dt><dd>The repository is private. The screenshots are from the app's web build.</dd></div></dl>
+        </header>
+        <figure class="project-media media-phones">
+          <div class="phone-panel"><img src="../img/work/kinetic-results-phone.webp" width="390" height="844" decoding="async" alt="Results screen: the wrist's path through a strike drawn over a dark trace and colored by speed, with joint toggles and a speed build list for hip, shoulder and elbow."><img src="../img/work/kinetic-analyse-phone.webp" width="390" height="844" decoding="async" alt="New analysis screen: sport, strike and stance selectors above a footage picker."></div>
+          <figcaption class="caption">Results and setup screens.</figcaption>
+        </figure>
+      </div>
+      <div class="sheet project-body">
+        <section class="project-section" data-reveal="rise">
+          <h2>The problem</h2>
+          <div class="section-body">
+            <p>Coaches talk about the kinetic chain, but a phone clip of a strike only shows the result. To know whether the hip fired before the shoulder you need the timing of each joint, not a slow-motion replay.</p>
+          </div>
+        </section>
+        <section class="project-section" data-reveal="rise">
+          <h2>How it works</h2>
+          <div class="section-body">
+            <p>The app uploads a clip to a Python service that finds the strike, runs MediaPipe Pose on it, and returns body landmarks frame by frame. A TypeScript engine in the app turns those landmarks into the kinetic chain: how fast each joint moves relative to the others, the order and timing in which they fire, rep-by-rep consistency, and balance through the strike. Supabase stores sessions and progress.</p>
+          </div>
+        </section>
+        <section class="project-section" data-reveal="rise">
+          <h2>What a breakdown shows</h2>
+          <div class="section-body">
+            <ul class="feature-list">
+              <li><span class="feature-name">Joint speed.</span> Which links in the chain drive the strike and which lag, scored against your own fastest joint.</li>
+              <li><span class="feature-name">Chain timing.</span> Whether the joints fire in the right order, with the gaps between them in milliseconds. A timing row jumps the video to that frame.</li>
+              <li><span class="feature-name">Rep consistency.</span> Several reps in one clip get rep-by-rep timing, and a read on whether speed held or faded.</li>
+              <li><span class="feature-name">Balance and cues.</span> How stable the base stays, and plain-language faults ranked by priority, each with a drill.</li>
+              <li><span class="feature-name">Rounds and comparisons.</span> Up to five clips reviewed together, and sessions or left and right sides compared.</li>
+            </ul>
+          </div>
+        </section>
+        <section class="project-section" data-reveal="rise">
+          <h2>An honest note</h2>
+          <div class="section-body">
+            <p>It gives relative feedback from one camera, not lab measurements of speed or force, and it says so when something cannot be measured cleanly.</p>
+          </div>
+        </section>
+      </div>
+
+      <nav class="sheet pager" aria-label="More projects">
+        <a class="pager-link pager-prev" href="prediction-market-bot.html"><span class="pager-label">Previous project</span><span class="pager-title">Prediction Market Bot</span></a>
+        <a class="pager-link pager-next" href="petrarchan-gpt.html"><span class="pager-label">Next project</span><span class="pager-title">Petrarchan GPT</span></a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="sheet">
+      <p>Darren Huai, Los Angeles. HTML, CSS, JavaScript and three.js, no build step. <a href="https://github.com/darrenhuai/darrenhuai-Portfolio" target="_blank" rel="noopener">Source on GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

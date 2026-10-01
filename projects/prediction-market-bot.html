@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prediction Market Bot, a project by Darren Huai</title>
+  <meta name="description" content="Prediction Market Bot by Darren Huai: a Python scanner and local web app for Kalshi prediction markets, with email alerts.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="canonical" href="https://darrenhuai.github.io/darrenhuai-Portfolio/projects/prediction-market-bot.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://darrenhuai.github.io/darrenhuai-Portfolio/projects/prediction-market-bot.html">
+  <meta property="og:title" content="Prediction Market Bot, a project by Darren Huai">
+  <meta property="og:description" content="Prediction Market Bot by Darren Huai: a Python scanner and local web app for Kalshi prediction markets, with email alerts.">
+  <meta property="og:image" content="https://darrenhuai.github.io/darrenhuai-Portfolio/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="../styles.css">
+  <script type="module" src="../js/main.js"></script>
+</head>
+<body class="page-project">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="sheet nav-inner">
+      <a class="wordmark" href="../index.html">Darren Huai</a>
+      <button type="button" class="menu-button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <nav id="primary-nav" class="nav-links" aria-label="Primary">
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#projects" aria-current="true">Projects</a>
+        <a href="../index.html#open-source">Open source</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="https://github.com/darrenhuai" target="_blank" rel="noopener">GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="project" aria-labelledby="project-title">
+      <div class="sheet">
+        <p class="back"><a href="../index.html#projects">All projects</a></p>
+        <header class="project-head">
+          <div class="project-intro">
+            <h1 id="project-title">Prediction Market Bot</h1>
+            <p class="project-lead">A scanner that reads every open Kalshi market every five minutes and emails me when one is worth a look.</p>
+          </div>
+          <dl class="facts"><div><dt>Role</dt><dd>Built on Jonathan Becker's open-source prediction-market-analysis framework, which provides the data indexers and analyses. I added the Kalshi scanner, the alerts, the web app and the tests.</dd></div><div><dt>Stack</dt><dd><span class="val">Python, Kalshi REST API, RSA key auth, pytest, ruff, GitHub Actions</span></dd></div><div><dt>Links</dt><dd><a href="https://github.com/darrenhuai/Prediction-market-bot" target="_blank" rel="noopener">Source<span class="visually-hidden"> for Prediction Market Bot (opens in a new tab)</span></a></dd></div></dl>
+        </header>
+        <div class="project-media media-pair cover-light-group" data-reveal="stagger">
+          <figure><div class="plate" style="aspect-ratio: 964 / 900"><img src="../img/work/kalshi-opportunities.webp" width="964" height="900" decoding="async" alt="The Opportunities tab: picks with an edge, an arbitrage group marked Locked in, and the balance and market count in the header."></div><figcaption class="caption">Opportunities: picks with an edge, and arbitrage.</figcaption></figure>
+          <figure><div class="plate" style="aspect-ratio: 980 / 900"><img src="../img/work/kalshi-markets.webp" width="980" height="900" decoding="async" alt="The Markets tab: a searchable list of open markets with the implied chance, the YES and NO prices, and the volume traded in the last day."></div><figcaption class="caption">Markets: every open market, searchable.</figcaption></figure>
+          <p class="caption media-note">The local web app on demo data (<span class="val">--demo</span>).</p>
+        </div>
+      </div>
+      <div class="sheet project-body">
+        <section class="project-section" data-reveal="rise">
+          <h2>The problem</h2>
+          <div class="section-body">
+            <p>Kalshi prices move every few minutes across thousands of markets. I wanted to know when one was worth a look without watching them all.</p>
+          </div>
+        </section>
+        <section class="project-section" data-reveal="rise">
+          <h2>Why it asks for your own estimate</h2>
+          <div class="section-body">
+            <p>The first version compared a market's fair price, worked out from its own bids, with the same market's asks. That number is always zero or negative, so it could never find anything: a market cannot tell you it is mispriced.</p>
+            <p>The scanner now needs an outside view: either your own probability for an outcome, or a guaranteed-payout comparison across outcomes where only one can happen.</p>
+          </div>
+        </section>
+        <section class="project-section" data-reveal="rise">
+          <h2>What it shows</h2>
+          <div class="section-body">
+            <ul class="feature-list">
+              <li><span class="feature-name">Picks with an edge.</span> Markets where the price beats the chance you gave them, after Kalshi's fees.</li>
+              <li><span class="feature-name">Arbitrage.</span> Groups of outcomes where only one can happen, priced so buying NO on every one costs less than the set is sure to pay back. They cannot lose at the listed prices, but they are rare.</li>
+              <li><span class="feature-name">Unusual activity.</span> Very one-sided buying or very large trades in the busiest markets.</li>
+              <li><span class="feature-name">Markets.</span> Search every open market, enter your own chance, and see the expected profit for YES or NO with a suggested stake.</li>
+              <li><span class="feature-name">Alerts.</span> A headless scanner runs the same scan on a timer, logs what it finds, and sends email.</li>
+              <li><span class="feature-name">Trading, off by default.</span> Paper mode records what it would have bought at real prices. Live mode also needs an explicit setting in the environment file, and risks 1% of the balance per trade under a daily cap.</li>
+            </ul>
+          </div>
+        </section>
+        <section class="project-section" data-reveal="rise">
+          <h2>Try it</h2>
+          <div class="section-body">
+            <p>Demo mode uses made-up data, so it needs no internet connection or Kalshi account. Tests and lint run in CI on every push.</p>
+            <pre class="code"><code>uv sync
+uv run app.py --demo --open</code></pre>
+          </div>
+        </section>
+      </div>
+
+      <nav class="sheet pager" aria-label="More projects">
+        <a class="pager-link pager-prev" href="watchglass.html"><span class="pager-label">Previous project</span><span class="pager-title">watchglass</span></a>
+        <a class="pager-link pager-next" href="kinetic-analyzer.html"><span class="pager-label">Next project</span><span class="pager-title">Kinetic Analyzer</span></a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="sheet">
+      <p>Darren Huai, Los Angeles. HTML, CSS, JavaScript and three.js, no build step. <a href="https://github.com/darrenhuai/darrenhuai-Portfolio" target="_blank" rel="noopener">Source on GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

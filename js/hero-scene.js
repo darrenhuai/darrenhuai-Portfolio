@@ -699,7 +699,7 @@ export function mountHero(canvas, options = {}) {
   }
 
   // --- pointer
-  const host = canvas.parentElement || canvas;
+  const host = opts.pointerTarget || canvas.parentElement || canvas;
   const ptrTarget = { x: 0, y: 0, inside: false };
   const ptr = { x: 0, y: 0 };
   let ptrDirty = false;

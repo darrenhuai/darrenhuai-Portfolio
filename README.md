@@ -1,7 +1,8 @@
 # Darren Huai Portfolio
 
-My portfolio: one static page, no build step. Plain HTML, CSS and ES modules, with a three.js
-hex board in the hero that is a 3D take on [ChessTan](https://store.steampowered.com/app/5099860/ChessTan/).
+My portfolio: a static site with no build step. Plain HTML, CSS and ES modules. The front page has the
+intro, experience and a grid of projects; each project opens its own page. The ChessTan card carries a
+three.js hex board that is a 3D take on [ChessTan](https://store.steampowered.com/app/5099860/ChessTan/).
 
 **Live:** https://darrenhuai.github.io/darrenhuai-Portfolio/
 
@@ -12,10 +13,12 @@ hex board in the hero that is a 3D take on [ChessTan](https://store.steampowered
 | `index.html` | The page. All copy lives here. |
 | `styles.css` | Tokens (light and dark), layout, motion. |
 | `js/main.js` | Menu, current-section state, scroll reveals, the demo recording, hero mount. |
-| `js/hero-scene.js` | The three.js scene. Loaded only when WebGL is available and motion is allowed. |
+| `js/hero-scene.js` | The three.js ChessTan board on the project card. Loaded only near the card, with WebGL and motion allowed. |
+| `projects/` | One page per project. Generated; do not edit by hand. |
+| `tools/build_projects.py` | Project data and templates. Edit it, then run `python tools/build_projects.py` to rewrite `projects/` and the cards in `index.html`. |
 | `fonts/` | Archivo and Geist Mono, subset to Latin, self-hosted under the OFL (licences alongside). |
 | `img/work/` | Real screenshots and the watchglass demo recording. |
-| `tools/hero-still.html` | Renders the hero at 1600x1200 to regenerate `img/hero-board-*.webp`. |
+| `tools/hero-still.html` | Renders the board at 1600x1200 to regenerate `img/hero-board-*.webp`. |
 | `docs/design/`, `DESIGN.md` | The design spec and tokens the page was built from. |
 
 ## Running locally

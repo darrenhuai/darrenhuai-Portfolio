@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>watchglass, a project by Darren Huai</title>
+  <meta name="description" content="watchglass by Darren Huai: a self-hosted Go service that reads a region of any screen through a camera and sends a notification when it changes.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="canonical" href="https://darrenhuai.github.io/darrenhuai-Portfolio/projects/watchglass.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://darrenhuai.github.io/darrenhuai-Portfolio/projects/watchglass.html">
+  <meta property="og:title" content="watchglass, a project by Darren Huai">
+  <meta property="og:description" content="watchglass by Darren Huai: a self-hosted Go service that reads a region of any screen through a camera and sends a notification when it changes.">
+  <meta property="og:image" content="https://darrenhuai.github.io/darrenhuai-Portfolio/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="../styles.css">
+  <script type="module" src="../js/main.js"></script>
+</head>
+<body class="page-project">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="sheet nav-inner">
+      <a class="wordmark" href="../index.html">Darren Huai</a>
+      <button type="button" class="menu-button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <nav id="primary-nav" class="nav-links" aria-label="Primary">
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#projects" aria-current="true">Projects</a>
+        <a href="../index.html#open-source">Open source</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="https://github.com/darrenhuai" target="_blank" rel="noopener">GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="project" aria-labelledby="project-title">
+      <div class="sheet">
+        <p class="back"><a href="../index.html#projects">All projects</a></p>
+        <header class="project-head">
+          <div class="project-intro">
+            <h1 id="project-title">watchglass</h1>
+            <p class="project-lead">Get a notification when a screen changes, even one with no API.</p>
+          </div>
+          <dl class="facts"><div><dt>Role</dt><dd>Solo developer and maintainer.</dd></div><div><dt>Stack</dt><dd><span class="val">Go, single binary, Docker image (amd64, arm64, armv7), Tesseract OCR, ffmpeg, MQTT</span></dd></div><div><dt>Released</dt><dd><span class="num">v0.1.8</span>, September 29, 2026.</dd></div><div><dt>Links</dt><dd><a href="https://github.com/darrenhuai/watchglass" target="_blank" rel="noopener">Source<span class="visually-hidden"> for watchglass (opens in a new tab)</span></a> <a href="https://github.com/darrenhuai/watchglass/releases/latest" target="_blank" rel="noopener">Releases<span class="visually-hidden"> for watchglass (opens in a new tab)</span></a></dd></div></dl>
+        </header>
+        <figure class="project-media">
+          <div class="plate" style="aspect-ratio: 960 / 640"><video class="demo-video" controls muted playsinline preload="metadata" poster="../img/work/watchglass-demo-still.webp" width="960" height="640" aria-label="watchglass region editor: a camera view of a printer status panel with the read region outlined and the decoded text PRINT COMPLETE beside it."><source src="../img/work/watchglass-demo.mp4" type="video/mp4"></video></div>
+          <figcaption class="plate-meta">
+            <span class="caption">Demo recording, 14 seconds: a watch is set up on a printer screen and fires when it reads PRINT COMPLETE.</span>
+            <button type="button" class="replay" data-replay>Play demo</button>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="sheet project-body">
+        <section class="project-section" data-reveal="rise">
+          <h2>The problem</h2>
+          <div class="section-body">
+            <p>Heat pump panels, 3D printers and bench scales show their state on a screen and nowhere else. The number is right there, and nothing on the network can read it.</p>
+          </div>
+        </section>
+        <section class="project-section" data-reveal="rise">
+          <h2>What it does</h2>
+          <div class="section-body">
+            <ul class="feature-list">
+              <li><span class="feature-name">Draw, test, save.</span> Drag a box over the live frame and see what it reads before saving. No YAML.</li>
+              <li><span class="feature-name">Three readers.</span> Text through Tesseract, seven-segment digits through a built-in decoder, or plain pixel change.</li>
+              <li><span class="feature-name">No flapping.</span> A reading has to hold for a few polls before it counts, and a cooldown stops repeat pings.</li>
+              <li><span class="feature-name">Notifications.</span> ntfy with the cropped region attached, Discord, Telegram, Slack, Pushover, email and webhooks.</li>
+              <li><span class="feature-name">Home Assistant.</span> Each watch appears over MQTT as a device, and a number becomes a sensor it can graph.</li>
+              <li><span class="feature-name">Camera health.</span> One alert when a camera goes down and one when it comes back.</li>
+              <li><span class="feature-name">Small.</span> Snapshot URLs, MJPEG, RTSP, webcams or your own screen, in about <span class="num">55 MB</span> of RAM with no GPU.</li>
+            </ul>
+          </div>
+        </section>
+        <section class="project-section" data-reveal="rise">
+          <h2>Try it</h2>
+          <div class="section-body">
+            <p>The demo needs no camera. Two demo watches fire about 20 seconds after it starts, at http://127.0.0.1:8080.</p>
+            <pre class="code"><code>docker run --rm -p 127.0.0.1:8080:8080 -e WATCHGLASS_DEMO=1 ghcr.io/darrenhuai/watchglass</code></pre>
+          </div>
+        </section>
+      </div>
+      <section class="sheet gallery" aria-labelledby="gallery-title">
+        <h2 id="gallery-title">Screenshots</h2>
+        <div class="gallery-grid gallery-cols-2" data-reveal="stagger">
+          <figure class="gallery-item gallery-wide"><div class="plate" style="aspect-ratio: 1160 / 587"><img src="../img/work/watchglass-dashboard.webp" width="1160" height="587" loading="lazy" decoding="async" alt="The watch list: three watches on the built-in demo cameras with their last readings and when each last fired."></div><figcaption class="caption">The watch list, with each watch's last reading and when it last fired.</figcaption></figure>
+          <figure class="gallery-item"><div class="plate" style="aspect-ratio: 1160 / 900"><img src="../img/work/watchglass-region-editor.webp" width="1160" height="900" loading="lazy" decoding="async" alt="A watch's detail page: a box drawn over PRINT COMPLETE on a printer screen, and a test result that reads PRINT COMPLETE at 96% confidence."></div><figcaption class="caption">Testing a region before saving it.</figcaption></figure>
+          <figure class="gallery-item"><div class="plate" style="aspect-ratio: 1160 / 900"><img src="../img/work/watchglass-sevenseg.webp" width="1160" height="900" loading="lazy" decoding="async" alt="The built-in seven-segment reader on an LED scale display: the test reads 25.3, above the threshold of 25."></div><figcaption class="caption">The built-in seven-segment reader on a scale display.</figcaption></figure>
+        </div>
+      </section>
+      <nav class="sheet pager" aria-label="More projects">
+        <a class="pager-link pager-prev" href="chesstan.html"><span class="pager-label">Previous project</span><span class="pager-title">ChessTan</span></a>
+        <a class="pager-link pager-next" href="prediction-market-bot.html"><span class="pager-label">Next project</span><span class="pager-title">Prediction Market Bot</span></a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="sheet">
+      <p>Darren Huai, Los Angeles. HTML, CSS, JavaScript and three.js, no build step. <a href="https://github.com/darrenhuai/darrenhuai-Portfolio" target="_blank" rel="noopener">Source on GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

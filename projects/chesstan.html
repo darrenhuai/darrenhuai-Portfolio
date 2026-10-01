@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChessTan, a project by Darren Huai</title>
+  <meta name="description" content="ChessTan, a hex-grid strategy game by Darren Huai: a settle-and-trade economy with chess-style combat, on Steam, in the browser and as a Discord Activity.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="canonical" href="https://darrenhuai.github.io/darrenhuai-Portfolio/projects/chesstan.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://darrenhuai.github.io/darrenhuai-Portfolio/projects/chesstan.html">
+  <meta property="og:title" content="ChessTan, a project by Darren Huai">
+  <meta property="og:description" content="ChessTan, a hex-grid strategy game by Darren Huai: a settle-and-trade economy with chess-style combat, on Steam, in the browser and as a Discord Activity.">
+  <meta property="og:image" content="https://darrenhuai.github.io/darrenhuai-Portfolio/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="../styles.css">
+  <script type="module" src="../js/main.js"></script>
+</head>
+<body class="page-project">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="sheet nav-inner">
+      <a class="wordmark" href="../index.html">Darren Huai</a>
+      <button type="button" class="menu-button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <nav id="primary-nav" class="nav-links" aria-label="Primary">
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#projects" aria-current="true">Projects</a>
+        <a href="../index.html#open-source">Open source</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="https://github.com/darrenhuai" target="_blank" rel="noopener">GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="project" aria-labelledby="project-title">
+      <div class="sheet">
+        <p class="back"><a href="../index.html#projects">All projects</a></p>
+        <header class="project-head">
+          <div class="project-intro">
+            <h1 id="project-title">ChessTan</h1>
+            <p class="project-lead">A hex-grid strategy game: a settle-and-trade economy with chess-style movement and capture, for 2 to 4 players, hot-seat, against the AI, or online.</p>
+          </div>
+          <dl class="facts"><div><dt>Role</dt><dd>Solo developer. Design, rules engine, AI opponent, netcode, the relay server, and the Steam launch.</dd></div><div><dt>Stack</dt><dd><span class="val">Godot 4.7, GDScript, WebSocket relay (Godot, Docker on Render.com), Steamworks, Discord Activity</span></dd></div><div><dt>Released</dt><dd>Free on Steam since September 19, 2026.</dd></div><div><dt>Links</dt><dd><a href="https://store.steampowered.com/app/5099860/ChessTan/" target="_blank" rel="noopener">Steam<span class="visually-hidden"> (opens in a new tab)</span></a> <a href="https://darrenhuai.github.io/chesstan-web/" target="_blank" rel="noopener">Play in browser<span class="visually-hidden"> (opens in a new tab)</span></a> <a href="https://github.com/darrenhuai/chesstan-relay" target="_blank" rel="noopener">Relay source<span class="visually-hidden"> (opens in a new tab)</span></a></dd></div></dl>
+        </header>
+        <figure class="project-media">
+          <div class="plate" style="aspect-ratio: 1600 / 827"><img src="../img/work/chesstan-board.webp" srcset="../img/work/chesstan-board-800.webp 800w, ../img/work/chesstan-board.webp 1600w" sizes="(min-width: 1280px) 1120px, 100vw" width="1600" height="827" fetchpriority="high" decoding="async" alt="ChessTan mid-game: blue and red chess pieces on a hex board of yellow, blue, sand and brown tiles, with both players' resource panels at the left."></div>
+        </figure>
+      </div>
+      <div class="sheet project-body">
+        <section class="project-section" data-reveal="rise">
+          <h2>The problem</h2>
+          <div class="section-body">
+            <p>Two systems that usually live in different games share one board, so a good economy can still lose to a bad position.</p>
+            <p>Online, the hard part is a player whose connection drops mid-turn: two clients that disagree about the board end the game, and a dropped connection ends the match unless the player can rejoin.</p>
+          </div>
+        </section>
+        <section class="project-section" data-reveal="rise">
+          <h2>How a match plays</h2>
+          <div class="section-body">
+            <p>Players settle their starting positions, then roll dice each round to collect resources from the tiles around their settlements. Resources buy houses, roads and fortresses, and units that move and capture like chess pieces: pawns, rooks, knights and queens, plus a colossus that unlocks after three kills. Players can trade with each other or the bank. A king takes three hits to fall, a checkmated player is out, and the last player with a king standing wins.</p>
+          </div>
+        </section>
+        <section class="project-section" data-reveal="rise">
+          <h2>What I built</h2>
+          <div class="section-body">
+            <p>The rules engine and the AI run headless, with no scene tree, so the same code drives the game, the test suites, and full AI-versus-AI simulations.</p>
+            <p>Online play is host-authoritative: one client owns the game state and the others send it actions. A small WebSocket relay pairs up to four players by a five-character room code (no 0, O, 1, I or L, so it can be read out on a call) and forwards messages without knowing the rules. A player who drops has a grace period to rejoin with a token and resyncs from the host. Steam players can also connect peer to peer through Steamworks, without the relay.</p>
+            <p>One codebase ships as the Steam release, a browser build, and a Discord Activity.</p>
+          </div>
+        </section>
+        <section class="project-section" data-reveal="rise">
+          <h2>Testing</h2>
+          <div class="section-body">
+            <p>Headless Godot suites cover the rules, the AI, network actions, reconnects, the relay server, save and load, and map selection. UI harnesses drive real clicks through the menus and the tutorial.</p>
+          </div>
+        </section>
+      </div>
+      <section class="sheet gallery" aria-labelledby="gallery-title">
+        <h2 id="gallery-title">Screenshots</h2>
+        <div class="gallery-grid gallery-cols-3" data-reveal="stagger">
+          <figure class="gallery-item"><div class="plate" style="aspect-ratio: 1600 / 900"><img src="../img/work/chesstan-capture.webp" srcset="../img/work/chesstan-capture-800.webp 800w, ../img/work/chesstan-capture.webp 1600w" sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw" width="1600" height="900" loading="lazy" decoding="async" alt="A capture in progress: a highlighted blue rook beside red pieces on yellow tiles."></div><figcaption class="caption">Move phase: a rook lines up a capture.</figcaption></figure>
+          <figure class="gallery-item"><div class="plate" style="aspect-ratio: 960 / 540"><img src="../img/work/chesstan-lobby.webp" srcset="../img/work/chesstan-lobby-800.webp 800w, ../img/work/chesstan-lobby.webp 960w" sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw" width="960" height="540" loading="lazy" decoding="async" alt="The multiplayer lobby: relay server address, a room code to share, seats for 2 to 4 players, and a bigger-board option for 3 or 4 players."></div><figcaption class="caption">The online lobby, with a room code to share.</figcaption></figure>
+          <figure class="gallery-item"><div class="plate" style="aspect-ratio: 1120 / 630"><img src="../img/work/chesstan-victory.webp" srcset="../img/work/chesstan-victory-800.webp 800w, ../img/work/chesstan-victory.webp 1120w" sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw" width="1120" height="630" loading="lazy" decoding="async" alt="The victory screen: Player 1 (Blue) wins by capturing the enemy king, with army strength and kills for both players."></div><figcaption class="caption">The end of a match.</figcaption></figure>
+        </div>
+      </section>
+      <nav class="sheet pager" aria-label="More projects">
+        <span class="pager-spacer"></span>
+        <a class="pager-link pager-next" href="watchglass.html"><span class="pager-label">Next project</span><span class="pager-title">watchglass</span></a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="sheet">
+      <p>Darren Huai, Los Angeles. HTML, CSS, JavaScript and three.js, no build step. <a href="https://github.com/darrenhuai/darrenhuai-Portfolio" target="_blank" rel="noopener">Source on GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

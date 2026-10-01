@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Petrarchan GPT, a project by Darren Huai</title>
+  <meta name="description" content="Petrarchan GPT by Darren Huai: a small character-level GPT language model in PyTorch, trained on Petrarch's sonnets.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="canonical" href="https://darrenhuai.github.io/darrenhuai-Portfolio/projects/petrarchan-gpt.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://darrenhuai.github.io/darrenhuai-Portfolio/projects/petrarchan-gpt.html">
+  <meta property="og:title" content="Petrarchan GPT, a project by Darren Huai">
+  <meta property="og:description" content="Petrarchan GPT by Darren Huai: a small character-level GPT language model in PyTorch, trained on Petrarch's sonnets.">
+  <meta property="og:image" content="https://darrenhuai.github.io/darrenhuai-Portfolio/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="../styles.css">
+  <script type="module" src="../js/main.js"></script>
+</head>
+<body class="page-project">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="sheet nav-inner">
+      <a class="wordmark" href="../index.html">Darren Huai</a>
+      <button type="button" class="menu-button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <nav id="primary-nav" class="nav-links" aria-label="Primary">
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#projects" aria-current="true">Projects</a>
+        <a href="../index.html#open-source">Open source</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="https://github.com/darrenhuai" target="_blank" rel="noopener">GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="project" aria-labelledby="project-title">
+      <div class="sheet">
+        <p class="back"><a href="../index.html#projects">All projects</a></p>
+        <header class="project-head">
+          <div class="project-intro">
+            <h1 id="project-title">Petrarchan GPT</h1>
+            <p class="project-lead">A small character-level GPT in PyTorch, trained on a scanned bilingual edition of Petrarch's sonnets as a way to learn how a transformer works end to end.</p>
+          </div>
+          <dl class="facts"><div><dt>Role</dt><dd>Personal learning project.</dd></div><div><dt>Stack</dt><dd><span class="val">Python, PyTorch, CUDA on an RTX 4070</span></dd></div><div><dt>Links</dt><dd><a href="https://github.com/darrenhuai/darrenhuai-GPT" target="_blank" rel="noopener">Source<span class="visually-hidden"> for Petrarchan GPT (opens in a new tab)</span></a></dd></div></dl>
+        </header>
+        <section class="project-media specs" aria-label="Model settings">
+          <h2 class="specs-title">Model settings</h2>
+          <dl class="specs-grid"><div><dt>Tokenizer</dt><dd>Characters</dd></div><div><dt>Context</dt><dd>256 characters</dd></div><div><dt>Blocks</dt><dd>6</dd></div><div><dt>Attention heads</dt><dd>6 per block</dd></div><div><dt>Embedding</dt><dd>384 dimensions</dd></div><div><dt>Dropout</dt><dd>0.2</dd></div><div><dt>Optimizer</dt><dd>AdamW, learning rate 3e-4</dd></div><div><dt>Training</dt><dd>5,000 steps, batches of 64</dd></div></dl>
+        </section>
+      </div>
+      <div class="sheet project-body">
+        <section class="project-section" data-reveal="rise">
+          <h2>What is in it</h2>
+          <div class="section-body">
+            <p>A character tokenizer, token and position embeddings, six transformer blocks of multi-head causal self-attention and feed-forward layers with layer norm, and a language-model head, in about 200 lines.</p>
+            <p>The training loop samples random 256-character windows, reports training and validation loss every 500 steps, and generates new sonnet-style text at the end. The architecture and settings follow Andrej Karpathy's Let's build GPT lecture; the corpus is a scanned edition of Petrarch's sonnets in Italian and English.</p>
+          </div>
+        </section>
+      </div>
+
+      <nav class="sheet pager" aria-label="More projects">
+        <a class="pager-link pager-prev" href="kinetic-analyzer.html"><span class="pager-label">Previous project</span><span class="pager-title">Kinetic Analyzer</span></a>
+        <a class="pager-link pager-next" href="greetbot.html"><span class="pager-label">Next project</span><span class="pager-title">GreetBot</span></a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="sheet">
+      <p>Darren Huai, Los Angeles. HTML, CSS, JavaScript and three.js, no build step. <a href="https://github.com/darrenhuai/darrenhuai-Portfolio" target="_blank" rel="noopener">Source on GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

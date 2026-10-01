@@ -15,7 +15,7 @@
   <meta property="og:image" content="https://darrenhuai.github.io/darrenhuai-Portfolio/img/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Darren Huai, software engineer: a three-dimensional hex board from ChessTan beside the headline.">
+  <meta property="og:image:alt" content="Darren Huai, software engineer: his portrait beside his name and current role.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Darren Huai, software engineer">
   <meta name="twitter:description" content="Flight software at NASA Armstrong, ChessTan on Steam, and merged fixes in platformdirs and virtualenv.">
@@ -23,8 +23,7 @@
 
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" type="image/webp" imagesrcset="img/hero-board-light.webp 1600w, img/hero-board-light-800.webp 800w" imagesizes="(min-width: 1024px) 52vw, 100vw" media="(prefers-color-scheme: light)" fetchpriority="high">
-  <link rel="preload" as="image" type="image/webp" imagesrcset="img/hero-board-dark.webp 1600w, img/hero-board-dark-800.webp 800w" imagesizes="(min-width: 1024px) 52vw, 100vw" media="(prefers-color-scheme: dark)" fetchpriority="high">
+  <link rel="preload" as="image" href="img/pro_pic.jpg" fetchpriority="high">
   <script>document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="styles.css">
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js"}}</script>
@@ -53,22 +52,20 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="sheet hero-grid">
         <div class="hero-copy">
-          <h1 id="hero-title">Flight software intern at NASA.</h1>
+          <h1 id="hero-title">Darren Huai</h1>
+          <p class="hero-role">Software engineer. Flight software intern at NASA Armstrong.</p>
           <p class="hero-sub">M.S. Computer Science at USC, May 2027. I shipped ChessTan on Steam and landed eleven fixes in platformdirs and virtualenv.</p>
           <div class="actions">
             <a class="button button-primary" href="#projects">See the work</a>
             <a class="button button-secondary" href="https://github.com/darrenhuai" target="_blank" rel="noopener">GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>
           </div>
+          <p class="hero-links">
+            <a href="mailto:darrenhuai@gmail.com">darrenhuai@gmail.com</a>
+            <a href="https://www.linkedin.com/in/darrenhuai" target="_blank" rel="noopener">LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a>
+          </p>
         </div>
-        <figure class="hero-figure">
-          <div id="hero-canvas-box" class="hero-canvas">
-            <picture>
-              <source media="(prefers-color-scheme: dark)" type="image/webp" srcset="img/hero-board-dark.webp 1600w, img/hero-board-dark-800.webp 800w" sizes="(min-width: 1024px) 52vw, 100vw">
-              <source type="image/webp" srcset="img/hero-board-light.webp 1600w, img/hero-board-light-800.webp 800w" sizes="(min-width: 1024px) 52vw, 100vw">
-              <img src="img/hero-board-light.webp" width="1600" height="1200" alt="A three-dimensional hex board in the style of ChessTan: terrain tiles with trees and peaks, and chess pieces standing on it." fetchpriority="high" decoding="async">
-            </picture>
-          </div>
-          <figcaption>The ChessTan board, rebuilt in three.js. The game itself is drawn in 2D.</figcaption>
+        <figure class="hero-portrait">
+          <img src="img/pro_pic.jpg" width="600" height="750" fetchpriority="high" decoding="async" alt="Darren Huai">
         </figure>
       </div>
     </section>
@@ -115,128 +112,69 @@
 
     <section class="section" id="projects" aria-labelledby="projects-title">
       <div class="sheet">
-        <h2 id="projects-title">Selected work</h2>
-
-        <article class="case case-a" aria-labelledby="chesstan-title">
-          <div class="plate plate-lead" data-reveal="wipe">
-            <img src="img/work/chesstan-board.webp" srcset="img/work/chesstan-board-800.webp 800w, img/work/chesstan-board.webp 1600w" sizes="(min-width: 1280px) 1120px, 100vw" width="1600" height="827" loading="lazy" decoding="async" alt="ChessTan mid-game: blue and red chess pieces on a hex board of yellow, blue, sand and brown tiles, with both players' resource panels at the left.">
-          </div>
-          <div class="filmstrip" data-reveal="stagger" tabindex="0" role="group" aria-label="More ChessTan screenshots">
-            <div class="plate"><img src="img/work/chesstan-capture.webp" srcset="img/work/chesstan-capture-800.webp 800w, img/work/chesstan-capture.webp 1600w" sizes="(min-width: 1024px) 33vw, 80vw" width="1600" height="900" loading="lazy" decoding="async" alt="A capture in progress: a highlighted blue knight beside red pieces on yellow tiles, with End Turn at the bottom."></div>
-            <div class="plate"><img src="img/work/chesstan-lobby.webp" srcset="img/work/chesstan-lobby-800.webp 800w, img/work/chesstan-lobby.webp 960w" sizes="(min-width: 1024px) 33vw, 80vw" width="960" height="540" loading="lazy" decoding="async" alt="The multiplayer lobby: relay server address, a room code to share, seats for 2 to 4 players, and a turn timer."></div>
-            <div class="plate"><img src="img/work/chesstan-victory.webp" srcset="img/work/chesstan-victory-800.webp 800w, img/work/chesstan-victory.webp 1120w" sizes="(min-width: 1024px) 33vw, 80vw" width="1120" height="630" loading="lazy" decoding="async" alt="The victory screen: Player 1 (Blue) wins by capturing the enemy king, with army strength and kills for both players."></div>
-          </div>
-          <div class="case-text" data-reveal="rise">
-            <div class="case-head">
-              <h3 class="case-title" id="chesstan-title">ChessTan</h3>
-              <p class="case-lead">Hex-grid strategy: a settle-and-trade economy with chess-style movement and capture, for 2 to 4 players, hot-seat, against the AI, or online.</p>
-              <dl class="fields">
-                <div><dt>Role</dt><dd>Solo developer. Design, rules engine, netcode, the relay server, and the Steam launch.</dd></div>
-                <div><dt>Stack</dt><dd class="val">Godot 4.7, GDScript, WebSocket relay on Render.com, Steam, Discord Activity</dd></div>
-              </dl>
-              <p class="links">
-                <a href="https://store.steampowered.com/app/5099860/ChessTan/" target="_blank" rel="noopener">Steam<span class="visually-hidden"> (opens in a new tab)</span></a>
-                <a href="https://darrenhuai.github.io/chesstan-web/" target="_blank" rel="noopener">Play in browser<span class="visually-hidden"> (opens in a new tab)</span></a>
-              </p>
+        <h2 id="projects-title">Projects</h2>
+        <p class="lead">Open any project for screenshots, the problem it solves, and how it is built.</p>
+        <!-- projects:start -->
+        <div class="project-grid">
+          <article class="project-card card-span-7" data-reveal="rise">
+            <div class="card-cover cover-board" id="board-canvas-box">
+              <picture>
+                <source media="(prefers-color-scheme: dark)" type="image/webp" srcset="img/hero-board-dark.webp 1600w, img/hero-board-dark-800.webp 800w" sizes="(min-width: 1024px) 640px, (min-width: 700px) 50vw, 100vw">
+                <img src="img/hero-board-light.webp" srcset="img/hero-board-light-800.webp 800w, img/hero-board-light.webp 1600w" sizes="(min-width: 1024px) 640px, (min-width: 700px) 50vw, 100vw" width="1600" height="1200" loading="lazy" decoding="async" alt="">
+              </picture>
             </div>
-            <div class="case-body">
-              <h4>The problem</h4>
-              <p>Two systems that usually live in different games share one board, so a good economy can still lose to a bad position. Online, the hard part is a player whose connection drops mid-turn: two clients that disagree about the board end the game, and a dropped connection ends the match unless the player can rejoin.</p>
-              <h4>What I built</h4>
-              <p>The game runs host-authoritative: one client owns the board, and the relay only forwards messages between the peers in a room, so there is a single source of truth. A dropped player rejoins with a token inside a grace period and resyncs from the host's state instead of restarting. The same codebase ships as a Steam release, a browser build, and a Discord Activity. Free on Steam since September 19, 2026.</p>
-            </div>
-          </div>
-        </article>
-
-        <div class="case-pair">
-          <article class="case case-b" aria-labelledby="watchglass-title">
-            <div class="plate plate-video" data-reveal="wipe">
-              <video class="demo-video" controls muted playsinline preload="metadata" poster="img/work/watchglass-demo-still.webp" width="960" height="640" aria-label="watchglass region editor: a camera view of a printer status panel with the read region outlined and the decoded text PRINT COMPLETE beside it.">
-                <source src="img/work/watchglass-demo.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="plate-meta">
-              <p class="caption">Demo recording, 14 seconds.</p>
-              <button type="button" class="replay" data-replay>Play demo</button>
-            </div>
-            <div class="case-block" data-reveal="rise">
-              <h3 class="case-title" id="watchglass-title">watchglass</h3>
-              <p class="case-lead">Some screens will never get an API. watchglass points a camera at them and reads the numbers.</p>
-              <dl class="fields">
-                <div><dt>Role</dt><dd>Solo developer and maintainer. Public repo; <span class="num">v0.1.8</span> released September 29, 2026.</dd></div>
-                <div><dt>Stack</dt><dd class="val">Go, single binary, Docker (amd64, arm64, armv7), Tesseract OCR, MQTT</dd></div>
-              </dl>
-              <h4>The problem</h4>
-              <p>Heat pump panels, 3D printers and bench scales show their state on a screen and nowhere else. The number is right there, and nothing on the network can read it.</p>
-              <h4>What I built</h4>
-              <p>A Go binary that watches one region of a camera frame per watch, reads it with Tesseract or a built-in seven-segment decoder, and fires on a pattern or a threshold. Alerts go out over ntfy, Discord, Telegram, Slack, Pushover, email, webhooks, or Home Assistant over MQTT. It runs in <span class="num">55 MB</span> of RAM with no GPU and ships as a Docker image for amd64, arm64 and armv7.</p>
-              <p class="links"><a href="https://github.com/darrenhuai/watchglass" target="_blank" rel="noopener">Source<span class="visually-hidden"> for watchglass (opens in a new tab)</span></a></p>
+            <div class="card-text">
+              <h3 class="card-title"><a class="card-link" href="projects/chesstan.html">ChessTan</a></h3>
+              <p class="card-lead">A hex-strategy game on Steam: a settle-and-trade economy with chess-style movement and capture.</p>
+              <p class="card-stack val">Godot 4.7, GDScript, WebSocket relay, Steam</p>
+              <span class="card-cue" aria-hidden="true">View project</span>
             </div>
           </article>
-
-          <article class="case case-b" aria-labelledby="kalshi-title">
-            <div class="plate plate-app" data-reveal="wipe">
-              <img src="img/work/kalshi-opportunities.webp" width="964" height="900" loading="lazy" decoding="async" alt="The bot's Opportunities tab: three market cards with the expected value per contract, an arbitrage group, and the balance and market count in the header.">
+          <article class="project-card card-span-5" data-reveal="rise">
+            <div class="card-cover"><img src="img/work/watchglass-demo-still.webp" width="960" height="640" style="object-position: 50% 50%" loading="lazy" decoding="async" alt=""></div>
+            <div class="card-text">
+              <h3 class="card-title"><a class="card-link" href="projects/watchglass.html">watchglass</a></h3>
+              <p class="card-lead">Point a camera at any screen and get a notification when what it shows changes.</p>
+              <p class="card-stack val">Go, Docker, Tesseract OCR, MQTT</p>
+              <span class="card-cue" aria-hidden="true">View project</span>
             </div>
-            <div class="plate-meta">
-              <p class="caption">The local web app in <span class="val">--demo</span> mode.</p>
+          </article>
+          <article class="project-card card-span-5" data-reveal="rise">
+            <div class="card-cover cover-light"><img src="img/work/kalshi-opportunities.webp" width="964" height="900" style="object-position: 50% 0" loading="lazy" decoding="async" alt=""></div>
+            <div class="card-text">
+              <h3 class="card-title"><a class="card-link" href="projects/prediction-market-bot.html">Prediction Market Bot</a></h3>
+              <p class="card-lead">A scanner for live Kalshi markets, with a local web app, email alerts and a paper-trading mode.</p>
+              <p class="card-stack val">Python, Kalshi API, pytest</p>
+              <span class="card-cue" aria-hidden="true">View project</span>
             </div>
-            <div class="case-block" data-reveal="rise">
-              <h3 class="case-title" id="kalshi-title">Prediction Market Bot</h3>
-              <p class="case-lead">A scanner that reads <span class="num">300+</span> live Kalshi markets every five minutes and emails me when one is worth a look.</p>
-              <dl class="fields">
-                <div><dt>Role</dt><dd>Built on Jonathan Becker's open-source prediction-market-analysis framework. I added the Kalshi scanner, the alerts, the web app and the tests.</dd></div>
-                <div><dt>Stack</dt><dd class="val">Python, Kalshi REST API, RSA key auth, DuckDB, pytest, CI</dd></div>
-              </dl>
-              <h4>The problem</h4>
-              <p>Kalshi prices move every few minutes across hundreds of markets, and the signal I wanted is in the trade flow, who is taking and at what size, not in the last print. Watching that by hand does not scale.</p>
-              <h4>What I built</h4>
-              <p>A scanner that authenticates to Kalshi with an RSA key, runs every five minutes over the open markets, flags one-sided or unusually large trade flow, and emails me. A local web app with Opportunities and Markets tabs runs on demo data with a <span class="val">--demo</span> flag. Tests and lint run in CI.</p>
-              <p class="links"><a href="https://github.com/darrenhuai/Prediction-market-bot" target="_blank" rel="noopener">Source<span class="visually-hidden"> for Prediction Market Bot (opens in a new tab)</span></a></p>
+          </article>
+          <article class="project-card card-span-7" data-reveal="rise">
+            <div class="card-cover cover-phones"><img src="img/work/kinetic-results-phone.webp" width="390" height="844" loading="lazy" decoding="async" alt=""><img src="img/work/kinetic-analyse-phone.webp" width="390" height="844" loading="lazy" decoding="async" alt=""></div>
+            <div class="card-text">
+              <h3 class="card-title"><a class="card-link" href="projects/kinetic-analyzer.html">Kinetic Analyzer</a></h3>
+              <p class="card-lead">Film a punch or a kick and see when each joint fires, in milliseconds.</p>
+              <p class="card-stack val">Expo, React Native, TypeScript, Supabase, MediaPipe</p>
+              <span class="card-cue" aria-hidden="true">View project</span>
+            </div>
+          </article>
+          <article class="project-card card-span-6 card-compact" data-reveal="rise">
+            <div class="card-text">
+              <h3 class="card-title"><a class="card-link" href="projects/petrarchan-gpt.html">Petrarchan GPT</a></h3>
+              <p class="card-lead">A small character-level GPT in PyTorch, trained on Petrarch's sonnets.</p>
+              <p class="card-stack val">Python, PyTorch</p>
+              <span class="card-cue" aria-hidden="true">View project</span>
+            </div>
+          </article>
+          <article class="project-card card-span-6 card-compact" data-reveal="rise">
+            <div class="card-text">
+              <h3 class="card-title"><a class="card-link" href="projects/greetbot.html">GreetBot</a></h3>
+              <p class="card-lead">A face-recognizing greeting robot, built with a 14-person UCLA engineering club team.</p>
+              <p class="card-stack val">Python, OpenCV, Arduino</p>
+              <span class="card-cue" aria-hidden="true">View project</span>
             </div>
           </article>
         </div>
-
-        <article class="case case-c" aria-labelledby="kinetic-title">
-          <div class="case-block" data-reveal="rise">
-            <h3 class="case-title" id="kinetic-title">Kinetic Analyzer</h3>
-            <p class="case-lead">Film a punch or a kick and see when each joint fires, in milliseconds: hip, shoulder, elbow, fist.</p>
-            <dl class="fields">
-              <div><dt>Role</dt><dd>Solo developer. App, pose service, and backend.</dd></div>
-              <div><dt>Stack</dt><dd class="val">Expo, React Native, TypeScript, Supabase, Python pose service</dd></div>
-            </dl>
-            <h4>The problem</h4>
-            <p>Coaches talk about the kinetic chain, but a phone clip of a strike only shows the result. To know whether the hip fired before the shoulder you need the timing of each joint, not a slow-motion replay.</p>
-            <h4>What I built</h4>
-            <p>The app uploads a clip to a pose service, extracts joint positions, and returns kinetic-chain timing in milliseconds, a joint-speed ranking, rep consistency, balance, and coaching cues. Supabase holds sessions and progress. The iOS build is in TestFlight testing; the screenshots here are from its web build.</p>
-            <p class="links-note">The repository is private.</p>
-          </div>
-          <figure class="phones" data-reveal="stagger">
-            <div class="phone-row" tabindex="0" role="group" aria-label="Kinetic Analyzer screenshots">
-              <div class="plate plate-phone"><img src="img/work/kinetic-results-phone.webp" width="390" height="844" loading="lazy" decoding="async" alt="Results screen: the wrist's path through a strike drawn over a dark trace and colored by speed, with joint toggles and a speed build list for hip, shoulder and elbow."></div>
-              <div class="plate plate-phone"><img src="img/work/kinetic-analyse-phone.webp" width="390" height="844" loading="lazy" decoding="async" alt="New analysis screen: sport, strike and stance selectors above a footage picker."></div>
-            </div>
-            <figcaption class="caption">Results and setup screens from the web build.</figcaption>
-          </figure>
-        </article>
-
-        <div class="earlier" data-reveal="rise">
-          <h3 class="earlier-title">Earlier projects</h3>
-          <div class="earlier-grid">
-            <article>
-              <h4 class="entry-title">Petrarchan GPT</h4>
-              <p>A character-level GPT in about <span class="num">200</span> lines of PyTorch: tokenizer, multi-head self-attention, feed-forward blocks. Trained on Petrarch's Italian sonnets, as a way to learn how a transformer works end to end.</p>
-              <p class="entry-stack val">Python, PyTorch</p>
-              <p class="links"><a href="https://github.com/darrenhuai/darrenhuai-GPT" target="_blank" rel="noopener">Source<span class="visually-hidden"> for Petrarchan GPT (opens in a new tab)</span></a></p>
-            </article>
-            <article>
-              <h4 class="entry-title">GreetBot</h4>
-              <p>A robot that recognizes a face and offers a handshake, built with a <span class="num">14</span>-person UCLA engineering club team. The face-recognition module runs on OpenCV and drives the Arduino hardware.</p>
-              <p class="entry-stack val">Python, OpenCV, Arduino</p>
-              <p class="links"><a href="https://github.com/darrenhuai/darrenhuai-GreetBot" target="_blank" rel="noopener">Source<span class="visually-hidden"> for GreetBot (opens in a new tab)</span></a></p>
-            </article>
-          </div>
-        </div>
+        <!-- projects:end -->
       </div>
     </section>
 
@@ -324,53 +262,56 @@
           <figcaption id="axis-caption" class="caption">Merge dates, September 2026. Filled marks are platformdirs, outlined marks are virtualenv.<span class="axis-hint"> Scroll sideways for the rest of the month.</span></figcaption>
         </figure>
 
-        <div class="ledgers">
-          <div class="ledger" data-reveal="rise">
-            <div class="ledger-head">
-              <h3><a class="val" href="https://github.com/tox-dev/platformdirs" target="_blank" rel="noopener">tox-dev/platformdirs<span class="visually-hidden"> (opens in a new tab)</span></a></h3>
-              <span class="count">6 merged</span>
+        <details class="pr-list">
+          <summary><span class="when-closed">Show all eleven pull requests</span><span class="when-open">Hide the list</span></summary>
+          <div class="ledgers">
+            <div class="ledger" data-reveal="rise">
+              <div class="ledger-head">
+                <h3><a class="val" href="https://github.com/tox-dev/platformdirs" target="_blank" rel="noopener">tox-dev/platformdirs<span class="visually-hidden"> (opens in a new tab)</span></a></h3>
+                <span class="count">6 merged</span>
+              </div>
+              <p class="ledger-desc">Platform-correct user and site directories for Python programs.</p>
+
+              <h4>Root and multipath handling</h4>
+              <ul class="prs">
+                <li><span class="val pr-id">#537  2026-09-01</span><a href="https://github.com/tox-dev/platformdirs/pull/537" target="_blank" rel="noopener">Accept use_site_for_root in the bin functions</a></li>
+                <li><span class="val pr-id">#538  2026-09-08</span><a href="https://github.com/tox-dev/platformdirs/pull/538" target="_blank" rel="noopener">Return one user path for root under multipath</a></li>
+                <li><span class="val pr-id">#544  2026-09-15</span><a href="https://github.com/tox-dev/platformdirs/pull/544" target="_blank" rel="noopener">Accept multipath in the site cache functions</a></li>
+              </ul>
+              <h4>Config and environment parsing</h4>
+              <ul class="prs">
+                <li><span class="val pr-id">#545  2026-09-15</span><a href="https://github.com/tox-dev/platformdirs/pull/545" target="_blank" rel="noopener">Read user-dirs.dirs as shell assignments, not INI</a>
+                  <p class="pr-note">user-dirs.dirs is a shell fragment, and platformdirs read it with ConfigParser: duplicate keys and stray lines crashed it, and escapes and trailing comments corrupted the paths. The fix parses it as shell assignments.</p></li>
+                <li><span class="val pr-id">#554  2026-09-22</span><a href="https://github.com/tox-dev/platformdirs/pull/554" target="_blank" rel="noopener">Ignore relative XDG user directory environment variables</a></li>
+              </ul>
+              <h4>Filesystem side effects</h4>
+              <ul class="prs">
+                <li><span class="val pr-id">#550  2026-09-18</span><a href="https://github.com/tox-dev/platformdirs/pull/550" target="_blank" rel="noopener">Only create the site dirs a call hands back</a></li>
+              </ul>
             </div>
-            <p class="ledger-desc">Platform-correct user and site directories for Python programs.</p>
 
-            <h4>Root and multipath handling</h4>
-            <ul class="prs">
-              <li><span class="val pr-id">#537  2026-09-01</span><a href="https://github.com/tox-dev/platformdirs/pull/537" target="_blank" rel="noopener">Accept use_site_for_root in the bin functions</a></li>
-              <li><span class="val pr-id">#538  2026-09-08</span><a href="https://github.com/tox-dev/platformdirs/pull/538" target="_blank" rel="noopener">Return one user path for root under multipath</a></li>
-              <li><span class="val pr-id">#544  2026-09-15</span><a href="https://github.com/tox-dev/platformdirs/pull/544" target="_blank" rel="noopener">Accept multipath in the site cache functions</a></li>
-            </ul>
-            <h4>Config and environment parsing</h4>
-            <ul class="prs">
-              <li><span class="val pr-id">#545  2026-09-15</span><a href="https://github.com/tox-dev/platformdirs/pull/545" target="_blank" rel="noopener">Read user-dirs.dirs as shell assignments, not INI</a>
-                <p class="pr-note">user-dirs.dirs is a shell fragment, and platformdirs read it with ConfigParser: duplicate keys and stray lines crashed it, and escapes and trailing comments corrupted the paths. The fix parses it as shell assignments.</p></li>
-              <li><span class="val pr-id">#554  2026-09-22</span><a href="https://github.com/tox-dev/platformdirs/pull/554" target="_blank" rel="noopener">Ignore relative XDG user directory environment variables</a></li>
-            </ul>
-            <h4>Filesystem side effects</h4>
-            <ul class="prs">
-              <li><span class="val pr-id">#550  2026-09-18</span><a href="https://github.com/tox-dev/platformdirs/pull/550" target="_blank" rel="noopener">Only create the site dirs a call hands back</a></li>
-            </ul>
-          </div>
+            <div class="ledger" data-reveal="rise">
+              <div class="ledger-head">
+                <h3><a class="val" href="https://github.com/pypa/virtualenv" target="_blank" rel="noopener">pypa/virtualenv<span class="visually-hidden"> (opens in a new tab)</span></a></h3>
+                <span class="count">5 merged</span>
+              </div>
+              <p class="ledger-desc">Creates the isolated environments behind tox, nox and pre-commit.</p>
 
-          <div class="ledger" data-reveal="rise">
-            <div class="ledger-head">
-              <h3><a class="val" href="https://github.com/pypa/virtualenv" target="_blank" rel="noopener">pypa/virtualenv<span class="visually-hidden"> (opens in a new tab)</span></a></h3>
-              <span class="count">5 merged</span>
+              <h4>Activation scripts</h4>
+              <ul class="prs">
+                <li><span class="val pr-id">#3233  2026-09-15</span><a href="https://github.com/pypa/virtualenv/pull/3233" target="_blank" rel="noopener">Restore PKG_CONFIG_PATH that was not set before</a></li>
+                <li><span class="val pr-id">#3234  2026-09-15</span><a href="https://github.com/pypa/virtualenv/pull/3234" target="_blank" rel="noopener">Keep and restore the user's TCL_LIBRARY and TK_LIBRARY</a></li>
+                <li><span class="val pr-id">#3245  2026-09-17</span><a href="https://github.com/pypa/virtualenv/pull/3245" target="_blank" rel="noopener">Undo a live activation before activate.bat saves values</a>
+                  <p class="pr-note">Running activate.bat twice saved the already-modified PKG_CONFIG_PATH, TCL_LIBRARY and TK_LIBRARY as the originals, so deactivate leaked them. The fix undoes the live activation before saving.</p></li>
+              </ul>
+              <h4>Robustness</h4>
+              <ul class="prs">
+                <li><span class="val pr-id">#3229  2026-09-09</span><a href="https://github.com/pypa/virtualenv/pull/3229" target="_blank" rel="noopener">Replace a stale symlink instead of writing through it</a></li>
+                <li><span class="val pr-id">#3230  2026-09-09</span><a href="https://github.com/pypa/virtualenv/pull/3230" target="_blank" rel="noopener">Ignore a config file that fails to parse instead of crashing</a></li>
+              </ul>
             </div>
-            <p class="ledger-desc">Creates the isolated environments behind tox, nox and pre-commit.</p>
-
-            <h4>Activation scripts</h4>
-            <ul class="prs">
-              <li><span class="val pr-id">#3233  2026-09-15</span><a href="https://github.com/pypa/virtualenv/pull/3233" target="_blank" rel="noopener">Restore PKG_CONFIG_PATH that was not set before</a></li>
-              <li><span class="val pr-id">#3234  2026-09-15</span><a href="https://github.com/pypa/virtualenv/pull/3234" target="_blank" rel="noopener">Keep and restore the user's TCL_LIBRARY and TK_LIBRARY</a></li>
-              <li><span class="val pr-id">#3245  2026-09-17</span><a href="https://github.com/pypa/virtualenv/pull/3245" target="_blank" rel="noopener">Undo a live activation before activate.bat saves values</a>
-                <p class="pr-note">Running activate.bat twice saved the already-modified PKG_CONFIG_PATH, TCL_LIBRARY and TK_LIBRARY as the originals, so deactivate leaked them. The fix undoes the live activation before saving.</p></li>
-            </ul>
-            <h4>Robustness</h4>
-            <ul class="prs">
-              <li><span class="val pr-id">#3229  2026-09-09</span><a href="https://github.com/pypa/virtualenv/pull/3229" target="_blank" rel="noopener">Replace a stale symlink instead of writing through it</a></li>
-              <li><span class="val pr-id">#3230  2026-09-09</span><a href="https://github.com/pypa/virtualenv/pull/3230" target="_blank" rel="noopener">Ignore a config file that fails to parse instead of crashing</a></li>
-            </ul>
           </div>
-        </div>
+        </details>
       </div>
     </section>
 
@@ -429,8 +370,6 @@
       <div class="sheet">
         <h2 id="about-title">About</h2>
         <div class="title-block" data-reveal="rise">
-          <div class="cell cell-photo"><img src="img/pro_pic.jpg" width="600" height="750" loading="lazy" decoding="async" alt="Darren Huai"></div>
-          <div class="cell"><p class="label">Name</p><p class="value value-name">Darren Huai</p></div>
           <div class="cell"><p class="label">Based in</p><p class="value">Los Angeles, California</p></div>
           <div class="cell"><p class="label">Citizenship</p><p class="value">US citizen</p></div>
           <div class="cell"><p class="label">Now</p><p class="value">Software Engineer Intern, NASA Armstrong Flight Research Center, through December 2026</p></div>

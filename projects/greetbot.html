@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GreetBot, a project by Darren Huai</title>
+  <meta name="description" content="GreetBot: a face-recognizing greeting robot built by a 14-person UCLA engineering club team, including Darren Huai.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="canonical" href="https://darrenhuai.github.io/darrenhuai-Portfolio/projects/greetbot.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://darrenhuai.github.io/darrenhuai-Portfolio/projects/greetbot.html">
+  <meta property="og:title" content="GreetBot, a project by Darren Huai">
+  <meta property="og:description" content="GreetBot: a face-recognizing greeting robot built by a 14-person UCLA engineering club team, including Darren Huai.">
+  <meta property="og:image" content="https://darrenhuai.github.io/darrenhuai-Portfolio/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="../styles.css">
+  <script type="module" src="../js/main.js"></script>
+</head>
+<body class="page-project">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="sheet nav-inner">
+      <a class="wordmark" href="../index.html">Darren Huai</a>
+      <button type="button" class="menu-button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <nav id="primary-nav" class="nav-links" aria-label="Primary">
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#projects" aria-current="true">Projects</a>
+        <a href="../index.html#open-source">Open source</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="https://github.com/darrenhuai" target="_blank" rel="noopener">GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="project" aria-labelledby="project-title">
+      <div class="sheet">
+        <p class="back"><a href="../index.html#projects">All projects</a></p>
+        <header class="project-head">
+          <div class="project-intro">
+            <h1 id="project-title">GreetBot</h1>
+            <p class="project-lead">A robot that recognizes a face and offers a handshake, built by a 14-person team in a UCLA engineering club.</p>
+          </div>
+          <dl class="facts"><div><dt>Role</dt><dd>One of 14 team members.</dd></div><div><dt>Stack</dt><dd><span class="val">Python, OpenCV, face_recognition (dlib), Arduino over Firmata</span></dd></div><div><dt>Links</dt><dd><a href="https://github.com/darrenhuai/darrenhuai-GreetBot" target="_blank" rel="noopener">Source<span class="visually-hidden"> for GreetBot (opens in a new tab)</span></a> <span class="facts-note">My fork of the team repository.</span></dd></div></dl>
+        </header>
+        
+      </div>
+      <div class="sheet project-body">
+        <section class="project-section" data-reveal="rise">
+          <h2>How it works</h2>
+          <div class="section-body">
+            <p>A camera feeds frames to a face-recognition module. It checks whether a frame contains a face, finds the largest one, and compares its encoding with encodings generated ahead of time from a folder of known faces. A runner script ties the recognition to the Arduino hardware that performs the greeting.</p>
+          </div>
+        </section>
+        <section class="project-section" data-reveal="rise">
+          <h2>The face module</h2>
+          <div class="section-body">
+            <p>The recognition code was pulled out into a module with three functions, so other projects can reuse it.</p>
+            <pre class="code"><code>from detector import has_face, find_face, generate_encodings
+
+encodings, names = generate_encodings(directory)
+if has_face(image):
+    image, encoding, location = find_face(image)</code></pre>
+          </div>
+        </section>
+      </div>
+
+      <nav class="sheet pager" aria-label="More projects">
+        <a class="pager-link pager-prev" href="petrarchan-gpt.html"><span class="pager-label">Previous project</span><span class="pager-title">Petrarchan GPT</span></a>
+      </nav>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="sheet">
+      <p>Darren Huai, Los Angeles. HTML, CSS, JavaScript and three.js, no build step. <a href="https://github.com/darrenhuai/darrenhuai-Portfolio" target="_blank" rel="noopener">Source on GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>.</p>
+    </div>
+  </footer>
+</body>
+</html>
