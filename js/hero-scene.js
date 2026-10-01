@@ -239,10 +239,10 @@ const RING_FRAG = /* glsl */ `
   void main() {
     vec2 p = (vUv - 0.5) * 2.0;       // -1..1 == +-1.4 world units
     float d = hexDist(p);
-    float pulse = 0.82 + 0.18 * sin(uTime * 2.2);
+    float pulse = 1.0;
     float ring = smoothstep(0.59, 0.64, d) * (1.0 - smoothstep(0.69, 0.745, d));
-    float inner = (1.0 - smoothstep(0.30, 0.62, d)) * 0.22;
-    float halo = (1.0 - smoothstep(0.72, 1.0, d)) * step(0.72, d) * 0.28;
+    float inner = (1.0 - smoothstep(0.30, 0.62, d)) * 0.10;
+    float halo = 0.0;
     float a = (ring * 0.95 + inner + halo) * pulse * uOpacity;
     gl_FragColor = vec4(uColor, a);
     #include <tonemapping_fragment>
@@ -550,8 +550,7 @@ export function mountHero(canvas, options = {}) {
   dustGeo.setAttribute('aSize', new THREE.BufferAttribute(dustSize, 1));
   dustGeo.setAttribute('aPhase', new THREE.BufferAttribute(dustPhase, 1));
   const dust = new THREE.Points(dustGeo, mats.dust);
-  dust.frustumCulled = false;
-  scene.add(dust);
+  dust.frustumCulled = false; // kept allocated but not added: ambient particles read as specks on the page
 
   // --- ground: soft contact shadow + ghost grid suggesting the map continues
   const GROUND_Y = -0.55;
@@ -609,7 +608,7 @@ export function mountHero(canvas, options = {}) {
       field: mix(surface, shift(accent, 0.075, S, dark ? -0.06 : 0.12), A),
       forest: mix(surface, shift(accent, 0.27, S * 0.9, dark ? -0.10 : -0.06), A),
       hill: mix(surface, ink, dark ? 0.10 : 0.17),
-      ore: mix(mix(surface, ink, dark ? 0.12 : 0.2), shift(accent, -0.33, S * 0.7, dark ? -0.06 : 0.0), dark ? 0.3 : 0.35),
+      ore: mix(mix(surface, ink, dark ? 0.12 : 0.2), shift(accent, 0.55, S * 0.45, dark ? -0.06 : -0.02), dark ? 0.3 : 0.35),
       water: mix(surface, shift(accent, 0.52, S * 1.05, dark ? -0.02 : 0.06), dark ? 0.45 : 0.6),
     };
     for (const t of tiles) {
@@ -651,7 +650,7 @@ export function mountHero(canvas, options = {}) {
     fill.color.copy(mix(new THREE.Color(0xffffff), bg, 0.3));
     fill.intensity = dark ? 0.7 : 0.35;
     glowLight.color.copy(accent);
-    glowLight.userData.base = dark ? 5.5 : 3.0;
+    glowLight.userData.base = dark ? 2.5 : 1.5;
 
     const near = mix(bg, ink, dark ? 0.16 : 0.2), far = mix(bg, ink, 0);
     let o = 0;
@@ -850,18 +849,8 @@ export function mountHero(canvas, options = {}) {
     ring.position.set(hlTile.x, hlTile.y + hlTile.top + 0.012, hlTile.z);
     mats.ring.uniforms.uTime.value = t;
     glowLight.position.set(hlTile.x, hlTile.y + hlTile.top + 0.9, hlTile.z).applyQuaternion(board.quaternion).add(board.position);
-    glowLight.intensity = glowLight.userData.base * (0.9 + 0.1 * Math.sin(t * 2.2));
+    glowLight.intensity = glowLight.userData.base;
 
-    // dust drifts upward and wraps
-    const pa = dustGeo.attributes.position.array;
-    for (let i = 0; i < DUST_N; i++) {
-      let y = pa[i * 3 + 1] + dustDrift[i] * dt;
-      if (y > 3.9) y = 0.4;
-      pa[i * 3 + 1] = y;
-      pa[i * 3] += Math.sin(t * 0.5 + dustPhase[i]) * 0.0006;
-    }
-    dustGeo.attributes.position.needsUpdate = true;
-    mats.dust.uniforms.uTime.value = t;
 
     renderer.info.reset();
     renderer.render(scene, camera);

@@ -6,66 +6,81 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 const hasIO = 'IntersectionObserver' in window;
 
 // ---------- Mobile menu ----------
+const header = document.querySelector('.nav');
 const menuButton = document.querySelector('.menu-button');
 const navLinks = document.getElementById('primary-nav');
+const menuIsOpen = () => menuButton.getAttribute('aria-expanded') === 'true';
 
 function setMenu(open, { returnFocus = false } = {}) {
-  if (!menuButton || !navLinks) return;
   navLinks.classList.toggle('is-open', open);
   root.classList.toggle('menu-open', open);
   menuButton.setAttribute('aria-expanded', String(open));
   menuButton.textContent = open ? 'Close' : 'Menu';
   if (!open && returnFocus) menuButton.focus();
 }
-if (menuButton && navLinks) {
-  menuButton.addEventListener('click', () => {
-    setMenu(menuButton.getAttribute('aria-expanded') !== 'true');
-  });
+if (header && menuButton && navLinks) {
+  menuButton.addEventListener('click', () => setMenu(!menuIsOpen()));
   navLinks.addEventListener('click', (event) => {
     if (event.target.closest('a')) setMenu(false);
   });
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
-      setMenu(false, { returnFocus: true });
-    }
+    if (event.key === 'Escape' && menuIsOpen()) setMenu(false, { returnFocus: true });
   });
   document.addEventListener('click', (event) => {
-    if (menuButton.getAttribute('aria-expanded') !== 'true') return;
-    if (!event.target.closest('.nav')) setMenu(false);
+    if (menuIsOpen() && !event.target.closest('.nav')) setMenu(false);
+  });
+  // Tabbing past the last link must not leave an open panel over a page that scrolls behind it.
+  header.addEventListener('focusout', (event) => {
+    if (menuIsOpen() && event.relatedTarget && !header.contains(event.relatedTarget)) setMenu(false);
   });
   window.matchMedia('(min-width: 920px)').addEventListener('change', (event) => {
-    if (event.matches) setMenu(false);
+    if (event.matches && menuIsOpen()) setMenu(false);
   });
 }
 
 // ---------- Current section in the nav ----------
+// A section is current while it crosses a thin band below the header. The last section can be too
+// short to reach that band on a tall viewport, so reaching the footer also makes it current.
 if (hasIO && navLinks) {
   const linkFor = new Map();
   for (const link of navLinks.querySelectorAll('a[href^="#"]')) {
     const section = document.getElementById(link.getAttribute('href').slice(1));
     if (section) linkFor.set(section, link);
   }
-  const sectionObserver = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
-      for (const link of linkFor.values()) link.removeAttribute('aria-current');
-      linkFor.get(entry.target).setAttribute('aria-current', 'true');
+  const sections = [...linkFor.keys()];
+  const inBand = new Set();
+  let atEnd = false;
+  const paint = () => {
+    const current = atEnd ? sections[sections.length - 1] : sections.filter((s) => inBand.has(s)).pop();
+    for (const [section, link] of linkFor) {
+      if (section === current) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
     }
+  };
+  const bandObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) inBand.add(entry.target);
+      else inBand.delete(entry.target);
+    }
+    paint();
   }, { rootMargin: '-40% 0px -55% 0px' });
-  for (const section of linkFor.keys()) sectionObserver.observe(section);
+  for (const section of sections) bandObserver.observe(section);
 
-  // Above the first section nothing is current.
-  const hero = document.querySelector('.hero');
-  if (hero) {
+  const footer = document.querySelector('.footer');
+  if (footer) {
     new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) for (const link of linkFor.values()) link.removeAttribute('aria-current');
-    }, { rootMargin: '-40% 0px -55% 0px' }).observe(hero);
+      atEnd = entry.isIntersecting;
+      paint();
+    }).observe(footer);
   }
 }
 
 // ---------- Scroll reveals ----------
 // Content is visible by default. Only elements that start below the fold are put into the
 // hidden "pre" state, so nothing is ever gated on this script running.
+const showAll = () => {
+  for (const el of document.querySelectorAll('.pre')) el.classList.remove('pre');
+};
 if (hasIO && !reduceMotion) {
   const revealObserver = new IntersectionObserver((entries) => {
     for (const entry of entries) {
@@ -75,37 +90,62 @@ if (hasIO && !reduceMotion) {
     }
   }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 
+  // A lazy image that is clipped out of view is not fetched, so the wipe would play on an empty
+  // plate. Start the download a screen or so before the plate arrives.
+  const nearObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      const img = entry.target.querySelector('img[loading="lazy"]');
+      if (img) img.loading = 'eager';
+      nearObserver.unobserve(entry.target);
+    }
+  }, { rootMargin: '1200px 0px' });
+
   const fold = window.innerHeight * 0.92;
   for (const el of document.querySelectorAll('[data-reveal]')) {
     if (el.getBoundingClientRect().top > fold) {
       el.classList.add('pre');
       revealObserver.observe(el);
+      if (el.dataset.reveal === 'wipe') nearObserver.observe(el);
     }
+  }
+  window.addEventListener('beforeprint', showAll);
+}
+
+// ---------- Scroll regions are only tab stops while they actually scroll ----------
+if ('ResizeObserver' in window) {
+  for (const region of document.querySelectorAll('.filmstrip, .phone-row, .axis-scroll')) {
+    const sync = () => {
+      if (region.scrollWidth > region.clientWidth + 1) region.tabIndex = 0;
+      else region.removeAttribute('tabindex');
+    };
+    new ResizeObserver(sync).observe(region);
   }
 }
 
-// ---------- The watchglass recording: plays once when half visible, then offers Replay ----------
+// ---------- The watchglass recording ----------
+// Plays once when half visible; the button is always there and toggles pause, play and replay.
 const video = document.querySelector('.demo-video');
-const replay = document.querySelector('[data-replay]');
-if (video && replay) {
-  const play = () => {
-    video.currentTime = 0;
-    const started = video.play();
-    replay.dataset.state = 'playing';
-    if (started && typeof started.catch === 'function') {
-      started.catch(() => { replay.dataset.state = 'idle'; });
+const toggle = document.querySelector('[data-replay]');
+if (video && toggle) {
+  video.removeAttribute('controls'); // native controls are the no-script fallback
+  toggle.addEventListener('click', () => {
+    if (!video.paused && !video.ended) {
+      video.pause();
+      return;
     }
-  };
-  replay.addEventListener('click', play);
-  video.addEventListener('ended', () => {
-    replay.textContent = 'Replay';
-    replay.dataset.state = 'idle';
+    if (video.ended) video.currentTime = 0;
+    video.play().catch(() => {});
   });
+  video.addEventListener('play', () => { toggle.textContent = 'Pause'; });
+  video.addEventListener('pause', () => { if (!video.ended) toggle.textContent = 'Play demo'; });
+  video.addEventListener('ended', () => { toggle.textContent = 'Replay'; });
+
   if (hasIO && !reduceMotion) {
     const videoObserver = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return;
       videoObserver.disconnect();
-      play();
+      video.play().catch(() => {});
     }, { threshold: 0.5 });
     videoObserver.observe(video);
   }
@@ -155,9 +195,19 @@ async function mountHeroScene() {
     return;
   }
   hero.setColors(sceneColors());
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-    hero.setColors(sceneColors());
-  });
+
+  const scheme = window.matchMedia('(prefers-color-scheme: dark)');
+  const onScheme = () => hero.setColors(sceneColors());
+  scheme.addEventListener('change', onScheme);
+
+  // A lost WebGL context (a backgrounded phone tab, a driver reset) goes back to the still for good.
+  canvas.addEventListener('webglcontextlost', () => {
+    box.classList.remove('is-live');
+    scheme.removeEventListener('change', onScheme);
+    hero.dispose();
+    canvas.remove();
+  }, { once: true });
+
   requestAnimationFrame(() => requestAnimationFrame(() => box.classList.add('is-live')));
 }
 

@@ -252,6 +252,9 @@ a:hover {
 }
 .links { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s5); }
 .links a { font-weight: 500; }
+/* 45px tap targets without moving the layout */
+.links a,
+.prs a { display: inline-block; padding-block: 10px; margin-block: -10px; }
 
 /* ---------- Buttons ---------- */
 .button {
@@ -341,8 +344,8 @@ a:hover {
   cursor: pointer;
 }
 @media (max-width: 919px) {
-  .menu-button { display: inline-flex; align-items: center; justify-content: center; }
-  .nav-links {
+  .js .menu-button { display: inline-flex; align-items: center; justify-content: center; }
+  .js .nav-links {
     position: absolute;
     top: var(--nav-h);
     left: 0;
@@ -364,21 +367,21 @@ a:hover {
       transform var(--dur-base) var(--ease-out),
       visibility 0s linear var(--dur-base);
   }
-  .nav-links.is-open {
+  .js .nav-links.is-open {
     visibility: visible;
     opacity: 1;
     transform: none;
     transition-delay: 0s;
   }
-  .nav-links a {
+  .js .nav-links a {
     display: flex;
     align-items: center;
     min-height: 56px;
     font-size: var(--t1);
     color: var(--ink);
   }
-  .nav-links a::after { display: none; }
-  .nav-links a[aria-current="true"] { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 0.3em; }
+  .js .nav-links a::after { display: none; }
+  .js .nav-links a[aria-current="true"] { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 0.3em; }
 }
 
 /* ---------- Hero ---------- */
@@ -495,7 +498,6 @@ a:hover {
   transition: border-color var(--dur-base) var(--ease-out), background-color var(--dur-base) var(--ease-out);
 }
 .replay:hover { border-color: var(--ink); background: var(--surface); }
-.replay[data-state="playing"] { visibility: hidden; }
 
 /* ---------- Selected work ---------- */
 #projects h2 { margin-bottom: var(--s7); }
@@ -532,7 +534,7 @@ a:hover {
 .case .links { margin-top: var(--s5); }
 .links-note { margin-top: var(--s5); font-size: var(--t-1); color: var(--muted); }
 
-.plate-lead { aspect-ratio: 16 / 9; }
+.plate-lead { aspect-ratio: 1600 / 827; }
 .filmstrip {
   display: grid;
   grid-auto-flow: column;
@@ -550,7 +552,7 @@ a:hover {
 .case-pair { display: grid; gap: var(--s8); margin-bottom: var(--s8); }
 .case-pair .case { margin-bottom: 0; }
 .plate-video { aspect-ratio: 3 / 2; }
-.plate-app { aspect-ratio: 16 / 10; }
+.plate-app { aspect-ratio: 15 / 14; }
 .plate-app img { object-position: 0 0; }
 .case-block { margin-top: var(--s4); }
 .case-c .case-block { margin-top: 0; }
@@ -612,12 +614,18 @@ a:hover {
 /* ---------- Open source ---------- */
 .axis { margin-block: var(--s7); }
 .axis-scroll { overflow-x: auto; scrollbar-width: thin; }
-.axis svg { width: 100%; min-width: 880px; height: auto; overflow: visible; }
+.axis svg { width: 100%; height: auto; overflow: visible; }
+.axis-full { min-width: 1040px; }
+.axis-compact { display: none; }
+.axis-hint { display: none; }
 .axis .caption { margin-top: var(--s3); }
 .axis-line { stroke: var(--line); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .axis-tick { stroke: var(--line); stroke-width: 1; vector-effect: non-scaling-stroke; }
-.axis-label { fill: var(--ink-2); font-family: var(--font-mono); font-size: 13px; }
-.axis-key { fill: var(--muted); font-family: var(--font-sans); font-size: 13px; font-stretch: 88%; font-weight: 500; }
+.axis-label { fill: var(--ink-2); font-family: var(--font-mono); font-size: 15px; }
+.axis-key { fill: var(--muted); font-family: var(--font-sans); font-size: 15px; font-stretch: 88%; font-weight: 500; }
+.axis-compact .axis-label { font-size: 12px; }
+.axis-compact .visible.solid { fill: var(--accent); }
+.axis-compact .visible.open { fill: var(--bg); stroke: var(--accent); stroke-width: 1.5; }
 .axis-marker .hit { fill: transparent; }
 .axis-marker .visible {
   transform-box: fill-box;
@@ -629,6 +637,7 @@ a:hover {
 .axis-marker:hover .visible { transform: scale(1.3); }
 .axis-marker:focus-visible { outline: none; }
 .axis-marker:focus-visible .visible { stroke: var(--ink); stroke-width: 3; }
+.axis-marker:focus-visible .hit { stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; }
 
 .ledgers { display: grid; gap: var(--s7); }
 .ledger { padding-top: var(--s5); border-top: 1px solid var(--line); }
@@ -721,15 +730,15 @@ a:hover {
 .value + .value { margin-top: var(--s2); }
 .value-name { font-size: var(--t1); font-weight: 600; line-height: 1.25; }
 .cell-photo { padding: 0; }
-.cell-photo img { width: 100%; max-width: 240px; aspect-ratio: 4 / 5; object-fit: cover; }
+.cell-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 25%; }
 .cell-full { padding-block: var(--s5); }
 .bio { max-inline-size: 68ch; }
 @media (min-width: 768px) {
   .title-block { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .cell-photo { grid-row: span 2; }
-  .cell-photo img { max-width: none; height: 100%; }
+  .cell-photo { grid-row: span 3; }
+  .cell-photo img { height: 100%; aspect-ratio: 4 / 5; }
   .cell-wide { grid-column: span 2; }
-  .cell-full { grid-column: 1 / -1; }
+  .cell-full { grid-column: 2 / -1; }
 }
 
 /* ---------- Contact, footer ---------- */
@@ -829,4 +838,50 @@ a:hover {
 @media print {
   .nav, .hero-figure, .replay, .skip-link { display: none; }
   .section { padding-block: 1.5rem; }
+  [data-reveal].pre,
+  [data-reveal].pre .plate,
+  [data-reveal].pre tbody tr,
+  [data-reveal].pre .axis-marker { opacity: 1 !important; transform: none !important; }
+  [data-reveal].pre > img,
+  [data-reveal].pre > video { clip-path: none !important; }
+  [data-reveal].pre .axis-line { stroke-dashoffset: 0 !important; }
+}
+
+/* ---------- Review fixes (2026-09-30) ---------- */
+/* Without JavaScript the nav cannot open, so it stays a visible wrapping row and the bar is not sticky. */
+@media (max-width: 919px) {
+  html:not(.js) .nav { position: static; height: auto; }
+  html:not(.js) .nav-inner { flex-wrap: wrap; row-gap: var(--s2); padding-block: var(--s3); }
+  html:not(.js) .nav-links { flex-wrap: wrap; gap: var(--s2) var(--s5); }
+}
+/* The play, pause and replay button needs main.js; without it the video shows native controls. */
+.replay { display: none; }
+.js .replay { display: inline-flex; align-items: center; }
+@media (pointer: coarse) {
+  .replay { min-height: 44px; }
+}
+
+/* Chart: sideways scroll with a hint on tablets, a compact whole-month drawing on phones. */
+@media (max-width: 1119px) {
+  .axis-hint { display: inline; }
+}
+@media (max-width: 599px) {
+  .axis-scroll { display: none; }
+  .axis-compact { display: block; }
+  .axis-hint { display: none; }
+}
+
+/* Light app captures should not out-shout the page in the dark theme. */
+@media (prefers-color-scheme: dark) {
+  .plate-app img,
+  .plate-phone img { filter: brightness(0.82) contrast(1.05); }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .phones { max-width: 30rem; }
+}
+@media (max-width: 1023px) {
+  .hero-figure figcaption { display: none; }
+}
+@media (forced-colors: active) {
+  .mark { forced-color-adjust: none; background: CanvasText; }
 }

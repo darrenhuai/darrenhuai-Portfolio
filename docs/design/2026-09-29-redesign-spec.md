@@ -680,3 +680,16 @@ Where the built page departs from this document, and why:
 - Kinetic Analyzer has no Source link because that repository is private.
 - The Contact line reads "Open to software engineering roles. Email is fastest."
 - The nav collapses to the Menu button below 920px, where eight links stop fitting on one line.
+
+## Appendix E. Review round (2026-09-30)
+
+Three reviewers (art direction, accessibility and code, hiring-manager fact check) audited the first build. Changes made:
+
+- Copy checked against the linked repositories. Petrarchan GPT now describes what the repo contains, with no training-speed or perplexity figures. GreetBot is credited as a 14-person UCLA club project. The Prediction Market Bot credits Jonathan Becker's framework it is built on and claims only the scanner, alerts, web app and tests. The Kinetic Analyzer link was removed because the repository is private.
+- The hero says "Flight software intern at NASA." Experience moved directly under the hero, with first-person verbs in every role. US date format and spelling are used throughout.
+- The resume PDF and every link to it were removed, because it disagreed with the page and printed a phone number. The hero's secondary button is now GitHub.
+- Skills: the "ranked by" claim is gone, Docker and CI are split, PyTorch replaces "PyTorch and TensorFlow", and Kinetic Analyzer marks were added where its code shows them.
+- Chart: same-day marks have a 28-unit pitch so their 24px targets no longer overlap, labels are 15 units, and there is a sideways-scroll hint below 1120px. Phones get a compact whole-month drawing with no links; the ledgers carry them.
+- Hero scene: the ring halo, pulse and dust were removed, and ore tiles are slate instead of violet. Stills and og.png were re-exported.
+- Imagery: the lead ChessTan frame lost its status toast (top crop) and a stray resource icon over "Player 2". The victory still is cropped to its modal, the lobby to its panel, and the Kalshi capture to the app column (15:14, so the two-up plates match in height). The portrait is cropped closer and brightened. Light captures are dimmed in the dark theme.
+- Behaviour: the wordmark scrolls to the top. Contact becomes current at the page end. The demo button toggles pause, play and replay and keeps focus. Scroll regions are tab stops only while they scroll. The menu closes when focus leaves it. The no-JS nav and video work. Print shows all content. Wipe-revealed images are fetched before the wipe. The hero preload matches the picture's candidates. three.js loads the minified build. A lost WebGL context falls back to the still. Forced-colors mode shows matrix marks.

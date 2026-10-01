@@ -23,27 +23,27 @@
 
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="img/hero-board-light.webp" media="(prefers-color-scheme: light)">
-  <link rel="preload" as="image" href="img/hero-board-dark.webp" media="(prefers-color-scheme: dark)">
+  <link rel="preload" as="image" type="image/webp" imagesrcset="img/hero-board-light.webp 1600w, img/hero-board-light-800.webp 800w" imagesizes="(min-width: 1024px) 52vw, 100vw" media="(prefers-color-scheme: light)" fetchpriority="high">
+  <link rel="preload" as="image" type="image/webp" imagesrcset="img/hero-board-dark.webp 1600w, img/hero-board-dark-800.webp 800w" imagesizes="(min-width: 1024px) 52vw, 100vw" media="(prefers-color-scheme: dark)" fetchpriority="high">
+  <script>document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="styles.css">
-  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"}}</script>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js"}}</script>
   <script type="module" src="js/main.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="nav" id="top">
+  <header class="nav">
     <div class="sheet nav-inner">
       <a class="wordmark" href="#top">Darren Huai</a>
       <button type="button" class="menu-button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
       <nav id="primary-nav" class="nav-links" aria-label="Primary">
+        <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#open-source">Open source</a>
-        <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
-        <a href="Darren-Huai-Resume.pdf" target="_blank" rel="noopener">Resume<span class="visually-hidden"> (PDF, opens in a new tab)</span></a>
         <a href="https://github.com/darrenhuai" target="_blank" rel="noopener">GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>
       </nav>
     </div>
@@ -53,11 +53,11 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="sheet hero-grid">
         <div class="hero-copy">
-          <h1 id="hero-title">I write flight software at NASA.</h1>
+          <h1 id="hero-title">Flight software intern at NASA.</h1>
           <p class="hero-sub">M.S. Computer Science at USC, May 2027. I shipped ChessTan on Steam and landed eleven fixes in platformdirs and virtualenv.</p>
           <div class="actions">
             <a class="button button-primary" href="#projects">See the work</a>
-            <a class="button button-secondary" href="Darren-Huai-Resume.pdf" target="_blank" rel="noopener">Resume<span class="visually-hidden"> (PDF, opens in a new tab)</span></a>
+            <a class="button button-secondary" href="https://github.com/darrenhuai" target="_blank" rel="noopener">GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>
           </div>
         </div>
         <figure class="hero-figure">
@@ -73,23 +73,63 @@
       </div>
     </section>
 
+    <section class="section band" id="experience" aria-labelledby="experience-title">
+      <div class="sheet">
+        <h2 id="experience-title">Experience</h2>
+        <div class="roles">
+          <article class="role" data-reveal="rise">
+            <div class="role-head">
+              <h3>NASA Armstrong Flight Research Center</h3>
+              <p class="role-title">Software Engineer Intern</p>
+              <p class="role-dates"><span class="val">Aug 2026 - Dec 2026</span> <span class="current">Current</span></p>
+            </div>
+            <p class="role-body">I build and test cFS apps and message-bus integrations in C for the High-Performance Spaceflight Computing processor, on NASA's core Flight System, and automate benchmarking and regression tests in Python across <span class="num">30+</span> configurations. I also built the Python ETL pipelines for flight-test telemetry from the RAVEN eVTOL research aircraft, which cut manual processing time <span class="num">45%</span> across <span class="num">12</span> flights.</p>
+          </article>
+          <article class="role" data-reveal="rise">
+            <div class="role-head">
+              <h3>iTradeNetwork</h3>
+              <p class="role-title">Software Engineer Intern</p>
+              <p class="role-dates"><span class="val">Jun 2026 - Aug 2026</span></p>
+            </div>
+            <p class="role-body">Built a full-stack AI agent (LLM tool calling and API orchestration) in React, Python and SQL that automates software-license lifecycle management across <span class="num">500+</span> accounts, cutting manual effort <span class="num">40%</span>. Added AI features to an enterprise SaaS platform through Python backend services and REST APIs across <span class="num">5+</span> product modules, cutting response times <span class="num">30%</span>.</p>
+          </article>
+          <article class="role" data-reveal="rise">
+            <div class="role-head">
+              <h3>Mercor</h3>
+              <p class="role-title">Software Engineer</p>
+              <p class="role-dates"><span class="val">Feb 2025 - Jun 2026</span></p>
+            </div>
+            <p class="role-body">Built React client apps and REST integrations for internal RLHF tooling, and RLHF pipelines and evaluation workflows in Python that cut processing time <span class="num">40%</span> and raised benchmark accuracy on engineering and math tasks <span class="num">18%</span> across <span class="num">80+</span> model evaluations.</p>
+          </article>
+          <article class="role" data-reveal="rise">
+            <div class="role-head">
+              <h3>California Air Resources Board</h3>
+              <p class="role-title">Data Engineer Intern</p>
+              <p class="role-dates"><span class="val">Aug 2023 - Aug 2024</span></p>
+            </div>
+            <p class="role-body">Coordinated an aftermarket-parts compliance program with <span class="num">80+</span> manufacturers, cutting review time <span class="num">30%</span> and speeding market entry for <span class="num">$120M+</span> of emission-control products. Refactored the MySQL, PHP and Drupal database infrastructure, taking <span class="num">2.5 s</span> off query times.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="projects" aria-labelledby="projects-title">
       <div class="sheet">
         <h2 id="projects-title">Selected work</h2>
 
         <article class="case case-a" aria-labelledby="chesstan-title">
           <div class="plate plate-lead" data-reveal="wipe">
-            <img src="img/work/chesstan-board.webp" srcset="img/work/chesstan-board-800.webp 800w, img/work/chesstan-board.webp 1600w" sizes="(min-width: 1280px) 1120px, 100vw" width="1600" height="900" loading="lazy" decoding="async" alt="ChessTan mid-game: blue and red chess pieces on a hex board of yellow, blue, sand and brown tiles, with both players' resource panels at the left.">
+            <img src="img/work/chesstan-board.webp" srcset="img/work/chesstan-board-800.webp 800w, img/work/chesstan-board.webp 1600w" sizes="(min-width: 1280px) 1120px, 100vw" width="1600" height="827" loading="lazy" decoding="async" alt="ChessTan mid-game: blue and red chess pieces on a hex board of yellow, blue, sand and brown tiles, with both players' resource panels at the left.">
           </div>
           <div class="filmstrip" data-reveal="stagger" tabindex="0" role="group" aria-label="More ChessTan screenshots">
             <div class="plate"><img src="img/work/chesstan-capture.webp" srcset="img/work/chesstan-capture-800.webp 800w, img/work/chesstan-capture.webp 1600w" sizes="(min-width: 1024px) 33vw, 80vw" width="1600" height="900" loading="lazy" decoding="async" alt="A capture in progress: a highlighted blue knight beside red pieces on yellow tiles, with End Turn at the bottom."></div>
-            <div class="plate"><img src="img/work/chesstan-lobby.webp" srcset="img/work/chesstan-lobby-800.webp 800w, img/work/chesstan-lobby.webp 1600w" sizes="(min-width: 1024px) 33vw, 80vw" width="1600" height="900" loading="lazy" decoding="async" alt="The multiplayer lobby: relay server address, a room code to share, seats for 2 to 4 players, and a turn timer."></div>
-            <div class="plate"><img src="img/work/chesstan-victory.webp" srcset="img/work/chesstan-victory-800.webp 800w, img/work/chesstan-victory.webp 1600w" sizes="(min-width: 1024px) 33vw, 80vw" width="1600" height="900" loading="lazy" decoding="async" alt="The victory screen: Player 1 (Blue) wins by capturing the enemy king, with army strength and kills for both players."></div>
+            <div class="plate"><img src="img/work/chesstan-lobby.webp" srcset="img/work/chesstan-lobby-800.webp 800w, img/work/chesstan-lobby.webp 960w" sizes="(min-width: 1024px) 33vw, 80vw" width="960" height="540" loading="lazy" decoding="async" alt="The multiplayer lobby: relay server address, a room code to share, seats for 2 to 4 players, and a turn timer."></div>
+            <div class="plate"><img src="img/work/chesstan-victory.webp" srcset="img/work/chesstan-victory-800.webp 800w, img/work/chesstan-victory.webp 1120w" sizes="(min-width: 1024px) 33vw, 80vw" width="1120" height="630" loading="lazy" decoding="async" alt="The victory screen: Player 1 (Blue) wins by capturing the enemy king, with army strength and kills for both players."></div>
           </div>
           <div class="case-text" data-reveal="rise">
             <div class="case-head">
               <h3 class="case-title" id="chesstan-title">ChessTan</h3>
-              <p class="case-lead">Hex-grid strategy: a settle-and-trade economy under chess-style movement and capture, for 2 to 4 players, hot-seat, against the AI, or online.</p>
+              <p class="case-lead">Hex-grid strategy: a settle-and-trade economy with chess-style movement and capture, for 2 to 4 players, hot-seat, against the AI, or online.</p>
               <dl class="fields">
                 <div><dt>Role</dt><dd>Solo developer. Design, rules engine, netcode, the relay server, and the Steam launch.</dd></div>
                 <div><dt>Stack</dt><dd class="val">Godot 4.7, GDScript, WebSocket relay on Render.com, Steam, Discord Activity</dd></div>
@@ -101,9 +141,9 @@
             </div>
             <div class="case-body">
               <h4>The problem</h4>
-              <p>Two systems that usually live in different games share one board, so a good economy can still lose to a bad position. Online, the hard part is a player whose connection drops mid-turn: two clients that disagree about the board end the game, and a relay that forgets state loses the match.</p>
+              <p>Two systems that usually live in different games share one board, so a good economy can still lose to a bad position. Online, the hard part is a player whose connection drops mid-turn: two clients that disagree about the board end the game, and a dropped connection ends the match unless the player can rejoin.</p>
               <h4>What I built</h4>
-              <p>The game runs host-authoritative: one client owns the board and the relay carries the moves, so the players cannot desync. A dropped player reconnects and resyncs from the host's state instead of restarting. The same codebase ships as a Steam release, a browser build, and a Discord Activity. Free on Steam since 19 September 2026.</p>
+              <p>The game runs host-authoritative: one client owns the board, and the relay only forwards messages between the peers in a room, so there is a single source of truth. A dropped player rejoins with a token inside a grace period and resyncs from the host's state instead of restarting. The same codebase ships as a Steam release, a browser build, and a Discord Activity. Free on Steam since September 19, 2026.</p>
             </div>
           </div>
         </article>
@@ -111,7 +151,7 @@
         <div class="case-pair">
           <article class="case case-b" aria-labelledby="watchglass-title">
             <div class="plate plate-video" data-reveal="wipe">
-              <video class="demo-video" muted playsinline preload="metadata" poster="img/work/watchglass-demo-still.webp" width="960" height="640" aria-label="watchglass region editor: a camera view of a printer status panel with the read region outlined and the decoded text PRINT COMPLETE beside it.">
+              <video class="demo-video" controls muted playsinline preload="metadata" poster="img/work/watchglass-demo-still.webp" width="960" height="640" aria-label="watchglass region editor: a camera view of a printer status panel with the read region outlined and the decoded text PRINT COMPLETE beside it.">
                 <source src="img/work/watchglass-demo.mp4" type="video/mp4">
               </video>
             </div>
@@ -123,20 +163,20 @@
               <h3 class="case-title" id="watchglass-title">watchglass</h3>
               <p class="case-lead">Some screens will never get an API. watchglass points a camera at them and reads the numbers.</p>
               <dl class="fields">
-                <div><dt>Role</dt><dd>Solo developer and maintainer. Public repo; <span class="num">v0.1.8</span> released 29 September 2026.</dd></div>
+                <div><dt>Role</dt><dd>Solo developer and maintainer. Public repo; <span class="num">v0.1.8</span> released September 29, 2026.</dd></div>
                 <div><dt>Stack</dt><dd class="val">Go, single binary, Docker (amd64, arm64, armv7), Tesseract OCR, MQTT</dd></div>
               </dl>
               <h4>The problem</h4>
               <p>Heat pump panels, 3D printers and bench scales show their state on a screen and nowhere else. The number is right there, and nothing on the network can read it.</p>
               <h4>What I built</h4>
-              <p>A single Go binary that watches one region of a camera frame per watch, reads it with OCR or a built-in seven-segment decoder, and fires on a pattern or a threshold. Alerts go out over ntfy, Discord, Telegram, Slack, Pushover, email, webhooks, or Home Assistant over MQTT. It runs in <span class="num">55 MB</span> of RAM with no GPU and ships as a Docker image for amd64, arm64 and armv7.</p>
+              <p>A Go binary that watches one region of a camera frame per watch, reads it with Tesseract or a built-in seven-segment decoder, and fires on a pattern or a threshold. Alerts go out over ntfy, Discord, Telegram, Slack, Pushover, email, webhooks, or Home Assistant over MQTT. It runs in <span class="num">55 MB</span> of RAM with no GPU and ships as a Docker image for amd64, arm64 and armv7.</p>
               <p class="links"><a href="https://github.com/darrenhuai/watchglass" target="_blank" rel="noopener">Source<span class="visually-hidden"> for watchglass (opens in a new tab)</span></a></p>
             </div>
           </article>
 
           <article class="case case-b" aria-labelledby="kalshi-title">
             <div class="plate plate-app" data-reveal="wipe">
-              <img src="img/work/kalshi-opportunities.webp" width="1440" height="900" loading="lazy" decoding="async" alt="The bot's Opportunities tab: three market cards with the expected value per contract, an arbitrage group, and the balance and market count in the header.">
+              <img src="img/work/kalshi-opportunities.webp" width="964" height="900" loading="lazy" decoding="async" alt="The bot's Opportunities tab: three market cards with the expected value per contract, an arbitrage group, and the balance and market count in the header.">
             </div>
             <div class="plate-meta">
               <p class="caption">The local web app in <span class="val">--demo</span> mode.</p>
@@ -145,13 +185,13 @@
               <h3 class="case-title" id="kalshi-title">Prediction Market Bot</h3>
               <p class="case-lead">A scanner that reads <span class="num">300+</span> live Kalshi markets every five minutes and emails me when one is worth a look.</p>
               <dl class="fields">
-                <div><dt>Role</dt><dd>Solo developer.</dd></div>
-                <div><dt>Stack</dt><dd class="val">Python, Kalshi REST API, RSA key auth, DuckDB, CI</dd></div>
+                <div><dt>Role</dt><dd>Built on Jonathan Becker's open-source prediction-market-analysis framework. I added the Kalshi scanner, the alerts, the web app and the tests.</dd></div>
+                <div><dt>Stack</dt><dd class="val">Python, Kalshi REST API, RSA key auth, DuckDB, pytest, CI</dd></div>
               </dl>
               <h4>The problem</h4>
-              <p>Kalshi prices move every few minutes across hundreds of markets, and the signal I wanted is in the trade flow, who is taking and at what average price, not in the last print. Watching that by hand does not scale.</p>
+              <p>Kalshi prices move every few minutes across hundreds of markets, and the signal I wanted is in the trade flow, who is taking and at what size, not in the last print. Watching that by hand does not scale.</p>
               <h4>What I built</h4>
-              <p>A Python service that authenticates with an RSA key, pulls every live market into a DuckDB pipeline, and scores trade flow by taker-side imbalance and VWAP. Email alerts on the outliers, and a local web app with Opportunities and Markets tabs that runs on demo data with a <span class="val">--demo</span> flag, under CI.</p>
+              <p>A scanner that authenticates to Kalshi with an RSA key, runs every five minutes over the open markets, flags one-sided or unusually large trade flow, and emails me. A local web app with Opportunities and Markets tabs runs on demo data with a <span class="val">--demo</span> flag. Tests and lint run in CI.</p>
               <p class="links"><a href="https://github.com/darrenhuai/Prediction-market-bot" target="_blank" rel="noopener">Source<span class="visually-hidden"> for Prediction Market Bot (opens in a new tab)</span></a></p>
             </div>
           </article>
@@ -160,23 +200,23 @@
         <article class="case case-c" aria-labelledby="kinetic-title">
           <div class="case-block" data-reveal="rise">
             <h3 class="case-title" id="kinetic-title">Kinetic Analyzer</h3>
-            <p class="case-lead">Film a punch or a kick and get the kinetic chain back in milliseconds: hip, shoulder, elbow, fist.</p>
+            <p class="case-lead">Film a punch or a kick and see when each joint fires, in milliseconds: hip, shoulder, elbow, fist.</p>
             <dl class="fields">
               <div><dt>Role</dt><dd>Solo developer. App, pose service, and backend.</dd></div>
-              <div><dt>Stack</dt><dd class="val">Expo, React Native, TypeScript, Supabase, cloud pose service, TestFlight</dd></div>
+              <div><dt>Stack</dt><dd class="val">Expo, React Native, TypeScript, Supabase, Python pose service</dd></div>
             </dl>
             <h4>The problem</h4>
             <p>Coaches talk about the kinetic chain, but a phone clip of a strike only shows the result. To know whether the hip fired before the shoulder you need the timing of each joint, not a slow-motion replay.</p>
             <h4>What I built</h4>
-            <p>The app uploads a clip to a pose service, extracts joint positions, and returns kinetic-chain timing in milliseconds, a joint-speed ranking, rep consistency, balance, and coaching cues. Supabase holds sessions and progress. The iOS build is on TestFlight, and a web preview runs with <span class="val">npm run web</span>.</p>
+            <p>The app uploads a clip to a pose service, extracts joint positions, and returns kinetic-chain timing in milliseconds, a joint-speed ranking, rep consistency, balance, and coaching cues. Supabase holds sessions and progress. The iOS build is in TestFlight testing; the screenshots here are from its web build.</p>
             <p class="links-note">The repository is private.</p>
           </div>
           <figure class="phones" data-reveal="stagger">
             <div class="phone-row" tabindex="0" role="group" aria-label="Kinetic Analyzer screenshots">
-              <div class="plate plate-phone"><img src="img/work/kinetic-results-phone.webp" width="390" height="844" loading="lazy" decoding="async" alt="Results screen: the wrist's path through a strike drawn over a dark trace and coloured by speed, with joint toggles and a speed build list for hip, shoulder and elbow."></div>
-              <div class="plate plate-phone"><img src="img/work/kinetic-analyse-phone.webp" width="390" height="844" loading="lazy" decoding="async" alt="Analyse screen: sport, strike and stance selectors above a footage picker."></div>
+              <div class="plate plate-phone"><img src="img/work/kinetic-results-phone.webp" width="390" height="844" loading="lazy" decoding="async" alt="Results screen: the wrist's path through a strike drawn over a dark trace and colored by speed, with joint toggles and a speed build list for hip, shoulder and elbow."></div>
+              <div class="plate plate-phone"><img src="img/work/kinetic-analyse-phone.webp" width="390" height="844" loading="lazy" decoding="async" alt="New analysis screen: sport, strike and stance selectors above a footage picker."></div>
             </div>
-            <figcaption class="caption">Results and set-up screens from the web preview.</figcaption>
+            <figcaption class="caption">Results and setup screens from the web build.</figcaption>
           </figure>
         </article>
 
@@ -185,14 +225,14 @@
           <div class="earlier-grid">
             <article>
               <h4 class="entry-title">Petrarchan GPT</h4>
-              <p>A GPT written from scratch in PyTorch and NumPy in under <span class="num">200</span> lines: tokenizer, self-attention, feed-forward. Trained on Petrarch's sonnets to about <span class="num">1.8</span> perplexity in <span class="num">15</span> minutes on an RTX 4070; gradient checkpointing and mixed precision cut GPU memory <span class="num">30%</span> and training time <span class="num">20%</span>.</p>
-              <p class="entry-stack val">Python, PyTorch, NumPy</p>
+              <p>A character-level GPT in about <span class="num">200</span> lines of PyTorch: tokenizer, multi-head self-attention, feed-forward blocks. Trained on Petrarch's Italian sonnets, as a way to learn how a transformer works end to end.</p>
+              <p class="entry-stack val">Python, PyTorch</p>
               <p class="links"><a href="https://github.com/darrenhuai/darrenhuai-GPT" target="_blank" rel="noopener">Source<span class="visually-hidden"> for Petrarchan GPT (opens in a new tab)</span></a></p>
             </article>
             <article>
               <h4 class="entry-title">GreetBot</h4>
-              <p>A Python and TensorFlow greeting robot with face and gesture recognition at about <span class="num">95%</span> accuracy, and PID tuning so the servos land in the same place every time.</p>
-              <p class="entry-stack val">Python, TensorFlow, PID control</p>
+              <p>A robot that recognizes a face and offers a handshake, built with a <span class="num">14</span>-person UCLA engineering club team. The face-recognition module runs on OpenCV and drives the Arduino hardware.</p>
+              <p class="entry-stack val">Python, OpenCV, Arduino</p>
               <p class="links"><a href="https://github.com/darrenhuai/darrenhuai-GreetBot" target="_blank" rel="noopener">Source<span class="visually-hidden"> for GreetBot (opens in a new tab)</span></a></p>
             </article>
           </div>
@@ -207,59 +247,81 @@
 
         <figure class="axis" data-reveal="axis">
           <div class="axis-scroll" tabindex="0" role="group" aria-label="Merge-date chart">
-<svg viewBox="0 0 1200 132" role="group" aria-labelledby="axis-caption" xmlns="http://www.w3.org/2000/svg">
-              <text class="axis-key" x="0" y="40">platformdirs</text>
-              <text class="axis-key" x="0" y="85">virtualenv</text>
-              <line class="axis-line" pathLength="1" x1="84" y1="58" x2="1180" y2="58"/>
-              <line class="axis-tick" x1="96.0" y1="51" x2="96.0" y2="65"/>
-              <line class="axis-tick" x1="133.0" y1="54" x2="133.0" y2="62"/>
-              <line class="axis-tick" x1="169.9" y1="54" x2="169.9" y2="62"/>
-              <line class="axis-tick" x1="206.9" y1="54" x2="206.9" y2="62"/>
-              <line class="axis-tick" x1="243.9" y1="54" x2="243.9" y2="62"/>
-              <line class="axis-tick" x1="280.8" y1="54" x2="280.8" y2="62"/>
-              <line class="axis-tick" x1="317.8" y1="54" x2="317.8" y2="62"/>
-              <line class="axis-tick" x1="354.8" y1="51" x2="354.8" y2="65"/>
-              <line class="axis-tick" x1="391.7" y1="54" x2="391.7" y2="62"/>
-              <line class="axis-tick" x1="428.7" y1="54" x2="428.7" y2="62"/>
-              <line class="axis-tick" x1="465.7" y1="54" x2="465.7" y2="62"/>
-              <line class="axis-tick" x1="502.6" y1="54" x2="502.6" y2="62"/>
-              <line class="axis-tick" x1="539.6" y1="54" x2="539.6" y2="62"/>
-              <line class="axis-tick" x1="576.6" y1="54" x2="576.6" y2="62"/>
-              <line class="axis-tick" x1="613.5" y1="51" x2="613.5" y2="65"/>
-              <line class="axis-tick" x1="650.5" y1="54" x2="650.5" y2="62"/>
-              <line class="axis-tick" x1="687.4" y1="54" x2="687.4" y2="62"/>
-              <line class="axis-tick" x1="724.4" y1="54" x2="724.4" y2="62"/>
-              <line class="axis-tick" x1="761.4" y1="54" x2="761.4" y2="62"/>
-              <line class="axis-tick" x1="798.3" y1="54" x2="798.3" y2="62"/>
-              <line class="axis-tick" x1="835.3" y1="54" x2="835.3" y2="62"/>
-              <line class="axis-tick" x1="872.3" y1="51" x2="872.3" y2="65"/>
-              <line class="axis-tick" x1="909.2" y1="54" x2="909.2" y2="62"/>
-              <line class="axis-tick" x1="946.2" y1="54" x2="946.2" y2="62"/>
-              <line class="axis-tick" x1="983.2" y1="54" x2="983.2" y2="62"/>
-              <line class="axis-tick" x1="1020.1" y1="54" x2="1020.1" y2="62"/>
-              <line class="axis-tick" x1="1057.1" y1="54" x2="1057.1" y2="62"/>
-              <line class="axis-tick" x1="1094.1" y1="54" x2="1094.1" y2="62"/>
-              <line class="axis-tick" x1="1131.0" y1="51" x2="1131.0" y2="65"/>
-              <line class="axis-tick" x1="1168.0" y1="54" x2="1168.0" y2="62"/>
-              <text class="axis-label" x="96.0" y="126" text-anchor="middle">Sep 1</text>
-              <text class="axis-label" x="354.8" y="126" text-anchor="middle">Sep 8</text>
-              <text class="axis-label" x="613.5" y="126" text-anchor="middle">Sep 15</text>
-              <text class="axis-label" x="872.3" y="126" text-anchor="middle">Sep 22</text>
-              <text class="axis-label" x="1131.0" y="126" text-anchor="middle">Sep 29</text>
-              <a class="axis-marker" style="--i:0" href="https://github.com/tox-dev/platformdirs/pull/537" target="_blank" rel="noopener" aria-label="#537, accept use_site_for_root in the bin functions, merged 2026-09-01"><title>#537, accept use_site_for_root in the bin functions, merged 2026-09-01</title><rect class="hit" x="82.0" y="22.0" width="28" height="28"/><rect class="visible solid" x="89.0" y="29.0" width="14" height="14"/></a>
-              <a class="axis-marker" style="--i:1" href="https://github.com/tox-dev/platformdirs/pull/538" target="_blank" rel="noopener" aria-label="#538, return one user path for root under multipath, merged 2026-09-08"><title>#538, return one user path for root under multipath, merged 2026-09-08</title><rect class="hit" x="340.8" y="22.0" width="28" height="28"/><rect class="visible solid" x="347.8" y="29.0" width="14" height="14"/></a>
-              <a class="axis-marker" style="--i:2" href="https://github.com/pypa/virtualenv/pull/3229" target="_blank" rel="noopener" aria-label="#3229, replace a stale symlink instead of writing through it, merged 2026-09-09"><title>#3229, replace a stale symlink instead of writing through it, merged 2026-09-09</title><rect class="hit" x="377.7" y="66.0" width="28" height="28"/><rect class="visible open" x="384.7" y="73.0" width="14" height="14"/></a>
-              <a class="axis-marker" style="--i:3" href="https://github.com/pypa/virtualenv/pull/3230" target="_blank" rel="noopener" aria-label="#3230, ignore a config file that fails to parse instead of crashing, merged 2026-09-09"><title>#3230, ignore a config file that fails to parse instead of crashing, merged 2026-09-09</title><rect class="hit" x="377.7" y="88.0" width="28" height="28"/><rect class="visible open" x="384.7" y="95.0" width="14" height="14"/></a>
-              <a class="axis-marker" style="--i:4" href="https://github.com/tox-dev/platformdirs/pull/544" target="_blank" rel="noopener" aria-label="#544, accept multipath in the site cache functions, merged 2026-09-15"><title>#544, accept multipath in the site cache functions, merged 2026-09-15</title><rect class="hit" x="599.5" y="22.0" width="28" height="28"/><rect class="visible solid" x="606.5" y="29.0" width="14" height="14"/></a>
-              <a class="axis-marker" style="--i:5" href="https://github.com/tox-dev/platformdirs/pull/545" target="_blank" rel="noopener" aria-label="#545, read user-dirs.dirs as shell assignments, not INI, merged 2026-09-15"><title>#545, read user-dirs.dirs as shell assignments, not INI, merged 2026-09-15</title><rect class="hit" x="599.5" y="0.0" width="28" height="28"/><rect class="visible solid" x="606.5" y="7.0" width="14" height="14"/></a>
-              <a class="axis-marker" style="--i:6" href="https://github.com/pypa/virtualenv/pull/3233" target="_blank" rel="noopener" aria-label="#3233, restore PKG_CONFIG_PATH that was not set before, merged 2026-09-15"><title>#3233, restore PKG_CONFIG_PATH that was not set before, merged 2026-09-15</title><rect class="hit" x="599.5" y="66.0" width="28" height="28"/><rect class="visible open" x="606.5" y="73.0" width="14" height="14"/></a>
-              <a class="axis-marker" style="--i:7" href="https://github.com/pypa/virtualenv/pull/3234" target="_blank" rel="noopener" aria-label="#3234, keep and restore the user's TCL_LIBRARY and TK_LIBRARY, merged 2026-09-15"><title>#3234, keep and restore the user's TCL_LIBRARY and TK_LIBRARY, merged 2026-09-15</title><rect class="hit" x="599.5" y="88.0" width="28" height="28"/><rect class="visible open" x="606.5" y="95.0" width="14" height="14"/></a>
-              <a class="axis-marker" style="--i:8" href="https://github.com/pypa/virtualenv/pull/3245" target="_blank" rel="noopener" aria-label="#3245, undo a live activation before activate.bat saves values, merged 2026-09-17"><title>#3245, undo a live activation before activate.bat saves values, merged 2026-09-17</title><rect class="hit" x="673.4" y="66.0" width="28" height="28"/><rect class="visible open" x="680.4" y="73.0" width="14" height="14"/></a>
-              <a class="axis-marker" style="--i:9" href="https://github.com/tox-dev/platformdirs/pull/550" target="_blank" rel="noopener" aria-label="#550, only create the site dirs a call hands back, merged 2026-09-18"><title>#550, only create the site dirs a call hands back, merged 2026-09-18</title><rect class="hit" x="710.4" y="22.0" width="28" height="28"/><rect class="visible solid" x="717.4" y="29.0" width="14" height="14"/></a>
-              <a class="axis-marker" style="--i:10" href="https://github.com/tox-dev/platformdirs/pull/554" target="_blank" rel="noopener" aria-label="#554, ignore relative XDG user directory environment variables, merged 2026-09-22"><title>#554, ignore relative XDG user directory environment variables, merged 2026-09-22</title><rect class="hit" x="858.3" y="22.0" width="28" height="28"/><rect class="visible solid" x="865.3" y="29.0" width="14" height="14"/></a>
+            <svg class="axis-full" viewBox="0 0 1200 160" role="group" aria-labelledby="axis-caption" xmlns="http://www.w3.org/2000/svg">
+              <text class="axis-key" x="0" y="49">platformdirs</text>
+              <text class="axis-key" x="0" y="101">virtualenv</text>
+              <line class="axis-line" pathLength="1" x1="92" y1="70" x2="1180" y2="70"/>
+              <line class="axis-tick" x1="104.0" y1="63" x2="104.0" y2="77"/>
+              <line class="axis-tick" x1="140.7" y1="66" x2="140.7" y2="74"/>
+              <line class="axis-tick" x1="177.4" y1="66" x2="177.4" y2="74"/>
+              <line class="axis-tick" x1="214.1" y1="66" x2="214.1" y2="74"/>
+              <line class="axis-tick" x1="250.8" y1="66" x2="250.8" y2="74"/>
+              <line class="axis-tick" x1="287.4" y1="66" x2="287.4" y2="74"/>
+              <line class="axis-tick" x1="324.1" y1="66" x2="324.1" y2="74"/>
+              <line class="axis-tick" x1="360.8" y1="63" x2="360.8" y2="77"/>
+              <line class="axis-tick" x1="397.5" y1="66" x2="397.5" y2="74"/>
+              <line class="axis-tick" x1="434.2" y1="66" x2="434.2" y2="74"/>
+              <line class="axis-tick" x1="470.9" y1="66" x2="470.9" y2="74"/>
+              <line class="axis-tick" x1="507.6" y1="66" x2="507.6" y2="74"/>
+              <line class="axis-tick" x1="544.3" y1="66" x2="544.3" y2="74"/>
+              <line class="axis-tick" x1="581.0" y1="66" x2="581.0" y2="74"/>
+              <line class="axis-tick" x1="617.7" y1="63" x2="617.7" y2="77"/>
+              <line class="axis-tick" x1="654.3" y1="66" x2="654.3" y2="74"/>
+              <line class="axis-tick" x1="691.0" y1="66" x2="691.0" y2="74"/>
+              <line class="axis-tick" x1="727.7" y1="66" x2="727.7" y2="74"/>
+              <line class="axis-tick" x1="764.4" y1="66" x2="764.4" y2="74"/>
+              <line class="axis-tick" x1="801.1" y1="66" x2="801.1" y2="74"/>
+              <line class="axis-tick" x1="837.8" y1="66" x2="837.8" y2="74"/>
+              <line class="axis-tick" x1="874.5" y1="63" x2="874.5" y2="77"/>
+              <line class="axis-tick" x1="911.2" y1="66" x2="911.2" y2="74"/>
+              <line class="axis-tick" x1="947.9" y1="66" x2="947.9" y2="74"/>
+              <line class="axis-tick" x1="984.6" y1="66" x2="984.6" y2="74"/>
+              <line class="axis-tick" x1="1021.2" y1="66" x2="1021.2" y2="74"/>
+              <line class="axis-tick" x1="1057.9" y1="66" x2="1057.9" y2="74"/>
+              <line class="axis-tick" x1="1094.6" y1="66" x2="1094.6" y2="74"/>
+              <line class="axis-tick" x1="1131.3" y1="63" x2="1131.3" y2="77"/>
+              <line class="axis-tick" x1="1168.0" y1="66" x2="1168.0" y2="74"/>
+              <text class="axis-label" x="104.0" y="154" text-anchor="middle">Sep 1</text>
+              <text class="axis-label" x="360.8" y="154" text-anchor="middle">Sep 8</text>
+              <text class="axis-label" x="617.7" y="154" text-anchor="middle">Sep 15</text>
+              <text class="axis-label" x="874.5" y="154" text-anchor="middle">Sep 22</text>
+              <text class="axis-label" x="1131.3" y="154" text-anchor="middle">Sep 29</text>
+              <a class="axis-marker" style="--i:0" href="https://github.com/tox-dev/platformdirs/pull/537" target="_blank" rel="noopener" aria-label="#537, accept use_site_for_root in the bin functions, merged 2026-09-01"><title>#537, accept use_site_for_root in the bin functions, merged 2026-09-01</title><rect class="hit" x="90.0" y="30.0" width="28" height="28"/><rect class="visible solid" x="97.0" y="37.0" width="14" height="14"/></a>
+              <a class="axis-marker" style="--i:1" href="https://github.com/tox-dev/platformdirs/pull/538" target="_blank" rel="noopener" aria-label="#538, return one user path for root under multipath, merged 2026-09-08"><title>#538, return one user path for root under multipath, merged 2026-09-08</title><rect class="hit" x="346.8" y="30.0" width="28" height="28"/><rect class="visible solid" x="353.8" y="37.0" width="14" height="14"/></a>
+              <a class="axis-marker" style="--i:2" href="https://github.com/pypa/virtualenv/pull/3229" target="_blank" rel="noopener" aria-label="#3229, replace a stale symlink instead of writing through it, merged 2026-09-09"><title>#3229, replace a stale symlink instead of writing through it, merged 2026-09-09</title><rect class="hit" x="383.5" y="82.0" width="28" height="28"/><rect class="visible open" x="390.5" y="89.0" width="14" height="14"/></a>
+              <a class="axis-marker" style="--i:3" href="https://github.com/pypa/virtualenv/pull/3230" target="_blank" rel="noopener" aria-label="#3230, ignore a config file that fails to parse instead of crashing, merged 2026-09-09"><title>#3230, ignore a config file that fails to parse instead of crashing, merged 2026-09-09</title><rect class="hit" x="383.5" y="110.0" width="28" height="28"/><rect class="visible open" x="390.5" y="117.0" width="14" height="14"/></a>
+              <a class="axis-marker" style="--i:4" href="https://github.com/tox-dev/platformdirs/pull/544" target="_blank" rel="noopener" aria-label="#544, accept multipath in the site cache functions, merged 2026-09-15"><title>#544, accept multipath in the site cache functions, merged 2026-09-15</title><rect class="hit" x="603.7" y="30.0" width="28" height="28"/><rect class="visible solid" x="610.7" y="37.0" width="14" height="14"/></a>
+              <a class="axis-marker" style="--i:5" href="https://github.com/tox-dev/platformdirs/pull/545" target="_blank" rel="noopener" aria-label="#545, read user-dirs.dirs as shell assignments, not INI, merged 2026-09-15"><title>#545, read user-dirs.dirs as shell assignments, not INI, merged 2026-09-15</title><rect class="hit" x="603.7" y="2.0" width="28" height="28"/><rect class="visible solid" x="610.7" y="9.0" width="14" height="14"/></a>
+              <a class="axis-marker" style="--i:6" href="https://github.com/pypa/virtualenv/pull/3233" target="_blank" rel="noopener" aria-label="#3233, restore PKG_CONFIG_PATH that was not set before, merged 2026-09-15"><title>#3233, restore PKG_CONFIG_PATH that was not set before, merged 2026-09-15</title><rect class="hit" x="603.7" y="82.0" width="28" height="28"/><rect class="visible open" x="610.7" y="89.0" width="14" height="14"/></a>
+              <a class="axis-marker" style="--i:7" href="https://github.com/pypa/virtualenv/pull/3234" target="_blank" rel="noopener" aria-label="#3234, keep and restore the user's TCL_LIBRARY and TK_LIBRARY, merged 2026-09-15"><title>#3234, keep and restore the user's TCL_LIBRARY and TK_LIBRARY, merged 2026-09-15</title><rect class="hit" x="603.7" y="110.0" width="28" height="28"/><rect class="visible open" x="610.7" y="117.0" width="14" height="14"/></a>
+              <a class="axis-marker" style="--i:8" href="https://github.com/pypa/virtualenv/pull/3245" target="_blank" rel="noopener" aria-label="#3245, undo a live activation before activate.bat saves values, merged 2026-09-17"><title>#3245, undo a live activation before activate.bat saves values, merged 2026-09-17</title><rect class="hit" x="677.0" y="82.0" width="28" height="28"/><rect class="visible open" x="684.0" y="89.0" width="14" height="14"/></a>
+              <a class="axis-marker" style="--i:9" href="https://github.com/tox-dev/platformdirs/pull/550" target="_blank" rel="noopener" aria-label="#550, only create the site dirs a call hands back, merged 2026-09-18"><title>#550, only create the site dirs a call hands back, merged 2026-09-18</title><rect class="hit" x="713.7" y="30.0" width="28" height="28"/><rect class="visible solid" x="720.7" y="37.0" width="14" height="14"/></a>
+              <a class="axis-marker" style="--i:10" href="https://github.com/tox-dev/platformdirs/pull/554" target="_blank" rel="noopener" aria-label="#554, ignore relative XDG user directory environment variables, merged 2026-09-22"><title>#554, ignore relative XDG user directory environment variables, merged 2026-09-22</title><rect class="hit" x="860.5" y="30.0" width="28" height="28"/><rect class="visible solid" x="867.5" y="37.0" width="14" height="14"/></a>
             </svg>
           </div>
-          <figcaption id="axis-caption" class="caption">Merge dates, September 2026. Filled marks are platformdirs, outlined marks are virtualenv.</figcaption>
+          <svg class="axis-compact" viewBox="0 0 358 100" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <line class="axis-line" pathLength="1" x1="8" y1="50" x2="350" y2="50"/>
+            <line class="axis-tick" x1="14.0" y1="46" x2="14.0" y2="54"/>
+            <line class="axis-tick" x1="93.8" y1="46" x2="93.8" y2="54"/>
+            <line class="axis-tick" x1="173.6" y1="46" x2="173.6" y2="54"/>
+            <line class="axis-tick" x1="253.4" y1="46" x2="253.4" y2="54"/>
+            <line class="axis-tick" x1="333.2" y1="46" x2="333.2" y2="54"/>
+            <text class="axis-label" x="8" y="96" text-anchor="start">Sep 1</text>
+            <text class="axis-label" x="173.6" y="96" text-anchor="middle">Sep 15</text>
+            <text class="axis-label" x="350" y="96" text-anchor="end">Sep 29</text>
+            <rect class="visible solid" x="9.5" y="32" width="9" height="9"/>
+            <rect class="visible solid" x="89.3" y="32" width="9" height="9"/>
+            <rect class="visible open" x="100.7" y="59" width="9" height="9"/>
+            <rect class="visible open" x="100.7" y="71" width="9" height="9"/>
+            <rect class="visible solid" x="169.1" y="32" width="9" height="9"/>
+            <rect class="visible solid" x="169.1" y="20" width="9" height="9"/>
+            <rect class="visible open" x="169.1" y="59" width="9" height="9"/>
+            <rect class="visible open" x="169.1" y="71" width="9" height="9"/>
+            <rect class="visible open" x="191.9" y="59" width="9" height="9"/>
+            <rect class="visible solid" x="203.3" y="32" width="9" height="9"/>
+            <rect class="visible solid" x="248.9" y="32" width="9" height="9"/>
+          </svg>
+          <figcaption id="axis-caption" class="caption">Merge dates, September 2026. Filled marks are platformdirs, outlined marks are virtualenv.<span class="axis-hint"> Scroll sideways for the rest of the month.</span></figcaption>
         </figure>
 
         <div class="ledgers">
@@ -293,7 +355,7 @@
               <h3><a class="val" href="https://github.com/pypa/virtualenv" target="_blank" rel="noopener">pypa/virtualenv<span class="visually-hidden"> (opens in a new tab)</span></a></h3>
               <span class="count">5 merged</span>
             </div>
-            <p class="ledger-desc">Creates isolated Python environments; the library behind the virtualenv command.</p>
+            <p class="ledger-desc">Creates the isolated environments behind tox, nox and pre-commit.</p>
 
             <h4>Activation scripts</h4>
             <ul class="prs">
@@ -312,50 +374,10 @@
       </div>
     </section>
 
-    <section class="section band" id="experience" aria-labelledby="experience-title">
-      <div class="sheet">
-        <h2 id="experience-title">Experience</h2>
-        <div class="roles">
-          <article class="role" data-reveal="rise">
-            <div class="role-head">
-              <h3>NASA Armstrong Flight Research Center</h3>
-              <p class="role-title">Software Engineer Intern</p>
-              <p class="role-dates"><span class="val">Aug 2026 - Dec 2026</span> <span class="current">Current</span></p>
-            </div>
-            <p class="role-body">Flight software on NASA's core Flight System for the High-Performance Spaceflight Computing processor: cFS apps and message-bus integrations in C, with Python benchmarking and regression testing across <span class="num">30+</span> configurations. Python ETL for flight-test telemetry from the RAVEN eVTOL research aircraft. That pipeline cut manual processing time <span class="num">45%</span> across <span class="num">12</span> flights.</p>
-          </article>
-          <article class="role" data-reveal="rise">
-            <div class="role-head">
-              <h3>iTradeNetwork</h3>
-              <p class="role-title">Software Engineer Intern</p>
-              <p class="role-dates"><span class="val">Jun 2026 - Aug 2026</span></p>
-            </div>
-            <p class="role-body">A full-stack AI agent (LLM tool calling and API orchestration) that automates software-license lifecycle management across <span class="num">500+</span> accounts, in React, Python and SQL, for <span class="num">40%</span> less manual effort. AI features in an enterprise SaaS platform through Python backend services and REST APIs across <span class="num">5+</span> product modules, with <span class="num">30%</span> faster response times.</p>
-          </article>
-          <article class="role" data-reveal="rise">
-            <div class="role-head">
-              <h3>Mercor</h3>
-              <p class="role-title">Software Engineer, Series C AI startup</p>
-              <p class="role-dates"><span class="val">Feb 2025 - Jun 2026</span></p>
-            </div>
-            <p class="role-body">React client apps and REST integrations powering internal RLHF tooling. RLHF pipelines and evaluation workflows in Python, <span class="num">40%</span> faster processing. Benchmark accuracy on engineering and math tasks up <span class="num">18%</span> across <span class="num">80+</span> model evaluations.</p>
-          </article>
-          <article class="role" data-reveal="rise">
-            <div class="role-head">
-              <h3>California Air Resources Board</h3>
-              <p class="role-title">Data Engineer Intern</p>
-              <p class="role-dates"><span class="val">Aug 2023 - Aug 2024</span></p>
-            </div>
-            <p class="role-body">Ran an aftermarket-parts compliance program with <span class="num">80+</span> manufacturers: reviews <span class="num">30%</span> faster and <span class="num">$120M+</span> of products to market. Refactored the MySQL, PHP and Drupal database infrastructure; queries <span class="num">2.5 s</span> faster.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <section class="section" id="skills" aria-labelledby="skills-title">
       <div class="sheet">
         <h2 id="skills-title">Skills, and where I used them</h2>
-        <p class="lead">Ranked by how much I have shipped with each. Every mark is a role or project on this page.</p>
+        <p class="lead">Every mark is a role or project on this page.</p>
 
         <table class="matrix" role="table" data-reveal="rows">
           <caption class="visually-hidden">Skills by role and project</caption>
@@ -375,29 +397,31 @@
             </tr>
           </thead>
           <tbody>
-            <tr role="row"><th scope="row" role="rowheader">Python</th><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td></tr>
+            <tr role="row"><th scope="row" role="rowheader">Python</th><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td></tr>
             <tr role="row"><th scope="row" role="rowheader">C, cFS and embedded Linux</th><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td></tr>
             <tr role="row"><th scope="row" role="rowheader">JavaScript, TypeScript and React</th><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td></tr>
-            <tr role="row"><th scope="row" role="rowheader">SQL (PostgreSQL, MySQL, DuckDB)</th><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td><td role="cell"></td></tr>
+            <tr role="row"><th scope="row" role="rowheader">SQL (MySQL, PostgreSQL)</th><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td></tr>
             <tr role="row"><th scope="row" role="rowheader">Go</th><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td><td role="cell"></td><td role="cell"></td></tr>
             <tr role="row"><th scope="row" role="rowheader">GDScript and Godot</th><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td></tr>
-            <tr role="row"><th scope="row" role="rowheader">Docker and CI</th><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td><td role="cell"></td></tr>
-            <tr role="row"><th scope="row" role="rowheader">PyTorch and TensorFlow</th><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td></tr>
+            <tr role="row"><th scope="row" role="rowheader">Docker</th><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td></tr>
+            <tr role="row"><th scope="row" role="rowheader">CI</th><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td><td role="cell"></td><td role="cell"></td></tr>
+            <tr role="row"><th scope="row" role="rowheader">PyTorch</th><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"></td><td role="cell"><span class="mark" aria-hidden="true"></span><span class="visually-hidden">Yes</span></td></tr>
           </tbody>
         </table>
 
         <dl class="matrix-list">
-          <div><dt>Python</dt><dd>NASA Armstrong, iTradeNetwork, Mercor, Prediction Market Bot, Petrarchan GPT, GreetBot.</dd></div>
+          <div><dt>Python</dt><dd>NASA Armstrong, iTradeNetwork, Mercor, Prediction Market Bot, Kinetic Analyzer, Petrarchan GPT, GreetBot.</dd></div>
           <div><dt>C, cFS and embedded Linux</dt><dd>NASA Armstrong.</dd></div>
           <div><dt>JavaScript, TypeScript and React</dt><dd>iTradeNetwork, Mercor, Kinetic Analyzer.</dd></div>
-          <div><dt>SQL (PostgreSQL, MySQL, DuckDB)</dt><dd>iTradeNetwork, Air Resources Board, Prediction Market Bot.</dd></div>
+          <div><dt>SQL (MySQL, PostgreSQL)</dt><dd>iTradeNetwork, Air Resources Board, Kinetic Analyzer.</dd></div>
           <div><dt>Go</dt><dd>watchglass.</dd></div>
           <div><dt>GDScript and Godot</dt><dd>ChessTan.</dd></div>
-          <div><dt>Docker and CI</dt><dd>watchglass, Prediction Market Bot.</dd></div>
-          <div><dt>PyTorch and TensorFlow</dt><dd>Petrarchan GPT, GreetBot.</dd></div>
+          <div><dt>Docker</dt><dd>ChessTan, watchglass, Kinetic Analyzer.</dd></div>
+          <div><dt>CI</dt><dd>watchglass, Prediction Market Bot.</dd></div>
+          <div><dt>PyTorch</dt><dd>Petrarchan GPT.</dd></div>
         </dl>
 
-        <p class="also">Also used: C++, Java, C#, Rust, MATLAB, Svelte, Node.js, AWS, Unity, Unreal, Tableau.</p>
+        <p class="also">Also used: C++, Java, C#, Rust, MATLAB, Svelte, Node.js, AWS, DuckDB, TensorFlow, Unity, Unreal, Tableau.</p>
       </div>
     </section>
 
@@ -405,13 +429,13 @@
       <div class="sheet">
         <h2 id="about-title">About</h2>
         <div class="title-block" data-reveal="rise">
-          <div class="cell cell-photo"><img src="img/pro_pic.jpg" width="480" height="600" loading="lazy" decoding="async" alt="Darren Huai"></div>
+          <div class="cell cell-photo"><img src="img/pro_pic.jpg" width="600" height="750" loading="lazy" decoding="async" alt="Darren Huai"></div>
           <div class="cell"><p class="label">Name</p><p class="value value-name">Darren Huai</p></div>
           <div class="cell"><p class="label">Based in</p><p class="value">Los Angeles, California</p></div>
           <div class="cell"><p class="label">Citizenship</p><p class="value">US citizen</p></div>
           <div class="cell"><p class="label">Now</p><p class="value">Software Engineer Intern, NASA Armstrong Flight Research Center, through December 2026</p></div>
-          <div class="cell cell-wide"><p class="label">Education</p><p class="value">USC, M.S. Computer Science, May 2027</p><p class="value">UCLA, B.S. Mechanical and Aerospace Engineering, computer science concentration, June 2024</p></div>
-          <div class="cell cell-full"><p class="bio">I studied mechanical and aerospace engineering at UCLA, with a concentration in computer science, and moved into software through a data engineering internship at the California Air Resources Board. I spent sixteen months at Mercor on RLHF tooling, then a summer at iTradeNetwork building an AI agent for license management. I now write cFS flight software at NASA Armstrong and finish the M.S. in Computer Science at USC in May 2027.</p></div>
+          <div class="cell cell-wide"><p class="label">Education</p><p class="value">USC, M.S. Computer Science, May 2027</p><p class="value">UCLA, B.S. Mechanical/Aerospace Engineering, concentration in computer science, June 2024</p></div>
+          <div class="cell cell-full"><p class="bio">I studied mechanical and aerospace engineering at UCLA, with a concentration in computer science, and moved into software through a data engineering internship at the California Air Resources Board. From February 2025 to June 2026 I worked on RLHF tooling at Mercor, then spent a summer at iTradeNetwork building an AI agent for license management. I am now a flight software intern at NASA Armstrong, working on cFS, and finish the M.S. in Computer Science at USC in May 2027.</p></div>
         </div>
       </div>
     </section>
