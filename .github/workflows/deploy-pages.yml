@@ -22,6 +22,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Copy gate
+        run: |
+          python3 - <<'PY'
+          import pathlib, sys
+          text = pathlib.Path("index.html").read_text(encoding="utf-8")
+          problems = [name for name, ch in (("en dash", "–"), ("em dash", "—"), ("middle dot", "·")) if ch in text]
+          if "fonts.googleapis.com" in text:
+              problems.append("runtime Google Fonts link")
+          if problems:
+              sys.exit("index.html copy gate failed: " + ", ".join(problems))
+          PY
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
