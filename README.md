@@ -14,6 +14,7 @@ three.js hex board that is a 3D take on [ChessTan](https://store.steampowered.co
 | `styles.css` | Tokens (light and dark), layout, motion. |
 | `js/main.js` | Menu, current-section state, scroll reveals, the demo recording, hero mount. |
 | `js/hero-scene.js` | The three.js ChessTan board on the project card. Loaded only near the card, with WebGL and motion allowed. |
+| `resume.html`, `Darren-Huai-Resume.pdf` | The resume as a page, and the PDF it links to. Update both together. |
 | `projects/` | One page per project. Generated; do not edit by hand. |
 | `tools/build_projects.py` | Project data and templates. Edit it, then run `python tools/build_projects.py` to rewrite `projects/` and the cards in `index.html`. |
 | `fonts/` | Archivo and Geist Mono, subset to Latin, self-hosted under the OFL (licences alongside). |

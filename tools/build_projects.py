@@ -528,6 +528,7 @@ def page_html(i: int) -> str:
       <button type="button" class="menu-button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
       <nav id="primary-nav" class="nav-links" aria-label="Primary">
 {nav}
+        <a href="../resume.html">Resume</a>
         {ext("https://github.com/darrenhuai", "GitHub")}
       </nav>
     </div>

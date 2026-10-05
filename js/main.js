@@ -140,6 +140,11 @@ if (video && toggle) {
   }
 }
 
+// ---------- Resume: print button ----------
+for (const button of document.querySelectorAll('[data-print]')) {
+  button.addEventListener('click', () => window.print());
+}
+
 // ---------- Live ChessTan board on the project card ----------
 // The <picture> still is the loading state, the error state, and the reduced-motion state.
 function sceneColors() {
