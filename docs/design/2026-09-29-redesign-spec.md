@@ -707,10 +707,17 @@ At Darren's request the front page now keeps his photo and the usual intro, and 
 
 ## Appendix G. Resume (2026-10-05)
 
-Darren asked for a resume section in the manner of the better personal sites, which pair a readable page with the PDF.
+- `resume.html` shows the PDF itself (`Darren-Huai-Resume.pdf`, the September 21, 2026 export) embedded in a Letter-proportioned frame, with Download the PDF and Open in a new tab above it. Browsers that cannot embed a PDF inline (most Android browsers) get a rendered image of the page inside the object element instead, made with pypdfium2 at `img/resume-page-1.webp`.
+- The PDF is linked from the resume page, the front page's Resume band (between Skills and About), the hero's secondary button, and a Resume item in the nav on every page. GitHub moved into the hero's link row.
+- `index.html` carries Person structured data (schema.org JSON-LD).
 
-- `resume.html`: a sticky left rail (title, "Updated September 2026. One page.", Download the PDF, Print this page, contact details) beside the resume's own sections: Education, Experience, Projects, Skills. Entries use the ledger style from the Experience section. A print stylesheet collapses it to a one-column page with the buttons and footer removed.
-- The PDF (`Darren-Huai-Resume.pdf`, the September 21, 2026 export) is linked with a download attribute from the rail, from the front page, and as `rel="alternate"` in the page head.
-- Front page: a Resume band between Skills and About with Download the PDF and Read it online. Resume is the hero's secondary button again, and a nav item on every page; GitHub moved into the hero's link row.
-- `index.html` carries Person structured data (schema.org JSON-LD) with name, title, location, schools, employer and profile links.
-- Three bullets in the HTML version are worded to match the verified project pages rather than the PDF: ChessTan for 2 to 4 players (the PDF says 2-player and claims hundreds of concurrent players), the bot scanning the open markets (the PDF says 300+), and the GPT bullet without the perplexity and speed-up figures the repository does not show. The phone number on the PDF is not repeated on the page.
+## Appendix H. Reading as hand-made (2026-10-05)
+
+Darren's note: it still looked AI-made. What changed, all in the direction of plainer and more personal:
+
+- Copy is first person and conversational: the hero says what he does and where in three sentences; the open-source intro says what he did in September and why; About is two paragraphs, not a grid of facts; Contact is "Get in touch".
+- The systems are gone: no skills matrix, no merge-date chart, no details toggle, no title block. Skills are a short grouped list, open source is two plain lists of pull requests, About is prose.
+- Numbers sit in sentences as ordinary text (no bold figures, no mono dates). Mono is reserved for real code.
+- Headings and the wordmark use the normal width of Archivo instead of the semi-expanded instance; corners have a 6px radius.
+- Nav dropped Skills. Footer: "Made by hand with plain HTML and CSS."
+- The resume page embeds the PDF itself in a Letter-proportioned frame, with a rendered image of the page as the fallback for browsers that cannot embed PDFs.

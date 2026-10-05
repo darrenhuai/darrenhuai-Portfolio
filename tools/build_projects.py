@@ -24,11 +24,11 @@ def ext(href: str, text: str, hidden: str = "") -> str:
 
 
 def val(text: str) -> str:
-    return f'<span class="val">{text}</span>'
+    return text  # stack lists and figures read as ordinary text; only real code is set in mono
 
 
 def num(text: str) -> str:
-    return f'<span class="num">{text}</span>'
+    return text
 
 
 # ---------------------------------------------------------------------------------------------
@@ -181,7 +181,7 @@ PROJECTS = [
                  "alt": "The Markets tab: a searchable list of open markets with the implied chance, the YES and NO prices, and the volume traded in the last day.",
                  "caption": "Markets: every open market, searchable."},
             ],
-            "note": f"The local web app on demo data ({val('--demo')}).",
+            "note": f"The local web app on demo data (<code>--demo</code>).",
         },
         "sections": [
             ("The problem", [
@@ -323,7 +323,7 @@ PROJECTS = [
 ]
 
 NAV = [("experience", "Experience"), ("projects", "Projects"), ("open-source", "Open source"),
-       ("skills", "Skills"), ("about", "About"), ("contact", "Contact")]
+       ("about", "About"), ("contact", "Contact")]
 
 
 # ---------------------------------------------------------------------------------------------
@@ -364,7 +364,7 @@ def cards_html() -> str:
         out.append('            <div class="card-text">')
         out.append(f'              <h3 class="card-title"><a class="card-link" href="projects/{p["slug"]}.html">{p["title"]}</a></h3>')
         out.append(f'              <p class="card-lead">{c["lead"]}</p>')
-        out.append(f'              <p class="card-stack val">{c["stack"]}</p>')
+        out.append(f'              <p class="card-stack">{c["stack"]}</p>')
         out.append('              <span class="card-cue" aria-hidden="true">View project</span>')
         out.append("            </div>")
         out.append("          </article>")
@@ -557,7 +557,7 @@ def page_html(i: int) -> str:
 
   <footer class="footer">
     <div class="sheet">
-      <p>Darren Huai, Los Angeles. HTML, CSS, JavaScript and three.js, no build step. {ext("https://github.com/darrenhuai/darrenhuai-Portfolio", "Source on GitHub")}.</p>
+      <p>Darren Huai, 2026. Made by hand with plain HTML and CSS. {ext("https://github.com/darrenhuai/darrenhuai-Portfolio", "Source")}.</p>
     </div>
   </footer>
 </body>

@@ -101,16 +101,6 @@ if (hasIO && !reduceMotion) {
   window.addEventListener('beforeprint', showAll);
 }
 
-// ---------- Scroll regions are only tab stops while they actually scroll ----------
-if ('ResizeObserver' in window) {
-  for (const region of document.querySelectorAll('.axis-scroll')) {
-    const sync = () => {
-      if (region.scrollWidth > region.clientWidth + 1) region.tabIndex = 0;
-      else region.removeAttribute('tabindex');
-    };
-    new ResizeObserver(sync).observe(region);
-  }
-}
 
 // ---------- The watchglass recording ----------
 // Plays once when half visible; the button is always there and toggles pause, play and replay.
@@ -138,11 +128,6 @@ if (video && toggle) {
     }, { threshold: 0.5 });
     videoObserver.observe(video);
   }
-}
-
-// ---------- Resume: print button ----------
-for (const button of document.querySelectorAll('[data-print]')) {
-  button.addEventListener('click', () => window.print());
 }
 
 // ---------- Live ChessTan board on the project card ----------
