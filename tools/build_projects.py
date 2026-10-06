@@ -42,11 +42,15 @@ PROJECTS = [
         "card": {
             "span": 7,
             "cover": "board",
-            "lead": "A hex-strategy game on Steam: a settle-and-trade economy with chess-style movement and capture.",
+            "lead": "A hex-strategy game on Steam: a settle-and-trade economy with chess-style movement and capture, so a good economy can still lose to a bad position.",
             "stack": "Godot 4.7, GDScript, WebSocket relay, Steam",
         },
         "lead": "A hex-grid strategy game: a settle-and-trade economy with chess-style movement and capture, for 2 to 4 players, hot-seat, against the AI, or online.",
         "description": "ChessTan, a hex-grid strategy game by Darren Huai: a settle-and-trade economy with chess-style combat, on Steam, in the browser and as a Discord Activity.",
+        "actions": [
+            ("https://darrenhuai.github.io/chesstan-web/", "Play it in your browser", "primary"),
+            ("https://store.steampowered.com/app/5099860/ChessTan/", "Free on Steam", "secondary"),
+        ],
         "facts": [
             ("Role", "Solo developer. Design, rules engine, AI opponent, netcode, the relay server, and the Steam launch."),
             ("Stack", val("Godot 4.7, GDScript, WebSocket relay (Godot, Docker on Render.com), Steamworks, Discord Activity")),
@@ -58,11 +62,11 @@ PROJECTS = [
             ])),
         ],
         "media": {
-            "kind": "image",
-            "src": "chesstan-board.webp",
-            "src800": "chesstan-board-800.webp",
-            "w": 1600, "h": 827,
-            "alt": "ChessTan mid-game: blue and red chess pieces on a hex board of yellow, blue, sand and brown tiles, with both players' resource panels at the left.",
+            "kind": "video",
+            "src": "chesstan-trailer.mp4", "poster": "chesstan-trailer-still.webp", "w": 1280, "h": 720,
+            "button": "Play trailer",
+            "label": "The ChessTan trailer: a two-player match on the hex board, from settling through building, trading and captures to the victory screen.",
+            "caption": "From the Steam trailer, cut to start on the board: a two-player match from the first settlement to the victory screen. About 15 seconds, no sound.",
         },
         "sections": [
             ("The problem", [
@@ -81,16 +85,26 @@ PROJECTS = [
                 "Headless Godot suites cover the rules, the AI, network actions, reconnects, the relay server, save and load, and map selection. UI harnesses drive real clicks through the menus and the tutorial.",
             ]),
         ],
+        # In the order a match happens. Captions say only what is on the frame.
         "gallery": [
-            {"src": "chesstan-capture.webp", "src800": "chesstan-capture-800.webp", "w": 1600, "h": 900,
-             "alt": "A capture in progress: a highlighted blue rook beside red pieces on yellow tiles.",
-             "caption": "Move phase: a rook lines up a capture."},
             {"src": "chesstan-lobby.webp", "src800": "chesstan-lobby-800.webp", "w": 960, "h": 540,
              "alt": "The multiplayer lobby: relay server address, a room code to share, seats for 2 to 4 players, and a bigger-board option for 3 or 4 players.",
              "caption": "The online lobby, with a room code to share."},
+            {"src": "chesstan-board.webp", "src800": "chesstan-board-800.webp", "w": 1600, "h": 827,
+             "alt": "ChessTan mid-game: blue and red chess pieces on a hex board of yellow, blue, sand and brown tiles, with both players' resource panels at the left.",
+             "caption": "Mid-game, with both players' resource panels at the left."},
+            {"src": "chesstan-capture.webp", "src800": "chesstan-capture-800.webp", "w": 1600, "h": 900,
+             "alt": "A capture in progress: a highlighted blue rook beside red pieces on yellow tiles.",
+             "caption": "Move phase: a rook lines up a capture."},
+            {"src": "chesstan-late-game.webp", "src800": "chesstan-late-game-800.webp", "w": 1600, "h": 900,
+             "alt": "A late-game board crowded with blue and red pawns, rooks, knights and queens around both kings, a trade banner across the top, and Blue holding the longest road.",
+             "caption": "Late in a match: both armies out, a trade just accepted, and Blue holding the longest road."},
             {"src": "chesstan-victory.webp", "src800": "chesstan-victory-800.webp", "w": 1120, "h": 630,
-             "alt": "The victory screen: Player 1 (Blue) wins by capturing the enemy king, with army strength and kills for both players.",
-             "caption": "The end of a match."},
+             "alt": "The victory screen: Player 1 (Blue) wins by capturing the enemy king after four rounds, with army strength and kills for both players and the colossus unlocked by both.",
+             "caption": "The end of a match: Blue wins in four rounds by capturing the king."},
+            {"src": "chesstan-wide-board.webp", "src800": "chesstan-wide-board-800.webp", "w": 1600, "h": 900,
+             "alt": "The wider hex map in the roll phase early in a two-player match, each player with two houses and two roads placed.",
+             "caption": "The bigger board, which the lobby offers for 3 and 4 players, early in a two-player match."},
         ],
         "gallery_cols": 3,
     },
@@ -101,8 +115,9 @@ PROJECTS = [
             "span": 5,
             "cover": "image",
             "src": "watchglass-demo-still.webp", "w": 960, "h": 640, "position": "50% 50%",
+            "video": "watchglass-demo.mp4",  # plays on hover, or once in view on touch screens (js/main.js)
             "alt": "",
-            "lead": "Point a camera at any screen and get a notification when what it shows changes.",
+            "lead": "Point a camera at any screen and get a notification when what it shows changes. I made it because heat pump panels, 3D printers and bench scales show their state on a screen and nowhere else.",
             "stack": "Go, Docker, Tesseract OCR, MQTT",
         },
         "lead": "Get a notification when a screen changes, even one with no API.",
@@ -110,7 +125,7 @@ PROJECTS = [
         "facts": [
             ("Role", "Solo developer and maintainer."),
             ("Stack", val("Go, single binary, Docker image (amd64, arm64, armv7), Tesseract OCR, ffmpeg, MQTT")),
-            ("Released", f"{num('v0.1.8')}, September 29, 2026."),
+            ("Released", "v0.1.8, September 29, 2026, the ninth tagged release since v0.1.0 on September 3."),
             ("Links", " ".join([
                 ext("https://github.com/darrenhuai/watchglass", "Source", " for watchglass"),
                 ext("https://github.com/darrenhuai/watchglass/releases/latest", "Releases", " for watchglass"),
@@ -161,7 +176,7 @@ PROJECTS = [
             "cover": "image",
             "src": "kalshi-opportunities.webp", "w": 964, "h": 900, "position": "50% 0", "light": True,
             "alt": "",
-            "lead": "A scanner for live Kalshi markets, with a local web app, email alerts and a paper-trading mode.",
+            "lead": "A scanner for live Kalshi markets, with a local web app, email alerts and a paper-trading mode. I wanted to know when a market was worth a look without watching thousands of them.",
             "stack": "Python, Kalshi API, pytest",
         },
         "lead": "A scanner that reads every open Kalshi market every five minutes and emails me when one is worth a look.",
@@ -213,7 +228,7 @@ PROJECTS = [
             "span": 7,
             "cover": "phones",
             "srcs": ["kinetic-results-phone.webp", "kinetic-analyse-phone.webp"],
-            "lead": "Film a punch or a kick and see when each joint fires, in milliseconds.",
+            "lead": "Film a punch or a kick and see when each joint fires, in milliseconds. A slow-motion replay can't tell you whether the hip fired before the shoulder; this can.",
             "stack": "Expo, React Native, TypeScript, Supabase, MediaPipe",
         },
         "lead": "Film a punch or a kick and see when each joint fires, in milliseconds, from the hip out to the fist or the foot.",
@@ -260,7 +275,7 @@ PROJECTS = [
         "card": {
             "span": 6,
             "cover": None,
-            "lead": "A small character-level GPT in PyTorch, trained on Petrarch's sonnets.",
+            "lead": "A small character-level GPT in PyTorch, trained on Petrarch's sonnets. I built it to learn how a transformer works end to end.",
             "stack": "Python, PyTorch",
         },
         "lead": "A small character-level GPT in PyTorch, trained on a scanned bilingual edition of Petrarch's sonnets as a way to learn how a transformer works end to end.",
@@ -298,7 +313,7 @@ PROJECTS = [
         "card": {
             "span": 6,
             "cover": None,
-            "lead": "A face-recognizing greeting robot, built with a 14-person UCLA engineering club team.",
+            "lead": "A face-recognizing greeting robot, built with a 14-person UCLA engineering club team. It spots a face and offers a handshake.",
             "stack": "Python, OpenCV, Arduino",
         },
         "lead": "A robot that recognizes a face and offers a handshake, built by a 14-person team in a UCLA engineering club.",
@@ -327,6 +342,79 @@ NAV = [("experience", "Experience"), ("projects", "Projects"), ("open-source", "
 
 
 # ---------------------------------------------------------------------------------------------
+# Open source. Every merged pull request authored by darrenhuai, from the GitHub search API on
+# 2026-10-05 (`gh search prs --author=darrenhuai --merged`). Dates are merge dates.
+# ---------------------------------------------------------------------------------------------
+OSS_PROJECTS = [
+    {
+        "repo": "pypa/virtualenv",
+        "name": "virtualenv",
+        "stars": "5,000",
+        "what": "Creates isolated Python environments. tox, nox and pre-commit build theirs with it.",
+        "merged": [
+            (3207, "2026-08-08", "Return a real list from ListType.split_values"),
+            (3217, "2026-08-25", "Check every execute bit in ExePathRef.can_run"),
+            (3222, "2026-08-25", "Make safe_delete's error handler actually run"),
+            (3223, "2026-08-28", "Name Windows venv exes after the interpreter"),
+            (3227, "2026-09-01", "Report a missing source that both modes need"),
+            (3230, "2026-09-09", "Ignore a config file that fails to parse instead of crashing"),
+            (3229, "2026-09-09", "Replace a stale symlink instead of writing through it"),
+            (3234, "2026-09-15", "Keep and restore the user's TCL_LIBRARY and TK_LIBRARY"),
+            (3233, "2026-09-15", "Restore PKG_CONFIG_PATH that was not set before"),
+            (3245, "2026-09-17", "Undo a live activation before activate.bat saves values"),
+            (3366, "2026-10-01", "Keep non-path pyvenv.cfg values as written"),
+        ],
+    },
+    {
+        "repo": "tox-dev/platformdirs",
+        "name": "platformdirs",
+        "stars": "990",
+        "what": "Finds the right user and system directories on each platform. pip ships a copy of it.",
+        "merged": [
+            (519, "2026-08-07", "Let the non-ctypes resolvers find the desktop folder"),
+            (520, "2026-08-10", "Stop the remaining iter_*_dirs yielding duplicate or joined paths"),
+            (523, "2026-08-13", "Don't crash when an XDG dirs variable holds only separators"),
+            (524, "2026-08-24", "Stop iter_*_dirs yielding the same directory twice"),
+            (537, "2026-09-01", "Accept use_site_for_root in the bin functions"),
+            (538, "2026-09-08", "Return one user path for root under multipath"),
+            (545, "2026-09-15", "Read user-dirs.dirs as shell assignments, not INI"),
+            (544, "2026-09-15", "Accept multipath in the site cache functions"),
+            (550, "2026-09-18", "Only create the site dirs a call hands back"),
+            (554, "2026-09-22", "Ignore relative XDG user directory environment variables"),
+        ],
+    },
+]
+
+# One merged PR each, mostly test coverage, from the first two weeks of August 2026.
+OSS_SINGLES = [
+    ("python-poetry/poetry", 10986, "2026-08-01", "Test coverage for poetry.toml.TOMLFile"),
+    ("qutip/qutip-qtrl", 61, "2026-08-05", "Remove an unused helper from the optimizer"),
+    ("more-itertools/more-itertools", 1235, "2026-08-10", "Close the last coverage gaps and fix a no-op equality assertion"),
+    ("posit-dev/orbital", 125, "2026-08-11", "Cover the folding branches in Optimizer and drop a dead debug method"),
+    ("pytest-dev/pluggy", 718, "2026-08-12", "Cover pluggy.__version__ and HookCaller._remove_plugin"),
+]
+
+# Open at the time of writing. Check them before each rebuild.
+OSS_OPEN = [
+    ("pypa/setuptools", 5323, "Treat an explicitly empty value as set, not absent, when writing Dynamic"),
+    ("AcademySoftwareFoundation/rez", 2156, "Base26 identifier ordering and input validation, with unit tests"),
+    ("gorakhargosh/watchdog", 1201, "Cover platform-specific observer selection"),
+    ("jd/tenacity", 667, "Cover the before and sleep callbacks"),
+    ("python-poetry/tomlkit", 570, "Cover the _types wrapper operators"),
+    ("kubeflow/sdk", 621, "Cover KubernetesBackend.connect()"),
+]
+
+# Public repositories that are too small for a card but belong on the list.
+SMALL_REPOS = [
+    ("chesstan-relay", "https://github.com/darrenhuai/chesstan-relay", "The matchmaking relay ChessTan's online mode connects through. GDScript, runs in Docker."),
+    ("chesstan-web", "https://github.com/darrenhuai/chesstan-web", "The browser build of ChessTan, served from GitHub Pages."),
+    ("kinetic-legal", "https://github.com/darrenhuai/kinetic-legal", "The privacy policy page for Kinetic Analyzer."),
+    ("Pig-Dice-Game-P2", "https://github.com/darrenhuai/Pig-Dice-Game-P2", "A two-player Pig dice game in the browser, from 2020."),
+    ("LilWar-P2", "https://github.com/darrenhuai/LilWar-P2", "Early JavaScript exercises: a console Pig game, Blackjack, a matrix cipher."),
+]
+
+
+# ---------------------------------------------------------------------------------------------
 # Cards on index.html
 # ---------------------------------------------------------------------------------------------
 def card_cover(p: dict) -> str:
@@ -342,14 +430,127 @@ def card_cover(p: dict) -> str:
         )
     if c["cover"] == "image":
         light = " cover-light" if c.get("light") else ""
+        video = f' data-hover-video="img/work/{c["video"]}"' if c.get("video") else ""
         return (
-            f'<div class="card-cover{light}"><img src="img/work/{c["src"]}" width="{c["w"]}" height="{c["h"]}" '
+            f'<div class="card-cover{light}"{video}><img src="img/work/{c["src"]}" width="{c["w"]}" height="{c["h"]}" '
             f'style="object-position: {c["position"]}" loading="lazy" decoding="async" alt="{c["alt"]}"></div>'
         )
     if c["cover"] == "phones":
         imgs = "".join(f'<img src="img/work/{s}" width="390" height="844" loading="lazy" decoding="async" alt="">' for s in c["srcs"])
         return f'<div class="card-cover cover-phones">{imgs}</div>'
     return ""
+
+
+def small_repos_html() -> str:
+    items = "\n".join(
+        f'            <li>{ext(url, name, " on GitHub")} {text}</li>' for name, url, text in SMALL_REPOS
+    )
+    return (
+        '<div class="small-repos" data-reveal="rise">\n'
+        '          <h3>Also on my GitHub</h3>\n'
+        '          <ul class="repo-list">\n' + items + "\n          </ul>\n        </div>"
+    )
+
+
+def pr_url(repo: str, number: int) -> str:
+    return f"https://github.com/{repo}/pull/{number}"
+
+
+def short_date(iso: str) -> str:
+    months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    y, m, d = iso.split("-")
+    return f"{months[int(m) - 1]} {int(d)}"
+
+
+# The heart of the platformdirs 545 diff (commit bdb0a67), verbatim, with four of its thirteen test cases.
+# Lines starting with "-" were removed and "+" added; nothing else is edited.
+OSS_EXCERPT = [
+    ("file", "src/platformdirs/unix.py"),
+    ("del", '        parser = ConfigParser(interpolation=None)'),
+    ("del", '        with user_dirs_config_path.open() as stream:'),
+    ("del", '            parser.read_string(f"[top]\\n{stream.read()}")'),
+    ("del", '        if key not in parser["top"]:'),
+    ("del", '            return None'),
+    ("del", '        path = parser["top"][key].strip(\'"\')'),
+    ("ins", '    folder = None'),
+    ("ins", '    with user_dirs_config_path.open() as stream:'),
+    ("ins", '        for line in stream:'),
+    ("ins", '            if (entry := _USER_DIRS_LINE.match(line)) and entry["key"] == key:'),
+    ("ins", '                folder = _resolve_user_dirs_value(entry) or folder'),
+    ("ins", '    return folder'),
+    ("blank", ""),
+    ("file", "tests/test_unix.py"),
+    ("ins", '        pytest.param('),
+    ("ins", '            \'XDG_DOCUMENTS_DIR="$HOME/Old"\\nXDG_DOCUMENTS_DIR="$HOME/New"\\n\', "~/New", id="last-assignment-wins"'),
+    ("ins", '        ),'),
+    ("ins", '        pytest.param(\'XDG_DOCUMENTS_DIR="$HOME/Docs"\\nnot an assignment\\n\', "~/Docs", id="stray-line"),'),
+    ("ins", '        pytest.param(\'XDG_DOCUMENTS_DIR="$HOME/Docs" # was "$HOME/Old"\\n\', "~/Docs", id="trailing-comment"),'),
+    ("ins", '        pytest.param("XDG_DOCUMENTS_DIR=$HOME/Docs\\n", "~/Docs", id="unquoted"),'),
+]
+
+
+def excerpt_html() -> str:
+    def esc(s: str) -> str:
+        return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+    lines = []
+    for kind, text in OSS_EXCERPT:
+        if kind == "file":
+            lines.append(f'<span class="diff-file">{esc(text)}</span>')
+        elif kind == "del":
+            lines.append(f"<del>-{esc(text)}</del>")
+        elif kind == "ins":
+            lines.append(f"<ins>+{esc(text)}</ins>")
+        else:
+            lines.append("")
+    return "\n".join(lines)
+
+
+def oss_html() -> str:
+    merged_total = sum(len(p["merged"]) for p in OSS_PROJECTS) + len(OSS_SINGLES)
+    projects_total = len(OSS_PROJECTS) + len({repo for repo, *_ in OSS_SINGLES})
+    fixes = sum(len(p["merged"]) for p in OSS_PROJECTS)
+    words = {26: "Twenty-six", 21: "Twenty-one", 7: "seven", 6: "Six", 5: "five"}
+    dates = sorted([d for p in OSS_PROJECTS for _, d, _ in p["merged"]] + [d for _, _, d, _ in OSS_SINGLES])
+    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    long_date = lambda iso: f"{months[int(iso[5:7]) - 1]} {int(iso[8:10])}"
+    out = [
+        f'<p class="lead">Since August 2026, {merged_total} of my pull requests have been merged into {words.get(projects_total, projects_total)} Python projects. '
+        f'{words.get(fixes, fixes)} of them are bug fixes in virtualenv and platformdirs, two libraries that most Python tooling depends on. '
+        f'The first was merged on {long_date(dates[0])} and the latest on {long_date(dates[-1])}. Each link goes to the pull request.</p>',
+        '        <div class="oss-cols">',
+    ]
+    for p in OSS_PROJECTS:
+        out.append('          <div class="oss-col" data-reveal="rise">')
+        out.append(
+            f'            <h3>{ext("https://github.com/" + p["repo"], p["name"])} '
+            f'<span class="count">{len(p["merged"])} merged</span></h3>'
+        )
+        out.append(f'            <p class="oss-desc">{p["what"]}</p>')
+        out.append('            <ul class="oss-list">')
+        for number, date, title in p["merged"]:
+            out.append(f'              <li>{ext(pr_url(p["repo"], number), title)}</li>')
+        out.append("            </ul>")
+        out.append("          </div>")
+    out.append("        </div>")
+
+    singles = [ext(pr_url(repo, number), repo.split("/")[1]) for repo, number, _, _ in OSS_SINGLES]
+    opens = [ext(pr_url(repo, number), "the Kubeflow SDK" if repo == "kubeflow/sdk" else repo.split("/")[1]) for repo, number, _ in OSS_OPEN]
+    out.append(
+        f'        <p class="oss-note">One each, also merged, in {", ".join(singles[:-1])} and {singles[-1]}, mostly test coverage. '
+        f'{words.get(len(OSS_OPEN), len(OSS_OPEN))} more are open and in review: {", ".join(opens[:-1])} and {opens[-1]}.</p>'
+    )
+    out.append(
+        '        <figure class="diff" data-reveal="rise">\n'
+        '          <p class="oss-note">The user-dirs.dirs fix is a fair sample of the work. xdg-user-dirs-update writes that file as shell assignments, '
+        'but platformdirs parsed it as an INI file, so a repeated key crashed the parser and a trailing comment ended up inside the path. '
+        'The fix reads it line by line the way xdg-user-dir does. Here is the heart of the diff, with four of the thirteen test cases.</p>\n'
+        f'          <pre class="code"><code>{excerpt_html()}</code></pre>\n'
+        '          <figcaption class="caption">From platformdirs pull request 545, merged September 15, 2026: 85 lines added and 24 removed across four files. '
+        + ext("https://github.com/tox-dev/platformdirs/pull/545/files", "See the whole diff")
+        + ".</figcaption>\n        </figure>"
+    )
+    return "\n".join(out)
 
 
 def cards_html() -> str:
@@ -396,7 +597,7 @@ def media_html(p: dict) -> str:
             f'<source src="{img}{m["src"]}" type="video/mp4"></video></div>\n'
             '          <figcaption class="plate-meta">\n'
             f'            <span class="caption">{m["caption"]}</span>\n'
-            '            <button type="button" class="replay" data-replay>Play demo</button>\n'
+            f'            <button type="button" class="replay" data-replay data-label="{m.get("button", "Play demo")}">{m.get("button", "Play demo")}</button>\n'
             "          </figcaption>\n"
             "        </figure>"
         )
@@ -493,6 +694,13 @@ def page_html(i: int) -> str:
         f'        <a href="../index.html#{anchor}"{" aria-current=\"true\"" if anchor == "projects" else ""}>{label}</a>' for anchor, label in NAV
     )
     facts = "".join(f"<div><dt>{k}</dt><dd>{v}</dd></div>" for k, v in p["facts"])
+    actions = ""
+    if p.get("actions"):
+        buttons = "\n              ".join(
+            f'<a class="button button-{kind}" href="{href}"{NEW_TAB}>{text}<span class="visually-hidden"> (opens in a new tab)</span></a>'
+            for href, text, kind in p["actions"]
+        )
+        actions = f'\n            <div class="actions project-actions">\n              {buttons}\n            </div>'
     sections = "\n".join(section_html(h, b) for h, b in p["sections"])
     media = media_html(p)
     title_text = re.sub(r"<[^>]+>", "", p["title"])
@@ -541,7 +749,7 @@ def page_html(i: int) -> str:
         <header class="project-head">
           <div class="project-intro">
             <h1 id="project-title">{p["title"]}</h1>
-            <p class="project-lead">{p["lead"]}</p>
+            <p class="project-lead">{p["lead"]}</p>{actions}
           </div>
           <dl class="facts">{facts}</dl>
         </header>
@@ -579,7 +787,15 @@ def main() -> int:
         return 1
     before, rest = html.split(start, 1)
     _, after = rest.split(end, 1)
-    html = before + start + "\n        " + cards_html() + "\n        " + end + after
+    html = before + start + "\n        " + cards_html() + "\n        " + small_repos_html() + "\n        " + end + after
+
+    start, end = "<!-- oss:start -->", "<!-- oss:end -->"
+    if start not in html or end not in html:
+        print("index.html is missing the oss markers", file=sys.stderr)
+        return 1
+    before, rest = html.split(start, 1)
+    _, after = rest.split(end, 1)
+    html = before + start + "\n        " + oss_html() + "\n        " + end + after
     index.write_text(html, encoding="utf-8", newline="\n")
 
     bad = [c for c in ("–", "—", "·") if any(c in (out_dir / f"{p['slug']}.html").read_text(encoding="utf-8") for p in PROJECTS)]

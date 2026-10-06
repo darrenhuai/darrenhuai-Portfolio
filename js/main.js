@@ -4,6 +4,7 @@
 const root = document.documentElement;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const hasIO = 'IntersectionObserver' in window;
+const saveData = Boolean(navigator.connection && navigator.connection.saveData);
 
 // ---------- Mobile menu ----------
 const header = document.querySelector('.nav');
@@ -116,17 +117,65 @@ if (video && toggle) {
     if (video.ended) video.currentTime = 0;
     video.play().catch(() => {});
   });
+  const playLabel = toggle.dataset.label || 'Play demo';
   video.addEventListener('play', () => { toggle.textContent = 'Pause'; });
-  video.addEventListener('pause', () => { if (!video.ended) toggle.textContent = 'Play demo'; });
+  video.addEventListener('pause', () => { if (!video.ended) toggle.textContent = playLabel; });
   video.addEventListener('ended', () => { toggle.textContent = 'Replay'; });
 
-  if (hasIO && !reduceMotion) {
+  // Plays itself once, unless the visitor asked for less motion or less data.
+  if (hasIO && !reduceMotion && !saveData) {
     const videoObserver = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return;
       videoObserver.disconnect();
       video.play().catch(() => {});
     }, { threshold: 0.5 });
     videoObserver.observe(video);
+  }
+}
+
+// ---------- A card cover that plays its recording ----------
+// The still in the markup is the cover for everyone. Where motion is welcome, the clip is laid over it
+// once the card is near: it plays while a mouse hovers the card, or once when a touch screen scrolls it into view.
+if (hasIO && !reduceMotion && !saveData) {
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  for (const cover of document.querySelectorAll('[data-hover-video]')) {
+    const card = cover.closest('.project-card') || cover;
+    const nearObserver = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      nearObserver.disconnect();
+      const clip = document.createElement('video');
+      clip.muted = true;
+      clip.setAttribute('muted', '');
+      clip.setAttribute('playsinline', '');
+      clip.setAttribute('aria-hidden', 'true');
+      clip.tabIndex = -1;
+      clip.preload = 'auto';
+      clip.src = cover.dataset.hoverVideo;
+      clip.addEventListener('error', () => clip.remove(), { once: true });
+      clip.addEventListener('playing', () => cover.classList.add('is-playing'));
+      cover.appendChild(clip);
+
+      const stop = () => {
+        clip.pause();
+        clip.currentTime = 0;
+        cover.classList.remove('is-playing');
+      };
+      if (finePointer) {
+        clip.loop = true;
+        card.addEventListener('pointerenter', () => { clip.play().catch(() => {}); });
+        card.addEventListener('focusin', () => { clip.play().catch(() => {}); });
+        card.addEventListener('pointerleave', stop);
+        card.addEventListener('focusout', (event) => { if (!card.contains(event.relatedTarget)) stop(); });
+      } else {
+        const viewObserver = new IntersectionObserver(([view]) => {
+          if (view.isIntersecting) clip.play().catch(() => {});
+          else clip.pause();
+        }, { threshold: 0.6 });
+        viewObserver.observe(cover);
+        clip.addEventListener('ended', () => { viewObserver.disconnect(); });
+      }
+    }, { rootMargin: '400px 0px' });
+    nearObserver.observe(cover);
   }
 }
 

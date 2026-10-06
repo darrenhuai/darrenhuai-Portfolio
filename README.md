@@ -10,17 +10,21 @@ three.js hex board that is a 3D take on [ChessTan](https://store.steampowered.co
 
 | Path | What it is |
 | --- | --- |
-| `index.html` | The page. All copy lives here. |
+| `index.html` | The page. The hand-written copy lives here; the project cards and the open-source lists are generated into it (see below). The About paragraph that starts "As of" is dated: rewrite it whenever it changes. |
 | `styles.css` | Tokens (light and dark), layout, motion. |
-| `js/main.js` | Menu, current-section state, scroll reveals, the demo recording, hero mount. |
+| `js/main.js` | Menu, current-section state, scroll reveals, the demo recording buttons, the hover clip on the watchglass card, the board mount. |
 | `js/hero-scene.js` | The three.js ChessTan board on the project card. Loaded only near the card, with WebGL and motion allowed. |
-| `resume.html`, `Darren-Huai-Resume.pdf` | The resume as a page, and the PDF it links to. Update both together. |
+| `resume.html`, `Darren-Huai-Resume.pdf` | The resume page embeds the PDF; `img/resume-page-1*.webp` is the rendered fallback. Update all three together. |
 | `projects/` | One page per project. Generated; do not edit by hand. |
-| `tools/build_projects.py` | Project data and templates. Edit it, then run `python tools/build_projects.py` to rewrite `projects/` and the cards in `index.html`. |
+| `tools/build_projects.py` | Project data, the open-source pull request lists (`OSS_PROJECTS`, `OSS_SINGLES`, `OSS_OPEN`), the smaller repositories (`SMALL_REPOS`) and the templates. Edit it, then run `python tools/build_projects.py` to rewrite `projects/` and the generated blocks in `index.html`. |
 | `fonts/` | Archivo and Geist Mono, subset to Latin, self-hosted under the OFL (licences alongside). |
-| `img/work/` | Real screenshots and the watchglass demo recording. |
+| `img/pro_pic*.jpg`, `img/pro_pic*.webp` | The portrait at 960 and 480 wide, cut from the original photo. |
+| `img/work/` | Real screenshots, the watchglass demo recording, and the ChessTan Steam trailer (muted). |
+| `img/og.png` | The social preview: a 1200x630 screenshot of the hero in the light theme. Retake it when the hero changes. |
 | `tools/hero-still.html` | Renders the board at 1600x1200 to regenerate `img/hero-board-*.webp`. |
 | `docs/design/`, `DESIGN.md` | The design spec and tokens the page was built from. |
+
+The open-source counts are hand-updated from GitHub (`gh search prs --author=darrenhuai --merged`); check them before each rebuild.
 
 ## Running locally
 

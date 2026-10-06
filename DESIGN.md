@@ -1,49 +1,55 @@
 ---
 name: Darren Huai portfolio
-description: One-page engineer portfolio in an engineering-drawing language, one amber accent, one variable sans, mono only for values.
+description: A plain, hand-made engineer portfolio in the owner's own palette: warm cream, violet, a touch of amber, one variable sans, mono only for code.
 colors:
-  bg: "oklch(0.965 0.006 240)"
-  surface: "oklch(0.985 0.003 240)"
-  surface-2: "oklch(0.935 0.008 240)"
-  ink: "oklch(0.22 0.02 250)"
-  ink-2: "oklch(0.42 0.02 250)"
-  muted: "oklch(0.5 0.015 250)"
-  accent: "oklch(0.53 0.13 55)"
-  accent-hover: "oklch(0.47 0.115 55)"
-  accent-ink: "oklch(0.985 0.01 80)"
-  line: "oklch(0.85 0.01 240)"
-  bg-dark: "oklch(0.17 0.014 250)"
-  surface-dark: "oklch(0.21 0.015 250)"
-  surface-2-dark: "oklch(0.25 0.015 250)"
-  ink-dark: "oklch(0.94 0.012 80)"
-  ink-2-dark: "oklch(0.78 0.012 80)"
-  muted-dark: "oklch(0.68 0.012 80)"
-  accent-dark: "oklch(0.78 0.14 65)"
-  accent-hover-dark: "oklch(0.83 0.12 65)"
-  accent-ink-dark: "oklch(0.18 0.02 60)"
-  line-dark: "oklch(0.32 0.015 250)"
+  bg: "#faf8f5"
+  surface: "#ffffff"
+  surface-2: "#f2eee7"
+  ink: "#17131f"
+  ink-2: "#56516b"
+  muted: "#6b6480"
+  accent: "#5b3df0"
+  accent-hover: "#4a2fd6"
+  accent-ink: "#ffffff"
+  accent-text: "#7c5cf0"
+  accent-soft: "#ece6fd"
+  accent-faint: "#f5f2fe"
+  amber: "#f0a63c"
+  amber-text: "#b8761f"
+  line: "#e9e4da"
+  bg-dark: "#17131f"
+  surface-dark: "#1f1a2b"
+  surface-2-dark: "#241e32"
+  ink-dark: "#f3f0fa"
+  ink-2-dark: "#cdc7df"
+  muted-dark: "#9b96b3"
+  accent-dark: "#8b73ff"
+  accent-hover-dark: "#a08fff"
+  accent-ink-dark: "#120d1f"
+  accent-text-dark: "#b4a4ff"
+  accent-soft-dark: "#2b2447"
+  accent-faint-dark: "#1e1933"
+  amber-text-dark: "#f2b65e"
+  line-dark: "#35304a"
 typography:
   display:
     fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
-    fontSize: "clamp(2.5rem, 2.273rem + 0.97vw, 3rem)"
+    fontSize: "clamp(2.125rem, 1.6rem + 2.2vw, 3.25rem)"
     fontWeight: 600
-    lineHeight: 1.05
-    letterSpacing: "-0.012em"
-    fontVariation: "'wdth' 108"
+    lineHeight: 1.04
+    letterSpacing: "-0.015em"
   headline:
     fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
     fontSize: "clamp(2rem, 1.886rem + 0.485vw, 2.25rem)"
     fontWeight: 600
     lineHeight: 1.1
-    letterSpacing: "-0.012em"
-    fontVariation: "'wdth' 108"
+    letterSpacing: "-0.015em"
   title:
     fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
     fontSize: "clamp(1.5625rem, 1.477rem + 0.364vw, 1.75rem)"
     fontWeight: 600
     lineHeight: 1.15
     letterSpacing: "-0.01em"
-    fontVariation: "'wdth' 100"
   lead:
     fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
     fontSize: "clamp(1.25rem, 1.193rem + 0.242vw, 1.375rem)"
@@ -56,22 +62,23 @@ typography:
     fontWeight: 400
     lineHeight: 1.55
     letterSpacing: "0"
-  label:
+  small:
     fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
     fontSize: "clamp(0.8125rem, 0.784rem + 0.121vw, 0.875rem)"
     fontWeight: 500
     lineHeight: 1.3
-    letterSpacing: "0.01em"
-    fontVariation: "'wdth' 88"
-  value:
-    fontFamily: "Geist Mono, ui-monospace, Consolas, monospace"
-    fontSize: "0.92em"
-    fontWeight: 400
-    lineHeight: 1.3
     letterSpacing: "0"
-    fontFeature: "tnum"
+  code:
+    fontFamily: "Geist Mono, ui-monospace, Consolas, monospace"
+    fontSize: "0.9em"
+    fontWeight: 400
+    lineHeight: 1.6
+    letterSpacing: "0"
 rounded:
-  none: "0"
+  sm: "10px"
+  md: "14px"
+  lg: "28px"
+  pill: "999px"
 spacing:
   s1: "4px"
   s2: "8px"
@@ -82,16 +89,17 @@ spacing:
   s7: "48px"
   s8: "64px"
   s9: "96px"
-  section-y: "clamp(4.5rem, 3rem + 5vw, 8rem)"
+  section-y: "clamp(4rem, 2.5rem + 4vw, 6.5rem)"
   gutter: "clamp(1rem, 4vw, 2.5rem)"
 components:
   button-primary:
     backgroundColor: "{colors.accent}"
     textColor: "{colors.accent-ink}"
     typography: "{typography.body}"
-    rounded: "{rounded.none}"
-    padding: "0 20px"
+    rounded: "{rounded.pill}"
+    padding: "0 24px"
     height: "48px"
+    shadow: "0 14px 34px rgba(91, 61, 240, 0.28)"
   button-primary-hover:
     backgroundColor: "{colors.accent-hover}"
     textColor: "{colors.accent-ink}"
@@ -99,25 +107,32 @@ components:
     backgroundColor: "transparent"
     textColor: "{colors.ink}"
     typography: "{typography.body}"
-    rounded: "{rounded.none}"
-    padding: "0 20px"
+    rounded: "{rounded.pill}"
+    padding: "0 24px"
     height: "48px"
   button-secondary-hover:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
+    textColor: "{colors.accent}"
+  pill-link:
+    backgroundColor: "{colors.accent-soft}"
+    textColor: "{colors.accent-hover}"
+    typography: "{typography.small}"
+    rounded: "{rounded.pill}"
+    padding: "0 16px"
+    height: "40px"
+  card:
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.md}"
+    padding: "24px"
+    shadow: "0 2px 10px rgba(23, 19, 31, 0.05)"
   plate:
     backgroundColor: "{colors.surface}"
-    rounded: "{rounded.none}"
+    rounded: "{rounded.md}"
     padding: "0"
-  title-block-cell:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.none}"
-    padding: "16px 24px"
   nav:
     backgroundColor: "{colors.bg}"
     textColor: "{colors.ink-2}"
-    typography: "{typography.label}"
+    typography: "{typography.small}"
     height: "64px"
   band:
     backgroundColor: "{colors.surface-2}"
@@ -128,108 +143,100 @@ components:
 
 ## 1. Overview
 
-**Creative North Star: "The drafting table"**
+**North star: a person's own site, in his own colours.**
 
-A one-page drawing set for a software engineer: a live hex board from the game he shipped, screenshot-led case sheets with the numbers inside the sentences, eleven merges plotted on a date axis, a skills-to-evidence matrix, and a title block instead of a bio. Warm, exact, sentence case. Rejects the purple-gradient portfolio, the typewriter hero, the avatar card, chip soup, the dot timeline, eyebrows above sections, figure tiles, cards with shadows, and mono as a costume.
+The first version of this site had a palette the owner liked: warm cream, a violet he used for every button, a lavender wash behind the hero and an amber that showed up in gradients. The 2026-09-30 rebuild replaced it with a cool "drafting table" system, which he later read as AI-made. On 2026-10-05 the palette came back, on top of the plainer structure: real screenshots, click-through project cards, first-person copy, the resume as the PDF itself.
 
 Key characteristics:
-- One accent (burnt amber), used identically everywhere it appears and nowhere else.
-- One variable sans (Archivo) carrying display, headings, body and labels through its width and weight axes; a cockpit mono (Geist Mono) only where a string is a value.
-- Radius 0, no shadows, no gradients, no blur. Depth is a three-step surface ladder and 1px frames.
-- Light and dark by `prefers-color-scheme`; dark is the game's own panel palette (navy, cream, amber).
-- Zero eyebrows, zero icons, zero em or en dashes.
+- The palette is the old site's (see Colours). Violet is the working accent; amber appears only in the two gradients and the three.js board.
+- One variable sans (Archivo) for everything; Geist Mono only inside `code` and `pre`.
+- Soft shapes: 14px on cards and plates, pills for buttons and contact links, 28px on the portrait frame. Two soft shadows and one glow, nowhere else.
+- Light and dark by `prefers-color-scheme`; dark keeps the same violet and amber on an ink-violet ground.
+- Copy rules from the hand-made pass stand: sentence case, plain numbers in prose, zero em or en dashes, no eyebrow labels, no chips as decoration, no icons, no invented biography.
 
-Layout: 12-column sheet, max-width 1200px, column gap `{spacing.s5}`, gutter `{spacing.gutter}`; section rhythm `{spacing.section-y}` on top and 1.15 times that below; every multi-column section is one column below 768px. Full token detail, section layouts and copy: `docs/design/2026-09-29-redesign-spec.md`.
+Layout: 12-column sheet, max-width 1200px, column gap `{spacing.s5}`, gutter `{spacing.gutter}`; section rhythm `{spacing.section-y}` above and 1.15 times that below; every multi-column section is one column below 768px (900px for the open-source columns and the experience split).
 
-## 2. Colors
+## 2. Colours
 
-Cool vellum neutrals with one amber; the dark theme keeps the same hue family and swaps to cream text. OKLCH is canonical; hex values below are sRGB conversions for the `color:` fallback line and for the Three.js scene (published as `--*-hex` twins).
+Warm cream neutrals, violet, amber. Plain hex throughout; the three.js scene reads the `--*-hex` twins.
 
 ### Primary
-- **Burnt amber** (`{colors.accent}`, #a35303; dark `{colors.accent-dark}`, #f4a34b): primary button fill, matrix marks, axis markers, hover underline, focus ring, the hovered hex edge in the hero. 5.00:1 on bg light, 9.27:1 dark; 4.57:1 on the band light.
-- **Amber, hover** (`{colors.accent-hover}`, #8a4603; dark #fdb770): primary button hover only.
-- **Accent ink** (`{colors.accent-ink}`, #fefaf3; dark #180f09): text on the accent. 5.32:1 light, 9.17:1 dark.
+- **Violet** (`{colors.accent}`; dark `{colors.accent-dark}`): primary buttons, the hovered link underline, the focus ring, the nav current underline, the gradient rule on project cards, the hero blob. Text on it is white in both themes.
+- **Violet, hover** (`{colors.accent-hover}`; dark `{colors.accent-hover-dark}`): primary button hover, pill link text.
+- **Violet, text** (`{colors.accent-text}`; dark `{colors.accent-text-dark}`): the middle stop of the name gradient and the card border on hover.
+- **Lavender** (`{colors.accent-soft}` and `{colors.accent-faint}`; dark twins): pill link fill, selection, the radial wash at the top of the hero.
+- **Amber** (`{colors.amber}`, text `{colors.amber-text}`; dark text `{colors.amber-text-dark}`): the warm end of the name gradient and the portrait frame, the second hero blob, the board scene's accent. Never a button, never a border on its own.
 
 ### Neutral
-- **Vellum** (`{colors.bg}`, #f0f4f7; dark **Navy** #0b1015): page ground.
-- **Sheet** (`{colors.surface}`, #f8fafc; dark #13191f): title-block cells, plate background, ledger blocks.
-- **Band** (`{colors.surface-2}`, #e5eaee; dark #1c2229): the Experience band only.
-- **Ink** (`{colors.ink}`, #141b24; dark **Cream** #efeae2): headings and body. 15.67:1 light, 15.96:1 dark.
-- **Ink 2** (`{colors.ink-2}`, #454e58; dark #bbb7af): secondary text, labels, perceivable borders. 7.65:1 light, 9.56:1 dark.
-- **Muted** (`{colors.muted}`, #5d646c; dark #9c9890): captions, footer, resting link underline. 5.42:1 light, 6.65:1 dark; 4.95:1 on the band.
-- **Line** (`{colors.line}`, #c8cfd4; dark #2d343a): hairlines and plate frames, decorative only (1.42:1).
+- **Cream** (`{colors.bg}`; dark `{colors.bg-dark}`): page ground.
+- **White** (`{colors.surface}`; dark `{colors.surface-dark}`): cards, plates, the status pill, facts cells.
+- **Band** (`{colors.surface-2}`; dark `{colors.surface-2-dark}`): the Experience and Resume bands, code blocks.
+- **Ink** (`{colors.ink}`; dark `{colors.ink-dark}`): headings and body.
+- **Ink 2** (`{colors.ink-2}`; dark `{colors.ink-2-dark}`): leads, secondary text.
+- **Muted** (`{colors.muted}`; dark `{colors.muted-dark}`): captions, dates in lists, the footer, resting link underlines.
+- **Line** (`{colors.line}`; dark `{colors.line-dark}`): hairlines, card and plate frames.
 
-### Named rules
-**The one accent rule.** `var(--accent)` may appear only in: primary button, `.mark`, `.axis-marker`, `a:hover` underline, `:focus-visible`, nav current underline, `::selection`, and the scene twin. A grep enforces it.
-**The perceivable border rule.** Anything that must be seen as a boundary (secondary button, Menu, Replay) uses ink-2, never line.
-**The screenshot rule.** The only saturated colours besides the accent live inside real screenshots and the hero scene's tiles.
+### Gradients
+- **Name:** `linear-gradient(120deg, accent, accent-text 45%, amber-text, accent)` clipped to the text, drifting slowly when motion is allowed. Used on the name in the hero h1 only.
+- **Frame:** `linear-gradient(135deg, accent, amber)` as the 6px frame around the portrait, and at 90 degrees as the 3px rule along the top of every project card.
+- **Wash:** a lavender radial at the top of the hero plus two blurred blobs (violet top right, amber bottom left) that drift over 16 and 20 seconds; static under reduced motion; hidden in print.
 
 ## 3. Typography
 
-**Display and text font:** Archivo (variable, wdth 62 to 125, wght 100 to 900), self-hosted `fonts/archivo-var.woff2`, fallback "Archivo Fallback" (metric-matched Arial) then Arial.
-**Value font:** Geist Mono 400, self-hosted `fonts/geistmono-var.woff2`; used by the `.val` class only.
+**Everything:** Archivo (variable), self-hosted `fonts/archivo-var.woff2`, normal width throughout, with a metric-matched Arial fallback.
+**Code only:** Geist Mono, self-hosted `fonts/geistmono-var.woff2`, inside `code` and `pre`.
 
-**Character:** a stamped aluminium nameplate for headings (wide cut, 600), a plain readable grotesque for prose (normal width, 400), a compact cut for labels (wdth 88, 500), and an aerospace instrument face for values.
+- **Display** (`{typography.display}`): the hero h1 ("Hi, I'm" in ink, the name in the gradient).
+- **Headline** (`{typography.headline}`): section h2s and project page titles.
+- **Title** (`{typography.title}`): card titles and the email button.
+- **Lead** (`{typography.lead}`): hero intro and section leads, ink-2.
+- **Body** (`{typography.body}`): 62 to 66ch measure; line-height 1.55 light, 1.62 dark.
+- **Small** (`{typography.small}`): nav, the status pill, captions, dates after list items, facts labels.
+- **Code** (`{typography.code}`): commands and excerpts only.
 
-### Hierarchy
-- **Display** (`{typography.display}`): the hero h1 only; two lines, `text-wrap: balance`, 18ch measure, 40 to 48px.
-- **Headline** (`{typography.headline}`): section h2s and case-sheet titles, 32 to 36px.
-- **Title** (`{typography.title}`): case-sheet titles and the email button, 25 to 28px; the employer, repo and Earlier-projects names use the lead size at weight 600.
-- **Lead** (`{typography.lead}`): hero subtext and section lead sentences, ink-2, 20 to 22px.
-- **Body** (`{typography.body}`): 16 to 17.5px, line-height 1.55 light and 1.62 dark, 62ch.
-- **Label** (`{typography.label}`): field labels, matrix heads, title-block labels, nav; sentence case, never uppercase, 13 to 14px.
-- **Value** (`{typography.value}`): numbers, dates, versions, PR ids, repo slugs, flags, the email; tabular figures.
+Rules: no uppercase transforms; numbers and dates in prose are ordinary text (not mono); headings at normal width.
 
-### Named rules
-**The value rule.** A string is set in mono only if someone could paste it into a form or a terminal. `font-mono` is referenced by exactly one rule.
-**The no-caps rule.** No `text-transform: uppercase`; acronyms are typed as they are.
-**The scale rule.** Steps are at least 1.25 apart at the large end (1.25, 1.26, 1.27, 1.29, 1.33).
+## 4. Elevation and shape
 
-## 4. Elevation
-
-No shadows anywhere; `box-shadow`, `backdrop-filter` and gradients are grep-gated to zero. Depth is conveyed by the three-step surface ladder (bg, surface, surface-2), by 1px `line` frames on plates and title-block cells, and by the one full-bleed band (Experience). Hover on plates scales the image 1.02 inside its clipped frame; hover on buttons lifts 1px; nothing lifts a shadow because there are none.
+- Cards: white, 1px line, 14px radius, the gradient rule on top, `shadow-sm`; on hover the border turns violet-text, the shadow steps up to `shadow-md` and the card lifts 2px.
+- Plates: 1px line, 14px radius, `overflow: hidden`, declared `aspect-ratio`.
+- Buttons: pills; the primary carries the violet glow and lifts 2px on hover; the secondary has a line border that turns violet on hover.
+- The portrait: a 6px gradient frame at 28px radius with the violet glow; the photo at 24px with a 3px cream inset.
+- The nav: translucent cream with a 12px backdrop blur and a hairline below.
+- Nothing else casts a shadow, blurs or uses a gradient.
 
 ## 5. Components
 
-### Buttons
-- **Shape:** sharp rectangle (`{rounded.none}`), 48px tall, 20px side padding, one line, at most three words (the email address is the one exception, 20 characters).
-- **Primary:** `{components.button-primary}`; hover `{components.button-primary-hover}` plus `translateY(-1px)`; active `scale(0.98)`; focus ring 2px ink, 2px offset.
-- **Secondary:** `{components.button-secondary}` with a 1px ink-2 border; hover border ink, background surface; active `scale(0.98)`.
+### Hero
+Status pill (white, hairline, green dot, "Software engineer intern at NASA Armstrong"), the h1, a four-sentence first-person intro, "See my projects" and "Resume", three pill links (Email, GitHub, LinkedIn), and the portrait on the right (columns 9 to 12 at 1024px and up; above the copy on phones). The portrait is served as a `picture` with 480 and 960 wide webp and jpg from the 1440x1800 original, and preloaded with `imagesrcset`.
 
-### Links
-Ink text, 1px `muted` underline at 3px offset at rest; hover: 2px `accent` underline. External links get `rel="noopener"` and visually hidden "(opens in a new tab)". No arrow glyphs.
+### Project cards
+Stretched links to `projects/<slug>.html`. Cover: the three.js board (ChessTan), a still that plays its recording on hover or once in view on touch (watchglass, `data-hover-video`), a screenshot, or a pair of phone captures. Below the cards, "Also on my GitHub" lists the smaller public repositories. All of it is generated by `tools/build_projects.py`.
 
-### Plates (image frames)
-`{components.plate}` with a 1px `line` border, `overflow: hidden`, declared `aspect-ratio`, `object-fit: cover`; captions below in label size, muted, only when they add information. Nothing overlaid on an image. No device frames.
+### Project pages
+Title, lead, optional action buttons (ChessTan: "Play it in your browser", "Free on Steam"), a facts list, one lead media (video with the play, pause and replay button; image; image pair; phone pair; specs table), 4/8 prose sections, a screenshot gallery, previous and next.
 
-### Title block
-`{components.title-block-cell}` cells in a 1px `line` grid; label over value; the portrait spans two rows at 4:5.
-
-### Nav
-`{components.nav}`, sticky, 1px `line` bottom rule, no blur. Current section: ink with a 2px `accent` underline. Mobile: text button "Menu" / "Close", `aria-expanded`, Escape closes.
-
-### Data marks
-Matrix mark: 12px `accent` square with hidden "Yes" text. Axis marker: 12px `accent` square (filled for platformdirs, stroked for virtualenv) inside a 24px hit area, each an `<a>` with a full accessible name.
+### Open source
+A lead with the real numbers, two columns (virtualenv, platformdirs) listing every merged pull request with its merge date in muted small text, then "One each" and "In review" columns, then the user-dirs.dirs note. Data lives in `OSS_PROJECTS`, `OSS_SINGLES` and `OSS_OPEN` in `tools/build_projects.py`.
 
 ### Motion
-- `--ease-out: cubic-bezier(0.16, 1, 0.3, 1)`; `--dur-fast: 120ms`; `--dur-base: 160ms`; `--dur-reveal: 600ms`; `--dur-canvas: 300ms`.
-- Load: nav 200ms at 0; h1 line wipes 420ms from 80ms, 90ms apart; subtext and buttons rise 12px and fade 360ms from 320ms, 80ms apart; board wireframe-to-solid 200 to 1100ms.
-- Reveal: IntersectionObserver `threshold: 0.25`, `rootMargin: 0 0 -10%`, once; plates wipe 600ms then text staggers 40ms; axis draws 500ms then markers 40ms apart; matrix rows 30ms apart; other sections fade-and-rise 400ms.
-- Idle: hero yaw 0.02 rad/s, the page's only loop; pointer tilt up to 6 degrees lerped 0.08 per frame; paused off-screen and when hidden.
-- Reduced motion: every animation and transition removed, reveals applied at load, canvas never created, recording shows its poster with a Play demo button.
+- `--ease-out: cubic-bezier(0.16, 1, 0.3, 1)`; `--dur-fast: 120ms`; `--dur-base: 160ms`.
+- Load: the status pill and intro rise in, the h1 wipes in, the portrait settles 8px; the name gradient and the two blobs drift on loops.
+- Scroll: below-the-fold blocks rise 12px once (IntersectionObserver; `.pre` is only ever added by JS).
+- Media: the watchglass card clip plays on hover (fine pointers) or once at 60% visibility (coarse); project page videos play once at 50% visibility; the three.js board mounts within 800px of the viewport.
+- Reduced motion: every animation and transition off, no clips are created, no autoplay, the board is never mounted.
 
 ## 6. Do's and Don'ts
 
 Do:
-- Use the accent only in the seven listed places and the scene.
-- Put every number inside a sentence, set in `.val`.
-- Keep every section one column below 768px and state the collapse.
-- Ship real screenshots or nothing; text entries for projects without imagery.
-- Run the copy gate: zero U+2013, U+2014, U+00B7; no "Hi, I".
+- Use violet for anything interactive and amber only in the two gradients and the board.
+- Keep copy first person, specific and dated where it can go stale (the About paragraph that starts "As of").
+- Ship real captures, real recordings, real numbers with links under them.
+- Run the copy gate: zero U+2013, U+2014, U+00B7; no runtime Google Fonts.
 
 Don't:
-- Add an eyebrow, a figure tile, a chip, a card with a border and a shadow, a corner mark, an icon, a gradient, a blur, a shadow, a radius.
-- Set a heading, label, button or sentence in the mono.
-- Use a scroll listener, a loop other than the hero idle, or `100vh`.
-- Add a second accent, a status dot, a locale strip, a version string, or a scroll cue.
-- Use the Steam capsule, the ChessTan logo, or any generated or placeholder imagery.
+- Add eyebrow labels, icon sets, stat tiles, charts, matrices, chips as decoration, or a typing effect.
+- Set headings, labels or prose in the mono, or in a condensed width.
+- Add a third accent, a second glow, or shadows on text.
+- Link the private repositories or show the phone number.
+- Invent biography or opinions.

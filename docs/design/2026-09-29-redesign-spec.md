@@ -721,3 +721,23 @@ Darren's note: it still looked AI-made. What changed, all in the direction of pl
 - Headings and the wordmark use the normal width of Archivo instead of the semi-expanded instance; corners have a 6px radius.
 - Nav dropped Skills. Footer: "Made by hand with plain HTML and CSS."
 - The resume page embeds the PDF itself in a Letter-proportioned frame, with a rendered image of the page as the fallback for browsers that cannot embed PDFs.
+
+## Appendix I. The owner's palette, and more life (2026-10-05, evening)
+
+Three requests in one sitting: "why is my picture so fuzzy", "the website seems a little boring, use the connectors and GitHubs I've told you about, give it more life", "add the portfolios so it matches my GitHub", and, with a screenshot of the first version of the site, "I also liked this colour scheme, go back to this please".
+
+**The portrait.** The committed `img/pro_pic.jpg` was a 480x600 photo upscaled to 600x750. The 1440x1800 original was in Downloads. It is now a 960x1200 crop served through a `picture` element (480 and 960 wide, webp and jpg) with a matching `imagesrcset` preload. `img/og.png` was retaken from the new hero.
+
+**The palette.** The first version's tokens came back from the `v1-pre-redesign` tag: cream `#faf8f5`, violet `#5b3df0`, amber `#f0a63c`, the lavender wash and two drifting blobs behind the hero, the violet-to-amber gradient on the name and around the portrait, pill buttons with the violet glow, lavender pill links, a status pill with a green dot, 14px card radius with a gradient rule along the top, a translucent blurred nav. A dark variant was derived (ink-violet ground, the same violet and amber). The OKLCH block is gone; `DESIGN.md` was rewritten. The blobs drift only at 900px and up, and everything is static under reduced motion. The hand-made copy rules from Appendix H still hold.
+
+**More life, from real assets.** A four-designer, three-judge panel ran on a brief built from the GitHub and Steam inventory. The winning direction ("real things, dated") and the grafts the judges agreed on:
+- The ChessTan page opens on the Steam trailer, self-hosted, muted, cut to start on the board (15 seconds, 1280x720, about 180 KB), with "Play it in your browser" and "Free on Steam" buttons under the lead, and a six-frame gallery in the order a match happens, captioned only from what is on each frame.
+- The watchglass card plays its 14-second recording on hover (fine pointers) or once in view (touch); the video element is created by JS only when the card is near, so no-JS, reduced-motion and print keep the still.
+- Every card lead gained a second sentence saying why the project exists, each lifted from that project's own page copy.
+- The open-source section tells the true scale: 26 merged pull requests in seven projects since August 2026, all 11 virtualenv and 10 platformdirs fixes listed in merge order, the five one-offs and six open ones in one sentence, and a real excerpt of the platformdirs 545 diff with four of its thirteen test cases. The data lives in `tools/build_projects.py` and the block is generated between `oss:start` and `oss:end`.
+- A dated paragraph in About ("As of October 2026") says what is in progress; the watchglass Released fact carries the release cadence; the meta descriptions carry the count.
+- "Also on my GitHub" lists the five smaller public repositories under the cards, because the owner asked for the site to match his GitHub.
+
+**Rejected by the judges, and not built:** the Steam store widget iframe, the Godot web build inside an iframe (47 MB), a GitHub contribution heatmap, star counts beside every project, a hand-sketched relay diagram, a nine-row release changelog, a Now band, a colophon, copy buttons on code blocks, per-item merge dates in the lists (the lead carries the first and last dates instead), and a resume thumbnail.
+
+**Flagged to the owner:** the judges read the palette and the small-repos list as risks against Appendix H; both were his explicit requests and shipped as asked. They also asked whether qutip-qtrl 61 should stay in the count, and whether the browser build of ChessTan (last pushed 2026-09-01, older than the Steam 1.0.1 patch) will stay up, since the hero, the project page and the small-repos list link it.
