@@ -12,12 +12,13 @@ three.js hex board that is a 3D take on [ChessTan](https://store.steampowered.co
 | --- | --- |
 | `index.html` | The page. The hand-written copy lives here; the project cards and the open-source lists are generated into it (see below). The About paragraph that starts "As of" is dated: rewrite it whenever it changes. |
 | `styles.css` | Tokens (light and dark), layout, motion. |
-| `js/main.js` | Menu, current-section state, scroll reveals, the demo recording buttons, the hover clip on the watchglass card, the board mount. |
-| `js/hero-scene.js` | The three.js ChessTan board on the project card. Loaded only near the card, with WebGL and motion allowed. |
+| `js/main.js` | Menu, current-section state, scroll reveals, the demo recording buttons, the hover clip on the watchglass row, the tick-mark field, the board mount. |
+| `js/field.js` | The field of drifting tick marks in the hero (a canvas with value noise). One static frame under reduced motion. |
+| `js/hero-scene.js` | The three.js ChessTan board on its work row. Loaded only near the row, with WebGL and motion allowed. |
 | `resume.html`, `Darren-Huai-Resume.pdf` | The resume page embeds the PDF; `img/resume-page-1*.webp` is the rendered fallback. Update all three together. |
 | `projects/` | One page per project. Generated; do not edit by hand. |
 | `tools/build_projects.py` | Project data, the open-source pull request lists (`OSS_PROJECTS`, `OSS_SINGLES`, `OSS_OPEN`), the smaller repositories (`SMALL_REPOS`) and the templates. Edit it, then run `python tools/build_projects.py` to rewrite `projects/` and the generated blocks in `index.html`. |
-| `fonts/` | Archivo and Geist Mono, subset to Latin, self-hosted under the OFL (licences alongside). |
+| `fonts/` | Playfair Display (headlines) and Geist Mono (everything else), subset to Latin, self-hosted under the OFL (licences alongside). |
 | `img/pro_pic*.jpg`, `img/pro_pic*.webp` | The portrait at 960 and 480 wide, cut from the original photo. |
 | `img/work/` | Real screenshots, the watchglass demo recording, and the ChessTan Steam trailer (muted). |
 | `img/og.png` | The social preview: a 1200x630 screenshot of the hero in the light theme. Retake it when the hero changes. |

@@ -139,7 +139,7 @@ if (video && toggle) {
 if (hasIO && !reduceMotion && !saveData) {
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   for (const cover of document.querySelectorAll('[data-hover-video]')) {
-    const card = cover.closest('.project-card') || cover;
+    const card = cover.closest('.work-row') || cover;
     const nearObserver = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return;
       nearObserver.disconnect();
@@ -179,6 +179,21 @@ if (hasIO && !reduceMotion && !saveData) {
   }
 }
 
+// ---------- The field of tick marks in the hero ----------
+// One frame under reduced motion; otherwise it drifts while on screen.
+const fieldCanvas = document.getElementById('hero-field');
+if (fieldCanvas) {
+  import('./field.js').then(({ mountField }) => {
+    const color = () => getComputedStyle(root).getPropertyValue('--ink-hex').trim() || '#1c1826';
+    const options = () => ({ cols: 9, rows: 9, length: 14, color: color(), reducedMotion: reduceMotion });
+    let field = mountField(fieldCanvas, options());
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      field.dispose();
+      field = mountField(fieldCanvas, options());
+    });
+  }).catch(() => {});
+}
+
 // ---------- Live ChessTan board on the project card ----------
 // The <picture> still is the loading state, the error state, and the reduced-motion state.
 function sceneColors() {
@@ -211,7 +226,7 @@ async function mountBoardScene(box) {
 
   let hero;
   try {
-    hero = mountHero(canvas, { reducedMotion: false, pixelRatioCap: 1.5, pointerTarget: box.closest('.project-card') || box });
+    hero = mountHero(canvas, { reducedMotion: false, pixelRatioCap: 1.5, pointerTarget: box.closest('.work-row') || box });
   } catch (error) {
     canvas.remove();
     return;

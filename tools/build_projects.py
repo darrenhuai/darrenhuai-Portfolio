@@ -42,6 +42,7 @@ PROJECTS = [
         "card": {
             "span": 7,
             "cover": "board",
+            "sub": "Hex strategy, on Steam",
             "lead": "A hex-strategy game on Steam: a settle-and-trade economy with chess-style movement and capture, so a good economy can still lose to a bad position.",
             "stack": "Godot 4.7, GDScript, WebSocket relay, Steam",
         },
@@ -114,6 +115,7 @@ PROJECTS = [
         "card": {
             "span": 5,
             "cover": "image",
+            "sub": "A watcher for screens",
             "src": "watchglass-demo-still.webp", "w": 960, "h": 640, "position": "50% 50%",
             "video": "watchglass-demo.mp4",  # plays on hover, or once in view on touch screens (js/main.js)
             "alt": "",
@@ -174,6 +176,7 @@ PROJECTS = [
         "card": {
             "span": 5,
             "cover": "image",
+            "sub": "A Kalshi scanner",
             "src": "kalshi-opportunities.webp", "w": 964, "h": 900, "position": "50% 0", "light": True,
             "alt": "",
             "lead": "A scanner for live Kalshi markets, with a local web app, email alerts and a paper-trading mode. I wanted to know when a market was worth a look without watching thousands of them.",
@@ -227,6 +230,7 @@ PROJECTS = [
         "card": {
             "span": 7,
             "cover": "phones",
+            "sub": "Strike timing, on a phone",
             "srcs": ["kinetic-results-phone.webp", "kinetic-analyse-phone.webp"],
             "lead": "Film a punch or a kick and see when each joint fires, in milliseconds. A slow-motion replay can't tell you whether the hip fired before the shoulder; this can.",
             "stack": "Expo, React Native, TypeScript, Supabase, MediaPipe",
@@ -274,7 +278,9 @@ PROJECTS = [
         "title": "Petrarchan GPT",
         "card": {
             "span": 6,
-            "cover": None,
+            "cover": "specs",
+            "sub": "A small transformer",
+            "items": [("Tokenizer", "characters"), ("Context", "256"), ("Blocks", "6"), ("Heads", "6 per block"), ("Embedding", "384"), ("Dropout", "0.2"), ("Steps", "5,000 of 64")],
             "lead": "A small character-level GPT in PyTorch, trained on Petrarch's sonnets. I built it to learn how a transformer works end to end.",
             "stack": "Python, PyTorch",
         },
@@ -312,7 +318,9 @@ PROJECTS = [
         "title": "GreetBot",
         "card": {
             "span": 6,
-            "cover": None,
+            "cover": "code",
+            "sub": "A robot that says hello",
+            "code": "from detector import has_face, find_face\n\nif has_face(image):\n    image, encoding, location = find_face(image)\n    greet(location)",
             "lead": "A face-recognizing greeting robot, built with a 14-person UCLA engineering club team. It spots a face and offers a handshake.",
             "stack": "Python, OpenCV, Arduino",
         },
@@ -418,27 +426,56 @@ SMALL_REPOS = [
 # Cards on index.html
 # ---------------------------------------------------------------------------------------------
 def card_cover(p: dict) -> str:
+    """The media plate on the right of a work row."""
     c = p["card"]
     if c["cover"] == "board":
         return (
-            '<div class="card-cover cover-board" id="board-canvas-box">\n'
-            '              <picture>\n'
-            '                <source media="(prefers-color-scheme: dark)" type="image/webp" srcset="img/hero-board-dark.webp 1600w, img/hero-board-dark-800.webp 800w" sizes="(min-width: 1024px) 640px, (min-width: 700px) 50vw, 100vw">\n'
-            '                <img src="img/hero-board-light.webp" srcset="img/hero-board-light-800.webp 800w, img/hero-board-light.webp 1600w" sizes="(min-width: 1024px) 640px, (min-width: 700px) 50vw, 100vw" width="1600" height="1200" loading="lazy" decoding="async" alt="">\n'
-            '              </picture>\n'
-            '            </div>'
+            '<div class="plate cover-board" id="board-canvas-box">\n'
+            '                <picture>\n'
+            '                  <source media="(prefers-color-scheme: dark)" type="image/webp" srcset="img/hero-board-dark.webp 1600w, img/hero-board-dark-800.webp 800w" sizes="(min-width: 900px) 440px, 100vw">\n'
+            '                  <img src="img/hero-board-light.webp" srcset="img/hero-board-light-800.webp 800w, img/hero-board-light.webp 1600w" sizes="(min-width: 900px) 440px, 100vw" width="1600" height="1200" loading="lazy" decoding="async" alt="">\n'
+            '                </picture>\n'
+            '              </div>'
         )
     if c["cover"] == "image":
         light = " cover-light" if c.get("light") else ""
         video = f' data-hover-video="img/work/{c["video"]}"' if c.get("video") else ""
         return (
-            f'<div class="card-cover{light}"{video}><img src="img/work/{c["src"]}" width="{c["w"]}" height="{c["h"]}" '
+            f'<div class="plate{light}"{video}><img src="img/work/{c["src"]}" width="{c["w"]}" height="{c["h"]}" '
             f'style="object-position: {c["position"]}" loading="lazy" decoding="async" alt="{c["alt"]}"></div>'
         )
     if c["cover"] == "phones":
         imgs = "".join(f'<img src="img/work/{s}" width="390" height="844" loading="lazy" decoding="async" alt="">' for s in c["srcs"])
-        return f'<div class="card-cover cover-phones">{imgs}</div>'
+        return f'<div class="plate cover-phones">{imgs}</div>'
+    if c["cover"] == "specs":
+        rows = "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in c["items"])
+        return f'<div class="plate cover-text" aria-hidden="true"><dl>{rows}</dl></div>'
+    if c["cover"] == "code":
+        code = c["code"].replace("&", "&amp;").replace("<", "&lt;")
+        return f'<div class="plate cover-text" aria-hidden="true"><pre>{code}</pre></div>'
     return ""
+
+
+def cards_html() -> str:
+    out = ['<div class="rows work-rows">']
+    for i, p in enumerate(PROJECTS, start=1):
+        c = p["card"]
+        sub = f'<span class="row-sub">{c["sub"]}</span>' if c.get("sub") else ""
+        out.append('          <article class="row work-row" data-reveal="rise">')
+        out.append('            <div class="row-head">')
+        out.append(f'              <h3 class="row-title"><a class="card-link" href="projects/{p["slug"]}.html">{p["title"]}{sub}</a></h3>')
+        out.append(f'              <span class="row-index" aria-hidden="true">{i:02d}</span>')
+        out.append('              <div class="row-rule"></div>')
+        out.append(f'              <p class="row-lead">{c["lead"]}</p>')
+        out.append(f'              <p class="row-meta">{c["stack"]}</p>')
+        out.append('              <span class="row-cue" aria-hidden="true">View project</span>')
+        out.append("            </div>")
+        cover = card_cover(p)
+        if cover:
+            out.append(f'            <div class="row-media work-media">\n              {cover}\n            </div>')
+        out.append("          </article>")
+    out.append("        </div>")
+    return "\n".join(out)
 
 
 def small_repos_html() -> str:
@@ -553,29 +590,6 @@ def oss_html() -> str:
     return "\n".join(out)
 
 
-def cards_html() -> str:
-    out = ['<div class="project-grid">']
-    for p in PROJECTS:
-        c = p["card"]
-        compact = " card-compact" if not c["cover"] else ""
-        cover = card_cover(p)
-        out.append(f'          <article class="project-card card-span-{c["span"]}{compact}" data-reveal="rise">')
-        if cover:
-            out.append(f"            {cover}")
-        out.append('            <div class="card-text">')
-        out.append(f'              <h3 class="card-title"><a class="card-link" href="projects/{p["slug"]}.html">{p["title"]}</a></h3>')
-        out.append(f'              <p class="card-lead">{c["lead"]}</p>')
-        out.append(f'              <p class="card-stack">{c["stack"]}</p>')
-        out.append('              <span class="card-cue" aria-hidden="true">View project</span>')
-        out.append("            </div>")
-        out.append("          </article>")
-    out.append("        </div>")
-    return "\n".join(out)
-
-
-# ---------------------------------------------------------------------------------------------
-# Project pages
-# ---------------------------------------------------------------------------------------------
 def media_html(p: dict) -> str:
     m = p["media"]
     if not m:
@@ -722,7 +736,8 @@ def page_html(i: int) -> str:
   <meta property="og:image" content="{SITE}img/og.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="../fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/playfair-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/geistmono-var.woff2" as="font" type="font/woff2" crossorigin>
   <script>document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="../styles.css">
   <script type="module" src="../js/main.js"></script>

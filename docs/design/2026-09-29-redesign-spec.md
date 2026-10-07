@@ -741,3 +741,14 @@ Three requests in one sitting: "why is my picture so fuzzy", "the website seems 
 **Rejected by the judges, and not built:** the Steam store widget iframe, the Godot web build inside an iframe (47 MB), a GitHub contribution heatmap, star counts beside every project, a hand-sketched relay diagram, a nine-row release changelog, a Now band, a colophon, copy buttons on code blocks, per-item merge dates in the lists (the lead carries the first and last dates instead), and a resume thumbnail.
 
 **Flagged to the owner:** the judges read the palette and the small-repos list as risks against Appendix H; both were his explicit requests and shipped as asked. They also asked whether qutip-qtrl 61 should stay in the count, and whether the browser build of ChessTan (last pushed 2026-09-01, older than the Steam 1.0.1 patch) will stay up, since the hero, the project page and the small-repos list link it.
+
+## Appendix J. The editorial page (2026-10-06)
+
+Darren pointed at arlenmccluskey.com: "could you just copy it, but with my purple-blue colour scheme and my projects; I like the UI you did for ChessTan; have the same sections as before." So the page was rebuilt in that language, on the same content and the same generated data:
+
+- **Type.** Playfair Display (variable, OFL, self-hosted, subset) for the h1, section titles and row titles, in place of the reference's Superior Title. Geist Mono, now with its full weight range, for every other word, in place of Pitch Sans. Archivo is no longer used.
+- **Structure.** A static top bar ("DH" and five mono links). A hero with the two-line serif greeting, two mono paragraphs with bold emphasis, four mono links, and the wash with a 9x9 canvas of tick marks that lean with value noise (`js/field.js`). A full-width hairline. Then the same sections as before: Experience, Work, Open source, Skills, Resume, About, and the sign-off, all as numbered rows with a vertical divider, a horizontal rule and a mono one-liner, and the media or the body on the right.
+- **Work rows.** Each row is one link to its project page. The media plate per project: the live three.js board (kept, as asked), the watchglass still that plays its clip on hover, a screenshot, the two phone captures, a spec sheet for Petrarchan GPT, and a few lines of code for GreetBot. "Also on my GitHub" follows the rows.
+- **Colour.** The reference's orange-to-red washes became violet, blue and magenta; rules and text are ink; links turn violet on hover. A dark theme was derived.
+- **Kept from the hand-made pass.** First-person copy, the dated About paragraph, the full open-source record and the diff excerpt, the portrait (now in About, as a plate), the embedded resume, the project pages (restyled), the copy gate.
+- **Not copied.** The reference's typewriter effects, jQuery, Webflow and analytics; the phone-frame device mockups (the plates are the real captures as they are).

@@ -1,84 +1,71 @@
 ---
 name: Darren Huai portfolio
-description: A plain, hand-made engineer portfolio in the owner's own palette: warm cream, violet, a touch of amber, one variable sans, mono only for code.
+description: An editorial engineer portfolio: a high-contrast serif for headlines, a mono for everything else, hairline rules, numbered rows with generous air, and two soft violet-blue washes.
 colors:
-  bg: "#faf8f5"
+  bg: "#f7f6fa"
   surface: "#ffffff"
-  surface-2: "#f2eee7"
-  ink: "#17131f"
-  ink-2: "#56516b"
-  muted: "#6b6480"
+  surface-2: "#efedf5"
+  ink: "#1c1826"
+  ink-2: "#4a4458"
+  muted: "#6f6a7e"
+  line: "#1c1826"
+  line-soft: "#d9d6e3"
   accent: "#5b3df0"
   accent-hover: "#4a2fd6"
-  accent-ink: "#ffffff"
-  accent-text: "#7c5cf0"
-  accent-soft: "#ece6fd"
-  accent-faint: "#f5f2fe"
-  amber: "#f0a63c"
-  amber-text: "#b8761f"
-  line: "#e9e4da"
-  bg-dark: "#17131f"
-  surface-dark: "#1f1a2b"
-  surface-2-dark: "#241e32"
-  ink-dark: "#f3f0fa"
-  ink-2-dark: "#cdc7df"
-  muted-dark: "#9b96b3"
+  blue: "#3d6bff"
+  lavender: "#c9c0ff"
+  magenta: "#a855f7"
+  bg-dark: "#15121c"
+  surface-dark: "#1d1927"
+  surface-2-dark: "#231e30"
+  ink-dark: "#f1eef7"
+  ink-2-dark: "#c6c0d6"
+  muted-dark: "#9893a8"
+  line-dark: "#f1eef7"
+  line-soft-dark: "#312c3f"
   accent-dark: "#8b73ff"
-  accent-hover-dark: "#a08fff"
-  accent-ink-dark: "#120d1f"
-  accent-text-dark: "#b4a4ff"
-  accent-soft-dark: "#2b2447"
-  accent-faint-dark: "#1e1933"
-  amber-text-dark: "#f2b65e"
-  line-dark: "#35304a"
+  blue-dark: "#6b8dff"
+  magenta-dark: "#b57cff"
 typography:
   display:
-    fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
-    fontSize: "clamp(2.125rem, 1.6rem + 2.2vw, 3.25rem)"
-    fontWeight: 600
-    lineHeight: 1.04
-    letterSpacing: "-0.015em"
-  headline:
-    fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
-    fontSize: "clamp(2rem, 1.886rem + 0.485vw, 2.25rem)"
-    fontWeight: 600
-    lineHeight: 1.1
-    letterSpacing: "-0.015em"
-  title:
-    fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
-    fontSize: "clamp(1.5625rem, 1.477rem + 0.364vw, 1.75rem)"
-    fontWeight: 600
-    lineHeight: 1.15
-    letterSpacing: "-0.01em"
-  lead:
-    fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
-    fontSize: "clamp(1.25rem, 1.193rem + 0.242vw, 1.375rem)"
-    fontWeight: 400
-    lineHeight: 1.3
-    letterSpacing: "0"
-  body:
-    fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
-    fontSize: "clamp(1rem, 0.957rem + 0.182vw, 1.094rem)"
-    fontWeight: 400
-    lineHeight: 1.55
-    letterSpacing: "0"
-  small:
-    fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
-    fontSize: "clamp(0.8125rem, 0.784rem + 0.121vw, 0.875rem)"
+    fontFamily: "Playfair Display, Iowan Old Style, Palatino Linotype, Georgia, serif"
+    fontSize: "clamp(2.5rem, 1.4rem + 4vw, 4.25rem)"
     fontWeight: 500
-    lineHeight: 1.3
-    letterSpacing: "0"
-  code:
-    fontFamily: "Geist Mono, ui-monospace, Consolas, monospace"
-    fontSize: "0.9em"
+    lineHeight: 1.12
+    letterSpacing: "-0.005em"
+  headline:
+    fontFamily: "Playfair Display, Iowan Old Style, Palatino Linotype, Georgia, serif"
+    fontSize: "clamp(2rem, 1.5rem + 2.2vw, 3rem)"
+    fontWeight: 500
+    lineHeight: 1.15
+    letterSpacing: "-0.005em"
+  row-title:
+    fontFamily: "Playfair Display, Iowan Old Style, Palatino Linotype, Georgia, serif"
+    fontSize: "clamp(1.75rem, 1.4rem + 1.5vw, 2.25rem)"
+    fontWeight: 500
+    lineHeight: 1.18
+    letterSpacing: "-0.005em"
+  body:
+    fontFamily: "Geist Mono, ui-monospace, Cascadia Mono, Consolas, Liberation Mono, monospace"
+    fontSize: "0.9375rem"
     fontWeight: 400
     lineHeight: 1.6
-    letterSpacing: "0"
+    letterSpacing: "0.005em"
+  small:
+    fontFamily: "Geist Mono, ui-monospace, Cascadia Mono, Consolas, Liberation Mono, monospace"
+    fontSize: "0.8125rem"
+    fontWeight: 400
+    lineHeight: 1.5
+    letterSpacing: "0.005em"
+  index:
+    fontFamily: "Geist Mono, ui-monospace, Cascadia Mono, Consolas, Liberation Mono, monospace"
+    fontSize: "0.8125rem"
+    fontWeight: 400
+    lineHeight: 1
+    letterSpacing: "0.04em"
 rounded:
-  sm: "10px"
-  md: "14px"
-  lg: "28px"
-  pill: "999px"
+  sm: "6px"
+  plate: "20px"
 spacing:
   s1: "4px"
   s2: "8px"
@@ -89,154 +76,105 @@ spacing:
   s7: "48px"
   s8: "64px"
   s9: "96px"
-  section-y: "clamp(4rem, 2.5rem + 4vw, 6.5rem)"
-  gutter: "clamp(1rem, 4vw, 2.5rem)"
+  s10: "128px"
+  section-y: "clamp(5rem, 4rem + 5vw, 8rem)"
+  gutter: "clamp(1.25rem, 5vw, 3.5rem)"
 components:
   button-primary:
-    backgroundColor: "{colors.accent}"
-    textColor: "{colors.accent-ink}"
-    typography: "{typography.body}"
-    rounded: "{rounded.pill}"
+    backgroundColor: "{colors.ink}"
+    textColor: "{colors.bg}"
+    typography: "{typography.small}"
+    rounded: "{rounded.sm}"
     padding: "0 24px"
-    height: "48px"
-    shadow: "0 14px 34px rgba(91, 61, 240, 0.28)"
-  button-primary-hover:
-    backgroundColor: "{colors.accent-hover}"
-    textColor: "{colors.accent-ink}"
+    height: "44px"
   button-secondary:
     backgroundColor: "transparent"
     textColor: "{colors.ink}"
-    typography: "{typography.body}"
-    rounded: "{rounded.pill}"
-    padding: "0 24px"
-    height: "48px"
-  button-secondary-hover:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.accent}"
-  pill-link:
-    backgroundColor: "{colors.accent-soft}"
-    textColor: "{colors.accent-hover}"
     typography: "{typography.small}"
-    rounded: "{rounded.pill}"
-    padding: "0 16px"
-    height: "40px"
-  card:
-    backgroundColor: "{colors.surface}"
-    rounded: "{rounded.md}"
-    padding: "24px"
-    shadow: "0 2px 10px rgba(23, 19, 31, 0.05)"
+    rounded: "{rounded.sm}"
+    padding: "0 24px"
+    height: "44px"
   plate:
     backgroundColor: "{colors.surface}"
-    rounded: "{rounded.md}"
+    rounded: "{rounded.plate}"
     padding: "0"
+    shadow: "0 18px 50px rgba(28, 24, 38, 0.10)"
   nav:
-    backgroundColor: "{colors.bg}"
-    textColor: "{colors.ink-2}"
-    typography: "{typography.small}"
-    height: "64px"
-  band:
-    backgroundColor: "{colors.surface-2}"
+    backgroundColor: "transparent"
     textColor: "{colors.ink}"
+    typography: "{typography.small}"
+    height: "72px"
 ---
 
 # Design System: Darren Huai portfolio
 
 ## 1. Overview
 
-**North star: a person's own site, in his own colours.**
+**North star: an editorial page, in violet and blue.**
 
-The first version of this site had a palette the owner liked: warm cream, a violet he used for every button, a lavender wash behind the hero and an amber that showed up in gradients. The 2026-09-30 rebuild replaced it with a cool "drafting table" system, which he later read as AI-made. On 2026-10-05 the palette came back, on top of the plainer structure: real screenshots, click-through project cards, first-person copy, the resume as the PDF itself.
+On 2026-10-06 Darren pointed at arlenmccluskey.com and asked for that page, with his purple-blue colour scheme, his projects and sections, and the live ChessTan board kept. So the page is now that language: a serif with real contrast for headlines, a typewriter mono for every other word, 1px rules in ink, a number beside every row, generous vertical air, one media plate per work row, and two soft washes (one with a field of drifting tick marks in the hero, one with a dot grid in the sign-off).
 
 Key characteristics:
-- The palette is the old site's (see Colours). Violet is the working accent; amber appears only in the two gradients and the three.js board.
-- One variable sans (Archivo) for everything; Geist Mono only inside `code` and `pre`.
-- Soft shapes: 14px on cards and plates, pills for buttons and contact links, 28px on the portrait frame. Two soft shadows and one glow, nowhere else.
-- Light and dark by `prefers-color-scheme`; dark keeps the same violet and amber on an ink-violet ground.
-- Copy rules from the hand-made pass stand: sentence case, plain numbers in prose, zero em or en dashes, no eyebrow labels, no chips as decoration, no icons, no invented biography.
+- Two typefaces with a clear split: Playfair Display for h1, h2 and row titles; Geist Mono for body, labels, lists, buttons, captions and the nav. Nothing else.
+- Lines, not boxes. Sections are separated by air and a hairline; rows carry a vertical divider beside their index and a horizontal rule under the title. Cards exist only as media plates.
+- Colour lives in the two washes and the ChessTan board. Text is ink; links go violet on hover.
+- Light and dark by `prefers-color-scheme`. Dark keeps the same rules in near-white ink on an ink-violet ground.
+- Copy rules stand: first person, plain, sentence case, zero em or en dashes, no invented biography, no eyebrow labels, no icons.
 
-Layout: 12-column sheet, max-width 1200px, column gap `{spacing.s5}`, gutter `{spacing.gutter}`; section rhythm `{spacing.section-y}` above and 1.15 times that below; every multi-column section is one column below 768px (900px for the open-source columns and the experience split).
+Layout: a 1080px sheet with a fluid gutter. The hero is 8/4; experience, work, about and resume rows are 7/5 at 900px and up, with the media or body column on the right. Everything stacks to one column below 900px.
 
 ## 2. Colours
 
-Warm cream neutrals, violet, amber. Plain hex throughout; the three.js scene reads the `--*-hex` twins.
+- **Ink** (`{colors.ink}`; dark `{colors.ink-dark}`): all text, all rules, the primary button fill. The `--ink-hex` twin feeds the tick-mark canvas.
+- **Ink 2** and **Muted**: body paragraphs and captions.
+- **Line** is ink; **Line soft** (`{colors.line-soft}`) frames plates and separates list items.
+- **Violet** (`{colors.accent}`): link hover, focus rings, the nav current state, the filename lines in the diff, the board's accent tile.
+- **Blue**, **Magenta**, **Lavender**: only in the two washes and the selection colour.
 
-### Primary
-- **Violet** (`{colors.accent}`; dark `{colors.accent-dark}`): primary buttons, the hovered link underline, the focus ring, the nav current underline, the gradient rule on project cards, the hero blob. Text on it is white in both themes.
-- **Violet, hover** (`{colors.accent-hover}`; dark `{colors.accent-hover-dark}`): primary button hover, pill link text.
-- **Violet, text** (`{colors.accent-text}`; dark `{colors.accent-text-dark}`): the middle stop of the name gradient and the card border on hover.
-- **Lavender** (`{colors.accent-soft}` and `{colors.accent-faint}`; dark twins): pill link fill, selection, the radial wash at the top of the hero.
-- **Amber** (`{colors.amber}`, text `{colors.amber-text}`; dark text `{colors.amber-text-dark}`): the warm end of the name gradient and the portrait frame, the second hero blob, the board scene's accent. Never a button, never a border on its own.
-
-### Neutral
-- **Cream** (`{colors.bg}`; dark `{colors.bg-dark}`): page ground.
-- **White** (`{colors.surface}`; dark `{colors.surface-dark}`): cards, plates, the status pill, facts cells.
-- **Band** (`{colors.surface-2}`; dark `{colors.surface-2-dark}`): the Experience and Resume bands, code blocks.
-- **Ink** (`{colors.ink}`; dark `{colors.ink-dark}`): headings and body.
-- **Ink 2** (`{colors.ink-2}`; dark `{colors.ink-2-dark}`): leads, secondary text.
-- **Muted** (`{colors.muted}`; dark `{colors.muted-dark}`): captions, dates in lists, the footer, resting link underlines.
-- **Line** (`{colors.line}`; dark `{colors.line-dark}`): hairlines, card and plate frames.
-
-### Gradients
-- **Name:** `linear-gradient(120deg, accent, accent-text 45%, amber-text, accent)` clipped to the text, drifting slowly when motion is allowed. Used on the name in the hero h1 only.
-- **Frame:** `linear-gradient(135deg, accent, amber)` as the 6px frame around the portrait, and at 90 degrees as the 3px rule along the top of every project card.
-- **Wash:** a lavender radial at the top of the hero plus two blurred blobs (violet top right, amber bottom left) that drift over 16 and 20 seconds; static under reduced motion; hidden in print.
+### The washes
+- **Hero:** three radial ellipses (violet, blue, magenta) blurred 46px behind a 420px square canvas of 9x9 tick marks; the wash bleeds off the right edge of the viewport.
+- **Sign-off:** three radial ellipses (magenta, violet, blue) blurred 40px under a 38px dot grid, left of the name.
 
 ## 3. Typography
 
-**Everything:** Archivo (variable), self-hosted `fonts/archivo-var.woff2`, normal width throughout, with a metric-matched Arial fallback.
-**Code only:** Geist Mono, self-hosted `fonts/geistmono-var.woff2`, inside `code` and `pre`.
+- **Display** (`{typography.display}`): the hero h1 only, two lines, "Hello, I'm Darren. / I'm an engineer."
+- **Headline** (`{typography.headline}`): section h2s, the sign-off name, project page h1s.
+- **Row title** (`{typography.row-title}`): the serif name of each row, with an optional second line (`.row-sub`).
+- **Body** (`{typography.body}`): mono at 15px, 48 to 56ch measures.
+- **Small** (`{typography.small}`): nav, meta lines, list items, buttons, captions.
+- **Index** (`{typography.index}`): the 01, 02 beside each row, tracked a little.
 
-- **Display** (`{typography.display}`): the hero h1 ("Hi, I'm" in ink, the name in the gradient).
-- **Headline** (`{typography.headline}`): section h2s and project page titles.
-- **Title** (`{typography.title}`): card titles and the email button.
-- **Lead** (`{typography.lead}`): hero intro and section leads, ink-2.
-- **Body** (`{typography.body}`): 62 to 66ch measure; line-height 1.55 light, 1.62 dark.
-- **Small** (`{typography.small}`): nav, the status pill, captions, dates after list items, facts labels.
-- **Code** (`{typography.code}`): commands and excerpts only.
+Emphasis in the hero paragraphs is `strong` at mono 600, as the reference does.
 
-Rules: no uppercase transforms; numbers and dates in prose are ordinary text (not mono); headings at normal width.
+## 4. Rows
 
-## 4. Elevation and shape
+```
+<article class="row [work-row]">
+  <div class="row-head">
+    <h3 class="row-title">Title<span class="row-sub">Second line</span></h3>
+    <span class="row-index">01</span>          <!-- vertical divider on its left -->
+    <div class="row-rule"></div>               <!-- hairline under both -->
+    <p class="row-meta">...</p> | <p class="row-lead">...</p>
+  </div>
+  <p class="row-body">...</p> | <div class="row-media"><div class="plate">...</div></div>
+</article>
+```
+Experience rows put the role and dates under the rule and the description on the right. Work rows put the one-liner, the stack and "View project" under the rule, the media plate on the right, and make the whole row one link to the project page.
 
-- Cards: white, 1px line, 14px radius, the gradient rule on top, `shadow-sm`; on hover the border turns violet-text, the shadow steps up to `shadow-md` and the card lifts 2px.
-- Plates: 1px line, 14px radius, `overflow: hidden`, declared `aspect-ratio`.
-- Buttons: pills; the primary carries the violet glow and lifts 2px on hover; the secondary has a line border that turns violet on hover.
-- The portrait: a 6px gradient frame at 28px radius with the violet glow; the photo at 24px with a 3px cream inset.
-- The nav: translucent cream with a 12px backdrop blur and a hairline below.
-- Nothing else casts a shadow, blurs or uses a gradient.
+## 5. Plates
 
-## 5. Components
+20px radius, 1px soft line, a soft shadow, 440px wide at 4:3 in work rows. Kinds: the live three.js board (no frame, no shadow), a still that plays its recording on hover or in view, a screenshot, a pair of phone captures on a tinted ground, a spec sheet, a few lines of code. On project pages the lead media, galleries and the portrait use the same plate.
 
-### Hero
-Status pill (white, hairline, green dot, "Software engineer intern at NASA Armstrong"), the h1, a four-sentence first-person intro, "See my projects" and "Resume", three pill links (Email, GitHub, LinkedIn), and the portrait on the right (columns 9 to 12 at 1024px and up; above the copy on phones). The portrait is served as a `picture` with 480 and 960 wide webp and jpg from the 1440x1800 original, and preloaded with `imagesrcset`.
+## 6. Motion
 
-### Project cards
-Stretched links to `projects/<slug>.html`. Cover: the three.js board (ChessTan), a still that plays its recording on hover or once in view on touch (watchglass, `data-hover-video`), a screenshot, or a pair of phone captures. Below the cards, "Also on my GitHub" lists the smaller public repositories. All of it is generated by `tools/build_projects.py`.
+- Load: the headline, text, links and field rise in over 500 to 800ms.
+- The tick marks drift with 3D value noise at 0.12 per second while the hero is on screen; one static frame under reduced motion.
+- Scroll reveals: below-the-fold rows rise 14px once.
+- The watchglass plate plays its clip on hover (fine pointers) or once in view (coarse); project page videos play once at half visibility; the board mounts within 800px.
+- Reduced motion: no animation, no clips, no autoplay, a still field, no board.
 
-### Project pages
-Title, lead, optional action buttons (ChessTan: "Play it in your browser", "Free on Steam"), a facts list, one lead media (video with the play, pause and replay button; image; image pair; phone pair; specs table), 4/8 prose sections, a screenshot gallery, previous and next.
+## 7. Do's and Don'ts
 
-### Open source
-A lead with the real numbers, two columns (virtualenv, platformdirs) listing every merged pull request with its merge date in muted small text, then "One each" and "In review" columns, then the user-dirs.dirs note. Data lives in `OSS_PROJECTS`, `OSS_SINGLES` and `OSS_OPEN` in `tools/build_projects.py`.
+Do: keep every heading in the serif and every other word in the mono; keep rules 1px and ink; number rows; put one real artifact per work row; keep the two washes the only colour fields.
 
-### Motion
-- `--ease-out: cubic-bezier(0.16, 1, 0.3, 1)`; `--dur-fast: 120ms`; `--dur-base: 160ms`.
-- Load: the status pill and intro rise in, the h1 wipes in, the portrait settles 8px; the name gradient and the two blobs drift on loops.
-- Scroll: below-the-fold blocks rise 12px once (IntersectionObserver; `.pre` is only ever added by JS).
-- Media: the watchglass card clip plays on hover (fine pointers) or once at 60% visibility (coarse); project page videos play once at 50% visibility; the three.js board mounts within 800px of the viewport.
-- Reduced motion: every animation and transition off, no clips are created, no autoplay, the board is never mounted.
-
-## 6. Do's and Don'ts
-
-Do:
-- Use violet for anything interactive and amber only in the two gradients and the board.
-- Keep copy first person, specific and dated where it can go stale (the About paragraph that starts "As of").
-- Ship real captures, real recordings, real numbers with links under them.
-- Run the copy gate: zero U+2013, U+2014, U+00B7; no runtime Google Fonts.
-
-Don't:
-- Add eyebrow labels, icon sets, stat tiles, charts, matrices, chips as decoration, or a typing effect.
-- Set headings, labels or prose in the mono, or in a condensed width.
-- Add a third accent, a second glow, or shadows on text.
-- Link the private repositories or show the phone number.
-- Invent biography or opinions.
+Don't: add pills, chips, icons, gradients on text, eyebrow labels, stat tiles, charts, a third typeface, a shadow on anything that is not a plate, or a Google Fonts link (fonts are self-hosted and the deploy gate rejects runtime font links).
