@@ -24,6 +24,7 @@
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/playfair-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/geistmono-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" imagesrcset="img/pro_pic-480.webp 480w, img/pro_pic.webp 960w" imagesizes="(min-width: 1024px) 250px, (min-width: 900px) 30vw, 60vw" fetchpriority="high">
   <script>document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="styles.css">
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js"}}</script>
@@ -82,8 +83,14 @@
               <a href="resume.html">Resume</a>
             </p>
           </div>
-          <div class="field-box" aria-hidden="true">
-            <canvas id="hero-field"></canvas>
+          <div class="field-box">
+            <canvas id="hero-field" aria-hidden="true"></canvas>
+            <figure class="plate hero-portrait">
+              <picture>
+                <source type="image/webp" srcset="img/pro_pic-480.webp 480w, img/pro_pic.webp 960w" sizes="(min-width: 1024px) 250px, (min-width: 900px) 30vw, 60vw">
+                <img src="img/pro_pic.jpg" srcset="img/pro_pic-480.jpg 480w, img/pro_pic.jpg 960w" sizes="(min-width: 1024px) 250px, (min-width: 900px) 30vw, 60vw" width="960" height="1200" fetchpriority="high" decoding="async" alt="Darren Huai">
+              </picture>
+            </figure>
           </div>
         </div>
         <hr class="rule hero-rule">
@@ -342,12 +349,6 @@
             <p>As of October 2026: I'm at NASA Armstrong through December. ChessTan 1.1, a rules simplification, is in progress on a branch, and watchglass has fixes queued for v0.1.9. I'm also prototyping a co-op game for one to eight players in Godot, which isn't public yet. Six of my pull requests are open upstream. I finish at USC in May 2027 and I'm looking for 2027 internships and new-grad software engineering roles.</p>
             <p class="about-facts">Los Angeles. US citizen. <a href="mailto:darrenhuai@gmail.com">darrenhuai@gmail.com</a>.</p>
           </div>
-          <figure class="plate portrait" data-reveal="rise">
-            <picture>
-              <source type="image/webp" srcset="img/pro_pic-480.webp 480w, img/pro_pic.webp 960w" sizes="(min-width: 900px) 360px, 100vw">
-              <img src="img/pro_pic.jpg" srcset="img/pro_pic-480.jpg 480w, img/pro_pic.jpg 960w" sizes="(min-width: 900px) 360px, 100vw" width="960" height="1200" loading="lazy" decoding="async" alt="Darren Huai">
-            </picture>
-          </figure>
         </div>
       </div>
     </section>

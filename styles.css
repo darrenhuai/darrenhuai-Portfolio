@@ -373,6 +373,17 @@ code {
   width: 100%;
   height: 100%;
 }
+/* the portrait, laid over the lower left of the field like a print on a drafting sheet */
+.field-box .hero-portrait {
+  position: absolute;
+  left: -6%;
+  bottom: -4%;
+  z-index: 2;
+  width: 62%;
+  aspect-ratio: 4 / 5;
+  border-color: var(--line-soft);
+}
+.field-box .hero-portrait img { object-position: 50% 28%; }
 .hero-rule { margin-top: clamp(3rem, 6vw, 5rem); }
 @media (min-width: 900px) {
   .hero-grid { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); column-gap: var(--s7); min-height: 440px; }
@@ -566,11 +577,8 @@ code {
 .about-text { max-inline-size: 52ch; color: var(--ink); }
 .about-text p + p { margin-top: var(--s4); }
 .about-facts { color: var(--ink); }
-.portrait { width: min(100%, 360px); aspect-ratio: 4 / 5; }
-.portrait img { object-position: 50% 30%; }
 @media (min-width: 900px) {
   .about-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: var(--s9); }
-  .portrait { justify-self: end; }
 }
 
 /* ---------- Contact: the sign-off, with the second wash ---------- */
