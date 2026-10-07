@@ -376,10 +376,11 @@ code {
 /* the portrait, laid over the lower left of the field like a print on a drafting sheet */
 .field-box .hero-portrait {
   position: absolute;
-  left: -6%;
-  bottom: -4%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   z-index: 2;
-  width: 62%;
+  width: 58%;
   aspect-ratio: 4 / 5;
   border-color: var(--line-soft);
 }

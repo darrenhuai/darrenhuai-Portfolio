@@ -132,7 +132,7 @@ Layout: a 1080px sheet with a fluid gutter. The hero is 8/4; experience, work, a
 - **Blue**, **Magenta**, **Lavender**: only in the two washes and the selection colour.
 
 ### The washes
-- **Hero:** three radial ellipses (violet, blue, magenta) blurred 46px behind a 400px square canvas of 9x9 tick marks, with the portrait laid over the lower left of the field as a plate; the wash rises behind the nav and bleeds off the right edge of the viewport.
+- **Hero:** three radial ellipses (violet, blue, magenta) blurred 46px behind a 400px square canvas of 9x9 tick marks, with the portrait centred over the field as a plate; the wash rises behind the nav and bleeds off the right edge of the viewport.
 - **Sign-off:** three radial ellipses (magenta, violet, blue) blurred 40px under a 38px dot grid, left of the name.
 
 ## 3. Typography

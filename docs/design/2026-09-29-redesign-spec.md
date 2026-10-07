@@ -771,4 +771,4 @@ Flagged to the owner, not changed: the embedded resume PDF shows his phone numbe
 
 ### J.2 The portrait (2026-10-06)
 
-Darren asked for his face to stay on the page. The portrait now sits in the hero, a 4:5 plate laid over the lower left of the tick field with the wash behind it, preloaded as the largest paint; About is text only. Mobile stacks it under the intro over the same wash.
+Darren asked for his face to stay on the page. The portrait now sits in the hero, a 4:5 plate centred over the tick field with the wash behind it, preloaded as the largest paint; About is text only. Mobile stacks it under the intro over the same wash.
