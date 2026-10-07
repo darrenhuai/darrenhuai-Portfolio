@@ -70,19 +70,19 @@ PROJECTS = [
             "caption": "From the Steam trailer, cut to start on the board: a two-player match from the first settlement to the victory screen. About 15 seconds, no sound.",
         },
         "sections": [
-            ("The problem", [
+            ("Two games on one board", [
                 "Two systems that usually live in different games share one board, so a good economy can still lose to a bad position.",
                 "Online, the hard part is a player whose connection drops mid-turn: two clients that disagree about the board end the game, and a dropped connection ends the match unless the player can rejoin.",
             ]),
             ("How a match plays", [
                 "Players settle their starting positions, then roll dice each round to collect resources from the tiles around their settlements. Resources buy houses, roads and fortresses, and units that move and capture like chess pieces: pawns, rooks, knights and queens, plus a colossus that unlocks after three kills. Players can trade with each other or the bank. A king takes three hits to fall, a checkmated player is out, and the last player with a king standing wins.",
             ]),
-            ("What I built", [
+            ("A headless rules engine and a small relay", [
                 "The rules engine and the AI run headless, with no scene tree, so the same code drives the game, the test suites, and full AI-versus-AI simulations.",
                 "Online play is host-authoritative: one client owns the game state and the others send it actions. A small WebSocket relay pairs up to four players by a five-character room code (no 0, O, 1, I or L, so it can be read out on a call) and forwards messages without knowing the rules. A player who drops has a grace period to rejoin with a token and resyncs from the host. Steam players can also connect peer to peer through Steamworks, without the relay.",
                 "One codebase ships as the Steam release, a browser build, and a Discord Activity.",
             ]),
-            ("Testing", [
+            ("Headless suites and click harnesses", [
                 "Headless Godot suites cover the rules, the AI, network actions, reconnects, the relay server, save and load, and map selection. UI harnesses drive real clicks through the menus and the tutorial.",
             ]),
         ],
@@ -140,7 +140,7 @@ PROJECTS = [
             "caption": "Demo recording, 14 seconds: a watch is set up on a printer screen and fires when it reads PRINT COMPLETE.",
         },
         "sections": [
-            ("The problem", [
+            ("Screens with no API", [
                 "Heat pump panels, 3D printers and bench scales show their state on a screen and nowhere else. The number is right there, and nothing on the network can read it.",
             ]),
             ("What it does", {"features": [
@@ -202,7 +202,7 @@ PROJECTS = [
             "note": f"The local web app on demo data (<code>--demo</code>).",
         },
         "sections": [
-            ("The problem", [
+            ("Thousands of markets", [
                 "Kalshi prices move every few minutes across thousands of markets. I wanted to know when one was worth a look without watching them all.",
             ]),
             ("Why it asks for your own estimate", [
@@ -254,7 +254,7 @@ PROJECTS = [
             "caption": "Results and setup screens.",
         },
         "sections": [
-            ("The problem", [
+            ("What a clip cannot show", [
                 "Coaches talk about the kinetic chain, but a phone clip of a strike only shows the result. To know whether the hip fired before the shoulder you need the timing of each joint, not a slow-motion replay.",
             ]),
             ("How it works", [
@@ -280,7 +280,7 @@ PROJECTS = [
             "span": 6,
             "cover": "specs",
             "sub": "A small transformer",
-            "items": [("Tokenizer", "characters"), ("Context", "256"), ("Blocks", "6"), ("Heads", "6 per block"), ("Embedding", "384"), ("Dropout", "0.2"), ("Steps", "5,000 of 64")],
+            "items": [("Tokenizer", "characters"), ("Context", "256"), ("Blocks", "6"), ("Heads", "6 per block"), ("Embedding", "384"), ("Dropout", "0.2"), ("Steps", "5,000"), ("Batch", "64")],
             "lead": "A small character-level GPT in PyTorch, trained on Petrarch's sonnets. I built it to learn how a transformer works end to end.",
             "stack": "Python, PyTorch",
         },
@@ -320,7 +320,7 @@ PROJECTS = [
             "span": 6,
             "cover": "code",
             "sub": "A robot that says hello",
-            "code": "from detector import has_face, find_face\n\nif has_face(image):\n    image, encoding, location = find_face(image)\n    greet(location)",
+            "code": "from detector import (\n    has_face,\n    find_face,\n    generate_encodings,\n)",
             "lead": "A face-recognizing greeting robot, built with a 14-person UCLA engineering club team. It spots a face and offers a handshake.",
             "stack": "Python, OpenCV, Arduino",
         },
@@ -345,8 +345,7 @@ PROJECTS = [
     },
 ]
 
-NAV = [("experience", "Experience"), ("projects", "Projects"), ("open-source", "Open source"),
-       ("about", "About"), ("contact", "Contact")]
+NAV = [("experience", "Experience"), ("projects", "Work"), ("open-source", "Open source"), ("about", "About")]
 
 
 # ---------------------------------------------------------------------------------------------
@@ -460,19 +459,16 @@ def cards_html() -> str:
     out = ['<div class="rows work-rows">']
     for i, p in enumerate(PROJECTS, start=1):
         c = p["card"]
-        sub = f'<span class="row-sub">{c["sub"]}</span>' if c.get("sub") else ""
         out.append('          <article class="row work-row" data-reveal="rise">')
         out.append('            <div class="row-head">')
-        out.append(f'              <h3 class="row-title"><a class="card-link" href="projects/{p["slug"]}.html">{p["title"]}{sub}</a></h3>')
+        out.append(f'              <h3 class="row-title"><a class="card-link" href="projects/{p["slug"]}.html">{p["title"]}</a></h3>')
         out.append(f'              <span class="row-index" aria-hidden="true">{i:02d}</span>')
         out.append('              <div class="row-rule"></div>')
         out.append(f'              <p class="row-lead">{c["lead"]}</p>')
-        out.append(f'              <p class="row-meta">{c["stack"]}</p>')
-        out.append('              <span class="row-cue" aria-hidden="true">View project</span>')
         out.append("            </div>")
         cover = card_cover(p)
         if cover:
-            out.append(f'            <div class="row-media work-media">\n              {cover}\n            </div>')
+            out.append(f'            <div class="row-media work-media">\n              {cover}\n              <p class="caption">{c["stack"]}</p>\n            </div>')
         out.append("          </article>")
     out.append("        </div>")
     return "\n".join(out)
@@ -747,7 +743,7 @@ def page_html(i: int) -> str:
 
   <header class="nav">
     <div class="sheet nav-inner">
-      <a class="wordmark" href="../index.html">Darren Huai</a>
+      <a class="wordmark" href="../index.html" aria-label="Darren Huai, home">DH</a>
       <button type="button" class="menu-button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
       <nav id="primary-nav" class="nav-links" aria-label="Primary">
 {nav}
@@ -760,7 +756,7 @@ def page_html(i: int) -> str:
   <main id="main">
     <article class="project" aria-labelledby="project-title">
       <div class="sheet">
-        <p class="back"><a href="../index.html#projects">All projects</a></p>
+        <p class="back"><a href="../index.html#projects">All work</a></p>
         <header class="project-head">
           <div class="project-intro">
             <h1 id="project-title">{p["title"]}</h1>
@@ -780,7 +776,7 @@ def page_html(i: int) -> str:
 
   <footer class="footer">
     <div class="sheet">
-      <p>Darren Huai, 2026. Made by hand with plain HTML and CSS. {ext("https://github.com/darrenhuai/darrenhuai-Portfolio", "Source")}.</p>
+      <p>Darren Huai, 2026. {ext("https://github.com/darrenhuai/darrenhuai-Portfolio", "Source")}.</p>
     </div>
   </footer>
 </body>

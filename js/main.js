@@ -182,15 +182,19 @@ if (hasIO && !reduceMotion && !saveData) {
 // ---------- The field of tick marks in the hero ----------
 // One frame under reduced motion; otherwise it drifts while on screen.
 const fieldCanvas = document.getElementById('hero-field');
-if (fieldCanvas) {
+const signoffCanvas = document.getElementById('signoff-field');
+if (fieldCanvas || signoffCanvas) {
   import('./field.js').then(({ mountField }) => {
     const color = () => getComputedStyle(root).getPropertyValue('--ink-hex').trim() || '#1c1826';
-    const options = () => ({ cols: 9, rows: 9, length: 14, color: color(), reducedMotion: reduceMotion });
-    let field = mountField(fieldCanvas, options());
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-      field.dispose();
-      field = mountField(fieldCanvas, options());
-    });
+    const mounts = [];
+    const mountAll = () => {
+      while (mounts.length) mounts.pop().dispose();
+      if (fieldCanvas) mounts.push(mountField(fieldCanvas, { cols: 9, rows: 9, length: 22, color: color(), reducedMotion: reduceMotion }));
+      // the sign-off repeats the field as one still frame, a different seed
+      if (signoffCanvas) mounts.push(mountField(signoffCanvas, { cols: 9, rows: 5, length: 22, seed: 23, color: color(), reducedMotion: true }));
+    };
+    mountAll();
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', mountAll);
   }).catch(() => {});
 }
 

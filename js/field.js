@@ -53,12 +53,13 @@ export function mountField(canvas, options = {}) {
   function draw(t) {
     ctx.clearRect(0, 0, width, height);
     ctx.strokeStyle = color;
-    ctx.lineWidth = 1.4;
+    ctx.lineWidth = 1.1;
     ctx.lineCap = 'round';
-    const gx = width / cols, gy = height / rows;
+    // alternate rows sit half a cell over, so the marks fall on a hex lattice like the board's tiles
+    const gx = width / (cols + 0.5), gy = height / rows;
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
-        const cx = gx * (c + 0.5), cy = gy * (r + 0.5);
+        const cx = gx * (c + 0.5 + (r % 2) * 0.5), cy = gy * (r + 0.5);
         const n = noise(c * 0.35, r * 0.35, t);
         const angle = (n - 0.5) * Math.PI * 1.6;
         const dx = Math.cos(angle) * length / 2, dy = Math.sin(angle) * length / 2;
