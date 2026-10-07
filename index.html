@@ -24,7 +24,7 @@
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/playfair-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/geistmono-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" imagesrcset="img/pro_pic-480.webp 480w, img/pro_pic.webp 960w" imagesizes="(min-width: 1024px) 250px, (min-width: 900px) 30vw, 60vw" fetchpriority="high">
+  <link rel="preload" as="image" imagesrcset="img/pro_pic-480.webp 480w, img/pro_pic.webp 960w" imagesizes="136px" fetchpriority="high">
   <script>document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="styles.css">
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js"}}</script>
@@ -71,6 +71,12 @@
       <div class="sheet">
         <div class="hero-grid">
           <div class="hero-copy">
+            <figure class="plate hero-portrait">
+              <picture>
+                <source type="image/webp" srcset="img/pro_pic-480.webp 480w, img/pro_pic.webp 960w" sizes="136px">
+                <img src="img/pro_pic.jpg" srcset="img/pro_pic-480.jpg 480w, img/pro_pic.jpg 960w" sizes="136px" width="960" height="1200" fetchpriority="high" decoding="async" alt="Darren Huai">
+              </picture>
+            </figure>
             <h1 id="hero-title">Software engineer.<br>Flight code to Steam.</h1>
             <div class="hero-text">
               <p>I'm Darren Huai, a CS master's student at USC and, this fall, a software engineer intern at NASA Armstrong, on cFS flight software for the HPSC processor.</p>
@@ -83,14 +89,8 @@
               <a href="resume.html">Resume</a>
             </p>
           </div>
-          <div class="field-box">
+          <div class="field-box" aria-hidden="true">
             <canvas id="hero-field" aria-hidden="true"></canvas>
-            <figure class="plate hero-portrait">
-              <picture>
-                <source type="image/webp" srcset="img/pro_pic-480.webp 480w, img/pro_pic.webp 960w" sizes="(min-width: 1024px) 250px, (min-width: 900px) 30vw, 60vw">
-                <img src="img/pro_pic.jpg" srcset="img/pro_pic-480.jpg 480w, img/pro_pic.jpg 960w" sizes="(min-width: 1024px) 250px, (min-width: 900px) 30vw, 60vw" width="960" height="1200" fetchpriority="high" decoding="async" alt="Darren Huai">
-              </picture>
-            </figure>
           </div>
         </div>
         <hr class="rule hero-rule">
