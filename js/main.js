@@ -189,7 +189,7 @@ if (fieldCanvas || signoffCanvas) {
     const mounts = [];
     const mountAll = () => {
       while (mounts.length) mounts.pop().dispose();
-      if (fieldCanvas) mounts.push(mountField(fieldCanvas, { cols: 9, rows: 9, length: 22, color: color(), reducedMotion: reduceMotion }));
+      if (fieldCanvas) mounts.push(mountField(fieldCanvas, { cols: 9, rows: 9, length: 22, color: color(), reducedMotion: reduceMotion, hoverTarget: fieldCanvas.closest('.field-box') || fieldCanvas }));
       // the sign-off repeats the field as one still frame, a different seed
       if (signoffCanvas) mounts.push(mountField(signoffCanvas, { cols: 9, rows: 5, length: 22, seed: 23, color: color(), reducedMotion: true }));
     };

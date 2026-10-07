@@ -1,5 +1,6 @@
-// A field of short tick marks drawn on a canvas. They drift with a slow noise, and when a pointer is
-// on the page they turn toward it, the nearest ones most. mountField(canvas, options) returns { dispose }.
+// A field of short tick marks drawn on a canvas. At rest they lie still in a noise pattern; while the
+// pointer is over the field they turn toward it, the nearest ones most, and ease back when it leaves.
+// Pass drift: true for a slow idle drift as well. mountField(canvas, options) returns { dispose }.
 // With reduced motion it draws one frame and stops.
 
 function makeNoise(seed) {
@@ -43,13 +44,16 @@ export function mountField(canvas, options = {}) {
   const color = options.color || '#17131f';
   const speed = options.speed || 0.12;
   const reduced = Boolean(options.reducedMotion);
+  const drift = Boolean(options.drift) && !reduced;
   const followPointer = options.followPointer !== false && !reduced;
+  const hoverTarget = options.hoverTarget || canvas.parentElement || canvas;
   const noise = makeNoise(options.seed || 7);
   const ctx = canvas.getContext('2d');
   if (!ctx) return { dispose() {} };
 
   let width = 0, height = 0, dpr = 1, frame = 0, running = false, start = performance.now();
-  let pointer = null; // page coordinates of the pointer, or null when it has left
+  let pointer = null; // page coordinates of the pointer while it is over the field, else null
+  let settled = true; // true once every mark has reached its target and the loop can rest
   const angles = new Float32Array(cols * rows); // the angle each mark is currently drawn at
 
   function resize() {
@@ -69,8 +73,8 @@ export function mountField(canvas, options = {}) {
   }
 
   function targetAngle(c, r, t, local) {
-    const drift = (noise(c * 0.35, r * 0.35, t) - 0.5) * Math.PI * 1.6;
-    if (!local) return drift;
+    const rest = (noise(c * 0.35, r * 0.35, drift ? t : 0) - 0.5) * Math.PI * 1.6;
+    if (!local) return rest;
     // the mark leans toward the pointer; the pull fades with distance so the field bends rather than snaps
     const [cx, cy] = markCentre(c, r);
     const dx = local.x - cx, dy = local.y - cy;
@@ -78,7 +82,7 @@ export function mountField(canvas, options = {}) {
     const reach = Math.max(width, height) * 1.4;
     const pull = Math.max(0, 1 - dist / reach);
     const toward = Math.atan2(dy, dx);
-    return drift + lineAngleDelta(drift, toward) * pull;
+    return rest + lineAngleDelta(rest, toward) * pull;
   }
 
   function draw(t, settle) {
@@ -91,12 +95,15 @@ export function mountField(canvas, options = {}) {
       const rect = canvas.getBoundingClientRect();
       local = { x: pointer.x - rect.left - window.scrollX, y: pointer.y - rect.top - window.scrollY };
     }
+    let largest = 0;
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
         const i = r * cols + c;
         const target = targetAngle(c, r, t, local);
         // ease toward the target so the marks turn instead of jumping
-        angles[i] = settle ? target : angles[i] + lineAngleDelta(angles[i], target) * 0.14;
+        const delta = lineAngleDelta(angles[i], target);
+        largest = Math.max(largest, Math.abs(delta));
+        angles[i] = settle ? target : angles[i] + delta * 0.14;
         const [cx, cy] = markCentre(c, r);
         const dx = Math.cos(angles[i]) * length / 2, dy = Math.sin(angles[i]) * length / 2;
         ctx.beginPath();
@@ -105,11 +112,14 @@ export function mountField(canvas, options = {}) {
         ctx.stroke();
       }
     }
+    settled = largest < 0.002;
   }
 
   function loop(now) {
     if (!running) return;
     draw(((now - start) / 1000) * speed, false);
+    // without drift the loop only needs to run while the marks are turning
+    if (!drift && pointer === null && settled) { running = false; return; }
     frame = requestAnimationFrame(loop);
   }
 
@@ -131,30 +141,33 @@ export function mountField(canvas, options = {}) {
   const onMove = (event) => {
     if (event.pointerType && event.pointerType !== 'mouse') return;
     pointer = { x: event.pageX, y: event.pageY };
+    play();
   };
-  const onLeave = () => { pointer = null; };
+  const onLeave = () => { pointer = null; play(); };
   if (followPointer) {
-    window.addEventListener('pointermove', onMove, { passive: true });
-    document.documentElement.addEventListener('pointerleave', onLeave);
+    hoverTarget.addEventListener('pointerenter', onMove);
+    hoverTarget.addEventListener('pointermove', onMove, { passive: true });
+    hoverTarget.addEventListener('pointerleave', onLeave);
     window.addEventListener('blur', onLeave);
   }
 
   let observer = null;
-  if (!reduced && 'IntersectionObserver' in window) {
+  if (drift && 'IntersectionObserver' in window) {
     observer = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) play(); else pause(); });
     observer.observe(canvas);
-  } else {
+  } else if (drift) {
     play();
   }
-  const onVisibility = () => { if (document.hidden) pause(); else if (observer === null) play(); };
+  const onVisibility = () => { if (document.hidden) pause(); else if (drift && observer === null) play(); };
   document.addEventListener('visibilitychange', onVisibility);
 
   return {
     dispose() {
       pause();
       window.removeEventListener('resize', onResize);
-      window.removeEventListener('pointermove', onMove);
-      document.documentElement.removeEventListener('pointerleave', onLeave);
+      hoverTarget.removeEventListener('pointerenter', onMove);
+      hoverTarget.removeEventListener('pointermove', onMove);
+      hoverTarget.removeEventListener('pointerleave', onLeave);
       window.removeEventListener('blur', onLeave);
       document.removeEventListener('visibilitychange', onVisibility);
       if (observer) observer.disconnect();

@@ -168,7 +168,7 @@ Experience rows put the role and dates under the rule and the description on the
 ## 6. Motion
 
 - Load: the headline, text, links and field rise in over 500 to 800ms.
-- The tick marks drift with 3D value noise at 0.12 per second while the hero is on screen and turn toward the mouse pointer, the nearest ones most, easing back when it leaves; one static frame under reduced motion.
+- The tick marks lie still in a noise pattern and turn toward the mouse pointer only while it is over the field, the nearest ones most, easing back when it leaves; one static frame under reduced motion.
 - Scroll reveals: below-the-fold rows rise 14px once.
 - The watchglass plate plays its clip on hover (fine pointers) or once in view (coarse); project page videos play once at half visibility; the board mounts within 800px.
 - Reduced motion: no animation, no clips, no autoplay, a still field, no board.
