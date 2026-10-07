@@ -278,7 +278,7 @@ PROJECTS = [
         "title": "Petrarchan GPT",
         "card": {
             "span": 6,
-            "cover": "specs",
+            "cover": None,  # plate removed for now at Darren's request; the specs stay on the project page
             "sub": "A small transformer",
             "items": [("Tokenizer", "characters"), ("Context", "256"), ("Blocks", "6"), ("Heads", "6 per block"), ("Embedding", "384"), ("Dropout", "0.2"), ("Steps", "5,000"), ("Batch", "64")],
             "lead": "A small character-level GPT in PyTorch, trained on Petrarch's sonnets. I built it to learn how a transformer works end to end.",
@@ -318,7 +318,7 @@ PROJECTS = [
         "title": "GreetBot",
         "card": {
             "span": 6,
-            "cover": "code",
+            "cover": None,  # plate removed for now at Darren's request
             "sub": "A robot that says hello",
             "code": "from detector import (\n    has_face,\n    find_face,\n    generate_encodings,\n)",
             "lead": "A face-recognizing greeting robot, built with a 14-person UCLA engineering club team. It spots a face and offers a handshake.",
