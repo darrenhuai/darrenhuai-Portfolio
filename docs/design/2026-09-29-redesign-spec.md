@@ -757,7 +757,7 @@ Darren pointed at arlenmccluskey.com: "could you just copy it, but with my purpl
 
 Three reviewers (fidelity to the reference, AI tells, correctness) read the rebuild. Applied:
 - A rule written for the hover clips (`.plate > video`) also hid the trailer and the demo on the project pages; it is now scoped to `[data-hover-video]`.
-- The greeting was the reference's line with two words swapped; it is now his own: "I write flight software and make games." The bold phrases in the hero paragraphs went.
+- The greeting was the reference's line with two words swapped; it is now his own: "Software engineer. Flight code to Steam." The bold phrases in the hero paragraphs went.
 - Row titles no longer wrap to three lines: no 16ch cap, 40px at 1440, the row head at 3/5 and the plate a real 440px from 1024px up; the work rows lost their serif taglines and the "View project" cue, and the stack line moved under the plate as a caption. The experience rows carry the start year in the index slot instead of a second 01 to 04.
 - Section heads are running heads with a rule (2rem) so the rows carry the page; section air trimmed.
 - The hero wash now rises behind the nav instead of being cut flat under it; the sign-off wash bleeds off the left edge and under the footer, and the dot grid became a still frame of the tick field (his motif) over it. The sign-off name sits on one line with a dated fact under it.
