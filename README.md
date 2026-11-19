@@ -23,7 +23,7 @@ three.js hex board that is a 3D take on [ChessTan](https://store.steampowered.co
 | `img/work/` | Real screenshots, the watchglass demo recording, and the ChessTan Steam trailer (muted). |
 | `img/og.png` | The social preview: a 1200x630 screenshot of the hero in the light theme. Retake it when the hero changes. |
 | `tools/hero-still.html` | Renders the board at 1600x1200 to regenerate `img/hero-board-*.webp`. |
-| `docs/design/`, `DESIGN.md` | The design spec and tokens the page was built from. |
+| `DESIGN.md` | The design tokens the page was built from. |
 
 The open-source counts are hand-updated from GitHub (`gh search prs --author=darrenhuai --merged`); check them before each rebuild.
 
